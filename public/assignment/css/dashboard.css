@@ -103,3 +103,19 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+.glyphicon.glyphicon-plus {
+    font-size: 30px;
+}
+
+.glyphicon.glyphicon-ok {
+    font-size: 30px;
+}
+
+.glyphicon.glyphicon-remove {
+    font-size: 30px;
+}
+
+.glyphicon.glyphicon-pencil {
+    font-size: 30px;
+}

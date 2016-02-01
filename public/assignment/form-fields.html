@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-
+    <link href="css/style.css" rel="stylesheet">
 
 </head>
 
@@ -27,7 +26,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -51,7 +51,7 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li ><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="admin.html">Admin</a></li>
                 <li class="active"><a href="forms.html">Forms</a></li>
@@ -60,39 +60,171 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1>Forms</h1>
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">Forms</a></li>
-                <li role="presentation"><a href="#">Fields</a></li>
+                <li role="presentation"><a href="#">Forms</a></li>
+                <li role="presentation" class="active"><a href="#">Fields</a></li>
             </ul>
             <div class="row">
-                <div class="col-md-6 form-group">
-                    <label>Label1</label>
-                    <input class="form-control" type="text"/>
-                </div>
-                <div class="col-md-6 form-group">
-                    <span class="glyphicon glyphicon-remove" ></span>
-                    <span class="glyphicon glyphicon-pencil" ></span>
-
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="fname" class="col-md-12 control-label">First Name:</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="fname" placeholder="FName">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <label>Gender</label>
-                    <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
 
-                    </select>
-                </div>
-                <div class="col-md-6 form-group">
-                    <span class="glyphicon glyphicon-remove" ></span>
-                    <span class="glyphicon glyphicon-pencil" ></span>
 
                 </div>
-                <div class="col-md-6 form-group">
-                    <label>Label4</label>
-                    <input class="form-control" type="text"/>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lname" class="col-md-12 control-label">Last Name:</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="lname" placeholder="FName">
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-6">
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dname" class="col-md-12 control-label">Gender:</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="dname">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="date" class="col-md-12 control-label"> Select a Date</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="date">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dname" class="col-md-12 control-label">Roles:</label>
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="">Admin</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="">Student</label>
+                            </div>
+                            <div class="checkbox disabled">
+                                <label><input type="checkbox" value="">User</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dname" class="col-md-12 control-label">License Agreement:</label>
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <label><input type="radio" value="">Yes</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" value="">Student</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+
+
+                </div>
+            </div>
+            <div class="row"><div class="col-md-12"><hr></div></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dname" class="col-md-12 control-label">Add a new Field:</label>
+                    <div class="col-md-12">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Single Line Text:
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <span for="fname" class="col-md-12">Email:</span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                </div>
+
+
             </div>
 
         </div>
+
+
         <!--<h2 class="sub-header">Section title</h2>
         <div class="table-responsive">
             <table class="table table-striped">
@@ -223,13 +355,13 @@
         </div>
     </div>  -->
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
 </html>

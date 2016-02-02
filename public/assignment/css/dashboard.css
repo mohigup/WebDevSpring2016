@@ -105,17 +105,21 @@ body {
 }
 
 .glyphicon.glyphicon-plus {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .glyphicon.glyphicon-ok {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .glyphicon.glyphicon-remove {
-    font-size: 30px;
+    font-size: 20px;
+}
+
+.glyphicon.glyphicon-align-justify {
+    font-size: 20px;
 }
 
 .glyphicon.glyphicon-pencil {
-    font-size: 30px;
+    font-size: 20px;
 }

@@ -3,3 +3,19 @@ hr {
     align: left;
 
 }
+
+.row{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-border{
+
+    border: 1px solid black;
+}
+
+.g-icons{
+    float: right;
+}

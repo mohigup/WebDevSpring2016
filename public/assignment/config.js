@@ -22,15 +22,15 @@
                 //controller : "LoginController"
             })
             .when("/admin", {
-                templateUrl: "admin/admin.view.html"
+                templateUrl: "views/admin/admin.view.html"
             })
             .when("/forms", {
-                templateUrl: "views/form/form.view.html",
+                templateUrl: "views/forms/forms.view.html",
                 //controller : "FormController"
             })
 
             .when("/form/:userid/:id", {
-                templateUrl: "views/field/form-fields.view.html",
+                templateUrl: "views/forms/form-fields.view.html",
                 //controller: "FieldController"
             })
             .otherwise({

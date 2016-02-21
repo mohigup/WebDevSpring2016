@@ -7,19 +7,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/home">Formatlas</a>
+            <a class="navbar-brand" href="#/home">FormMaker</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse" ng-controller="HeaderController">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/home">Home<span class="sr-only">(current)</span></a></li>
                 <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('register') != -1} "><a href="#/register">Register</a>
                 <li ng-if="user.logged"><a href="#"><span ng-bind="user.username"></span></a></li>
                 <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('login') != -1} "><a href="#/login">Login</a></li>
-                <li ng-if="user.logged" ng-click="eraseUser()"><a href="#/home">Logout</a></li>
+                <li ng-if="user.logged" ng-click="logoutUser()"><a href="#/home">Logout</a></li>
+                <li ng-if="isAdmin"><a href="#/admin">Admin</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+
             {{username}}
         </div>
     </div>

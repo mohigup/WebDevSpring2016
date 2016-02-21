@@ -7,6 +7,7 @@
 
         $scope.$location = $location;
         $scope.hello = "Main Controller";
+        console.log("MainController");
 
 
 

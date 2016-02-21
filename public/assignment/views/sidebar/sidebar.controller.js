@@ -4,7 +4,7 @@
         .controller("SidebarController", SidebarController)
 
     function SidebarController ($scope, $location) {
-
+            console.log("siderbar");
     }
 
 })();

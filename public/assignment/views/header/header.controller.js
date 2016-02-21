@@ -5,18 +5,14 @@
 
     function HeaderController ($scope , $location,$rootScope)
     {
-        $scope.eraseUser = eraseUser;
-        console.log($rootScope.user)
-        //if ($rootScope.user == null)
-        //{
-        //    $scope.username = "user name";
-        //}
-        //else
-        //{
-        //    $scope.username = "test";
-        //}
+        console.log()
+        $scope.logoutUser = logoutUser;
+        //$scope.isAdmin=isAdmin;
+        //console.log("header"+$rootScope.user)
+       // console.log("isAdmin"+$scope.isAdmin())
 
-        function eraseUser()
+
+        function logoutUser()
         {
             //$rootScope.user = null;
             $rootScope.user.logged = false;
@@ -24,6 +20,7 @@
             $rootScope.user.lastname = "";
 
         }
+
 
     }
 

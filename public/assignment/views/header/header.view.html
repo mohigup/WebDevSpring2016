@@ -16,7 +16,7 @@
                 <li ng-if="user.logged"><a href="#"><span ng-bind="user.username"></span></a></li>
                 <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('login') != -1} "><a href="#/login">Login</a></li>
                 <li ng-if="user.logged" ng-click="logoutUser()"><a href="#/home">Logout</a></li>
-                <li ng-if="isAdmin"><a href="#/admin">Admin</a></li>
+                <li ng-if="isAdmin && user.logged"><a href="#/admin">Admin</a></li>
             </ul>
 
             {{username}}

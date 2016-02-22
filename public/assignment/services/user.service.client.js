@@ -74,11 +74,15 @@
 
         }
 
-        function updateUser(userid , user)
-        {
-
-
-
+        function updateUser(userId, user, callback) {
+            var i;
+            for(i in users){
+                if(users[i]._id==userId){
+                    users[i]=user;
+                    callback(users[i]);
+                    break;
+                }
+            }
         }
 
     }

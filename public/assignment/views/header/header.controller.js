@@ -11,7 +11,7 @@
         //console.log("header"+$rootScope.user)
        // console.log("isAdmin"+$scope.isAdmin())
 
-
+        console.log("outside logoutsuer");
         function logoutUser()
         {
             //$rootScope.user = null;
@@ -20,6 +20,7 @@
             $rootScope.user.lastname = "";
 
         }
+
 
 
     }

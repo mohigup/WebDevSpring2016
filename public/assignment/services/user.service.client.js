@@ -38,12 +38,21 @@
 
         function getAllUsers()
         {
+            var newUser = {
+                _id: (new Date()).getTime(),
+                username: user.username,
+                password: user.password
+            };
 
+            console.log(userData);
+
+            users.push(newUser);
+            callback(newUser);
         }
 
-        function findAllUsers(cb_fn)
+        function findAllUsers(callback)
         {
-            return(null);
+            callback(userData);;
 
         }
 
@@ -70,7 +79,12 @@
         }
 
         function deleteUserById (userid,ca_fn)
-        {
+        {var index = userData.indexOf(findUserById(userId));
+            if(index>=0){
+                userData.splice(index, 1);
+            }
+
+            callback(userData);
 
         }
 

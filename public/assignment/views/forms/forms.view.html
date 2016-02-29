@@ -1,10 +1,10 @@
 
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
             <h1>Forms</h1>
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">Forms</a></li>
-                <li role="presentation"><a href="form-fields.view.html">Fields</a></li>
+                <li ng-class="{'active' : $location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
+                <li><a href="#/form-fields">Fields</a></li>
             </ul>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
@@ -16,43 +16,27 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="text" class="form-control" id="username2" placeholder="name"></td>
+                        <td><input type="text" class="form-control" ng-model="formName" id="username2" placeholder="name"></td>
                         <td class="form-icons">
                             <div class="g-icons">
-                                <a href = "#"><span class="glyphicon glyphicon-plus"></span></a>
-                                <a href = "#"><span class="glyphicon glyphicon-ok"></span></a>
+                                <a ng-click="addForm(formName)" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus"></span></a>
+                                <a ng-click="updateForm(formName)" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-ok"></span></a>
                                 </div></td>
 
                     </tr>
-                    <tr>
-                        <td><a href="form-fields.view.html">Registration Form</a></td>
+                    <tr ng-repeat="form in forms">
+                        <td><a href="#/form-fields">{{form.title}}</a></td>
                         <td class="form-icons">
                             <div class="g-icons">
-                                <a href = "#"> <span class="glyphicon glyphicon-remove"></span></a>
-                                <a href = "#"> <span class="glyphicon glyphicon-pencil"></span></a>
+                                <a ng-click="deleteForm($index)"> <span class="glyphicon glyphicon-remove"></span></a>
+                                <a ng-click="selectForm($index)" ng-model="index"> <span class="glyphicon glyphicon-pencil"></span></a>
                         </div></td>
 
                     </tr>
-                    <tr>
-                        <td><a href="form-fields.view.html">Contact List</a></td>
-                        <td class="form-icons">
-                            <div class="g-icons">
-                                <a href = "#"> <span class="glyphicon glyphicon-remove"></span></a>
-                                <a href = "#"> <span class="glyphicon glyphicon-pencil"></span></a>
-                        </div></td>
 
-                    </tr>
-                    <tr>
-                        <td><a href="form-fields.view.html">To Do List</a></td>
-                        <td class="form-icons">
-                            <div class="g-icons">
-                                <a href = "#"> <span class="glyphicon glyphicon-remove"></span></a>
-                                <a href = "#"> <span class="glyphicon glyphicon-pencil"></span></a>
-                                </div></td>
-
-                    </tr>
 
                     </tbody>
                 </table>
             </div>
-        </div>

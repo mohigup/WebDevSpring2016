@@ -27,6 +27,8 @@
         {
             getAllUsers: getAllUsers ,
             findUserByCredentials: findUserByCredentials,
+            findUserById: findUserById,
+            findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
@@ -73,8 +75,38 @@
             callback(success);
         }
 
-        function createUser(user)
+        function findUserById(userId){
+            for(var uid in users){
+
+                if(users[uid]._id == userId) {
+                    return users[uid];
+                }
+            }
+            return null;
+        }
+
+        function findUserByUsername(username){
+            var user = null;
+            for(var uname in users){
+
+                if(users[uname].username == username) {
+                    user = users[uname];
+                    break;
+                }
+            }
+            return user;
+        }
+
+        function createUser(user, callback)
         {
+            var newUser = {
+                _id: (new Date()).getTime(),
+                username: user.username,
+                password: user.password
+            };
+
+            users.push(newUser);
+            callback(newUser);
 
         }
 

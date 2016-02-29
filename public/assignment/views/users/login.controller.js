@@ -7,10 +7,9 @@
     {
         console.log("inside LoginController");
         $scope.login = login;
-        console.log("inside loginC");
+        console.log("calling login");
         function login(uname, pass)
         {
-
             var user;
             UserService.findUserByCredentials(uname, pass,function(response){
 
@@ -23,15 +22,14 @@
                     alert("no such user");
                 }
                 else
-                {   console.log("user roels"+user.roles);
+                {   console.log("user roles"+user.roles);
 
                     for (var i in user.roles) {
                         if (user.roles[i] == "admin") {
                             status = true;
                             break;
                         }
-                       // else
-                         ///   $rootScope.user.isAdmin = false;
+
                     }
                     $rootScope.isAdmin = status;
                     console.log("$rootScope.user.isAdmin"+$rootScope.isAdmin);

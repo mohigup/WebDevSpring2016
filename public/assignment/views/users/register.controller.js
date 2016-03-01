@@ -1,3 +1,4 @@
+"use strict";
 (function () {
     angular
         .module("FormBuilderApp")
@@ -38,7 +39,7 @@
 
             UserService.createUser(user, function (response) {
 
-                newUser = response;
+                var newUser = response;
                 $rootScope.user = newUser;
                 $rootScope.user.logged = true;
                 $rootScope.user.globalusername = newUser.username;

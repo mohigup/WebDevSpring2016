@@ -6,7 +6,7 @@
 
     function ProfileController($scope, UserService, $location, $rootScope) {
         console.log("ProfileController");
-       // var model = this;
+        // var model = this;
 
 
         var currentUser = $rootScope.user;
@@ -30,22 +30,23 @@
         function update() {
 
             console.log("inside update");
-            var newUser={
-                "_id":$scope._id,
-                "firstName":$scope.firstName,
-                "lastName":$scope.lastName,
-                "username":$scope.username,
-                "password":$scope.password,
+            var newUser = {
+                "_id": $scope._id,
+                "firstName": $scope.firstName,
+                "lastName": $scope.lastName,
+                "username": $scope.username,
+                "password": $scope.password,
                 "roles": $scope.roles,
-                "email":$scope.email}
+                "email": $scope.email
+            }
             console.log("calling update service");
-            UserService.updateUser($scope._id,newUser,updateprofileview);
+            UserService.updateUser($scope._id, newUser, updateprofileview);
 
         }
 
-        function updateprofileview(user){
+        function updateprofileview(user) {
             UserService.setCurrentUser(user);
-            console.log("user updated"+user);
+            console.log("user updated" + user);
             console.log($rootScope.user.logged)
         }
     }

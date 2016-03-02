@@ -1,12 +1,11 @@
-
 "use strict";
-(function (){
+(function () {
 
     angular
         .module("FormBuilderApp")
         .controller("FieldsController", FieldsController);
 
-    function FieldsController(){
+    function FieldsController() {
 
     }
 })();

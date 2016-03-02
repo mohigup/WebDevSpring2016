@@ -4,13 +4,11 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController)
 
-    function RegisterController($scope, UserService, $location, $rootScope)
-    {
+    function RegisterController($scope, UserService, $location, $rootScope) {
 
         $scope.register = register;
         console.log("RegisterController");
-        function register(user)
-        {
+        function register(user) {
             console.log(user);
 
             $scope.message = null;
@@ -50,7 +48,6 @@
             });
 
         }
-
 
 
     }

@@ -10,23 +10,23 @@
         var users = [
             {
                 "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
-                "username": "alice", "password": "alice", "roles": ["student"], "email":"alice@skype.com"
+                "username": "alice", "password": "alice", "roles": ["student"], "email": "alice@skype.com"
             },
             {
                 "_id": 234, "firstName": "Bob", "lastName": "Hope",
-                "username": "bob", "password": "bob", "roles": ["admin"], "email":""
+                "username": "bob", "password": "bob", "roles": ["admin"], "email": ""
             },
             {
                 "_id": 345, "firstName": "Charlie", "lastName": "Brown",
-                "username": "charlie", "password": "charlie", "roles": ["faculty"], "email":""
+                "username": "charlie", "password": "charlie", "roles": ["faculty"], "email": ""
             },
             {
                 "_id": 456, "firstName": "Dan", "lastName": "Craig",
-                "username": "dan", "password": "dan", "roles": ["faculty", "admin"], "email":""
+                "username": "dan", "password": "dan", "roles": ["faculty", "admin"], "email": ""
             },
             {
                 "_id": 567, "firstName": "Edward", "lastName": "Norton",
-                "username": "ed", "password": "ed", "roles": ["student"],"email":""
+                "username": "ed", "password": "ed", "roles": ["student"], "email": ""
             }
         ];
 
@@ -129,7 +129,7 @@
             }
         }
 
-        function setCurrentUser (user) {
+        function setCurrentUser(user) {
             $rootScope.user = user;
             $rootScope.user.logged = true;
         }

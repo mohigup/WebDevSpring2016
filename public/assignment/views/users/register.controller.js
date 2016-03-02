@@ -40,11 +40,12 @@
             UserService.createUser(user, function (response) {
 
                 var newUser = response;
-                $rootScope.user = newUser;
-                $rootScope.user.logged = true;
-                $rootScope.user.globalusername = newUser.username;
+                UserService.setCurrentUser(newUser);
+                //$rootScope.user = newUser;
+                //$rootScope.user.logged = true;
+                //$rootScope.user.globalusername = newUser.username;
                 $location.url('/profile');
-                console.log($rootScope.user.globalusername);
+                //console.log($rootScope.user.globalusername);
 
             });
 

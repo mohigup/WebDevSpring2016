@@ -36,15 +36,15 @@
                 "lastName":$scope.lastName,
                 "username":$scope.username,
                 "password":$scope.password,
-                "roles": $scope.roles	}
+                "roles": $scope.roles,
+                "email":$scope.email}
             console.log("calling update service");
             UserService.updateUser($scope._id,newUser,updateprofileview);
 
         }
 
         function updateprofileview(user){
-            $rootScope.user=user;
-            $rootScope.user.logged = true;
+            UserService.setCurrentUser(user);
             console.log("user updated"+user);
             console.log($rootScope.user.logged)
         }

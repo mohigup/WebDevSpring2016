@@ -32,11 +32,13 @@
                         }
 
                     }
+                    UserService.setCurrentUser(user);
                     $rootScope.isAdmin = status;
                     console.log("$rootScope.user.isAdmin"+$rootScope.isAdmin);
-                    $rootScope.user = user;
-                    $rootScope.user.logged = true;
-                    $rootScope.user.globalusername = user.username;
+                    //$rootScope.user = user;
+                    //$rootScope.user.logged = true;
+                    //user.logged = true;
+                    //$rootScope.user.globalusername = user.username;
                     $location.url('/profile');
 
                 }

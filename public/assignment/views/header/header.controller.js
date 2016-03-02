@@ -14,10 +14,10 @@
         console.log("outside logoutsuer");
         function logoutUser()
         {
-            //$rootScope.user = null;
-            $rootScope.user.logged = false;
-            $rootScope.user.firstname = "";
-            $rootScope.user.lastname = "";
+            $rootScope.user = null;
+            //$rootScope.user.logged = false;
+            //$rootScope.user.firstname = "";
+            //$rootScope.user.lastname = "";
 
         }
 

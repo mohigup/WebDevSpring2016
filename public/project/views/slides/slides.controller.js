@@ -32,7 +32,7 @@
             $scope.data = response.files[0].patch;
             //$scope.data = $scope.data.toString()
             console.log($scope.data)
-            localStorage.setItem("c", $scope.data);
+            localStorage.setItem('c', $scope.data);
 
         }
 

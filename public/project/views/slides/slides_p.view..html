@@ -21,27 +21,29 @@
                 // Store
 
                 // Retrieve
-                document.getElementById("1").children[0].innerHTML = localStorage.getItem("c");
+                var data = document.getElementById('d');
+                data.innerHTML= localStorage.getItem('c');
             } else {
                 //document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
             }
         </script>
-        <section id="1">
-            <div id="result"></div>
+        <section>
+            <div id='d' >
+
+
+            </div>
 
         </section>
-
-
 
 
     </div>
 </div>
 
+
 <script src="../../js/reveal.js"></script>
 <script>
     // Required, even if empty.
-    Reveal.initialize({
-    });
+    Reveal.initialize({});
 </script>
 </body>
 </html>

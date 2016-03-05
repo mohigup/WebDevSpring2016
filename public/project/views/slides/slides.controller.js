@@ -4,7 +4,7 @@
         .module("GitApp")
         .controller("SlidesController", SlidesController)
 
-    function SlidesController($scope, $http, $routeParams, $location, MovieService) {
+    function SlidesController($rootScope, $scope, $http, $routeParams, $location, MovieService) {
 
 
         //  $scope.movieTitle = "Star Wars";
@@ -32,6 +32,7 @@
             $scope.data = response.files[0].patch;
             //$scope.data = $scope.data.toString()
             console.log($scope.data)
+            localStorage.setItem("c", $scope.data);
 
         }
 

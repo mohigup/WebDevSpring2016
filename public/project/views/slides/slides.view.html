@@ -11,30 +11,13 @@
         Generate
     </a>
 
+<div ng-repeat="comments in data2.split('\n')">
 
 
-
-<!-- Wrap the entire slide show in a div using the "reveal" class. -->
-<div class="reveal">
-    <!-- Wrap all slides in a single "slides" class -->
-    <div class="slides">
-
-        <!-- ALL SLIDES GO HERE -->
-        <!-- Each section element contains an individual slide -->
-        <section>
-            <div ng-repeat="actorName in data.split('\n')">
-                {{actorName}}
-            </div>
-        </section>
-
-
-
-    </div>
 </div>
 
-<script src="../../js/reveal.js"></script>
-<script>
-    // Required, even if empty.
-    Reveal.initialize({
-    });
-</script>
+
+<iframe width="400" height="400" marginheight="0" marginwidth="0" src="views/slides/slides_p.view..html">
+    Fallback text here for unsupporting browsers, of which there are scant few.
+</iframe>
+

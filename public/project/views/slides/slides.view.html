@@ -1,0 +1,40 @@
+
+
+
+<h1>Build Slide by Git Commits</h1>
+
+    <input ng-model="sha" class="form-control"/>
+    <!--<button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">-->
+    <!--Search-->
+    <!--</button>-->
+    <a href="#/slidebuilder/{{sha}}" class="btn btn-primary btn-block">
+        Generate
+    </a>
+
+
+
+
+<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+<div class="reveal">
+    <!-- Wrap all slides in a single "slides" class -->
+    <div class="slides">
+
+        <!-- ALL SLIDES GO HERE -->
+        <!-- Each section element contains an individual slide -->
+        <section>
+            <div ng-repeat="actorName in data.split('\n')">
+                {{actorName}}
+            </div>
+        </section>
+
+
+
+    </div>
+</div>
+
+<script src="../../js/reveal.js"></script>
+<script>
+    // Required, even if empty.
+    Reveal.initialize({
+    });
+</script>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">FormMaker</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse" ng-controller="HeaderController">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('register') != -1} "><a
+                        href="#/register">Register</a>
+                <li ng-if="user.logged"><a href="#/profile"><span ng-bind="user.username"></span></a></li>
+                <li class="visible-xs" ng-if="user.logged"
+                    ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/forms">Forms</a></li>
+                <li ng-if="isAdmin && user.logged"><a href="#/admin">Admin</a></li>
+                <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('login') != -1} "><a
+                        href="#/login">Login</a></li>
+                <li ng-if="user.logged" ng-click="logoutUser()"><a href="#/home">Logout</a></li>
+
+            </ul>
+
+            {{username}}
+        </div>
+    </div>
+</nav>

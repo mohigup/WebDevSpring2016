@@ -7,31 +7,43 @@
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Form Name</th>
+            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> User ID</th>
+            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Status</th>
+            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Title</th>
+            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Desc</th>
+            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Date</th>
+            <th><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Email ID</th>
             <th class="form-icons"><a href=""><span class="glyphicon glyphicon-triangle-bottom"></span></a> Action</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><input type="text" class="form-control" ng-model="formName" id="username2" placeholder="name"></td>
+            <td><input type="text" class="form-control" ng-model="issue.u_id" id="u_id" placeholder="UserID"></td>
+            <td><input type="text" class="form-control" ng-model="issue.status" id="status" placeholder="Status"></td>
+            <td><input type="text" class="form-control" ng-model="issue.title" id="title" placeholder="Title"></td>
+            <td><input type="text" class="form-control" ng-model="issue.desc" id="desc" placeholder="Desc"></td>
+            <td><input type="date" class="form-control" ng-model="issue.Reported_On" ></td>
+            <td><input type="text" class="form-control" ng-model="issue.email_id" id="email_id" placeholder="Email"></td>
             <td class="form-icons">
                 <div class="g-icons">
-                    <a ng-click="addForm(formName)" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-click="updateForm(formName)" class="btn btn-default">
-                        <span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click="addForm(issue)" class="btn btn-primary">
+                        Add</a>
+                    <a ng-click="updateForm(issue)" class="btn btn-primary btn-success">Update</a>
                 </div>
             </td>
 
         </tr>
-        <tr ng-repeat="form in forms">
-            <td><a href="#/forms-fields">{{form.title}}</a></td>
+        <tr ng-repeat="issue in issues">
+            <td>{{issue.u_id}}</a></td>
+            <td>{{issue.status}}</a></td>
+            <td>{{issue.title}}</a></td>
+            <td>{{issue.desc}}</a></td>
+            <td>{{issue.Reported_On | date:'medium'}}</a></td>
+            <td>{{issue.email_id}}</a></td>
             <td class="form-icons">
                 <div class="g-icons">
-                    <a ng-click="deleteForm($index)" class="btn btn-default"> <span
-                            class="glyphicon glyphicon-remove"></span></a>
-                    <a ng-click="selectForm($index)" ng-model="index" class="btn btn-default"> <span
-                            class="glyphicon glyphicon-pencil"></span></a>
+                    <button ng-click="deleteForm($index)"  class="btn btn-danger">Remove</button>
+                    <button ng-click="selectForm($index)" ng-model="index" class="btn btn-info">Select</button>
                 </div>
             </td>
 

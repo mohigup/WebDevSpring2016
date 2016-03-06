@@ -25,44 +25,65 @@
         $scope.updateForm = updateForm;
 
         function renderUserForms(userAllForms) {
-            $scope.forms = userAllForms;
+            $scope.issues = userAllForms;
+            console.log("render user forms ");
+            console.log($scope.issues);
         }
 
 
-        function addForm(formName){
-            if(formName != null) {
-                var newForm = {"_id": null, "title": formName, "userId": null};
-                FormService.createFormForUser($rootScope.user._id, newForm, renderAddForm);
+        function addForm(issue){
+            console.log("Add form Init");
+            if(issue != null) {
+                console.log("issue is not null")
+                var newForm = {
+                    "u_id": $rootScope.user._id,
+                    "status": issue.status,
+                    "title": issue.title,
+                    "desc": issue.desc,
+                    "Reported_On": issue.Reported_On,
+                    "email_id":issue.email_id};
+                console.log("newForm to be added");
+                console.log(newForm);
+
+                    FormService.createFormForUser($rootScope.user._id, newForm, renderAddForm);
             }
         }
 
-        function renderAddForm(newForm){
-            $scope.formName = null;
-            $scope.forms.push(newForm);
+        function renderAddForm(issue){
+            $scope.issue = null;
+            console.log("render add forms")
+            $scope.issues.push(issue);
         }
 
         function selectForm(index){
             $scope.index = index;
-            var selectedForm = $scope.forms[index];
-            $scope.formName = selectedForm.title;
+            var selectedForm = $scope.issues[index];
+            $scope.issue = selectedForm;
         }
 
         function deleteForm(index){
-            FormService.deleteFormById($scope.forms[index]._id,renderdeleteForm);
+            console.log("delete forms controller")
+            FormService.deleteFormById($scope.issues[index].u_id,renderdeleteForm);
         }
 
         function renderdeleteForm(allforms){
-            FormService.findAllFormsForUser($rootScope.user._id,renderUserForms);
+            FormService.findAllFormsForUser($rootScope.user.u_id,renderUserForms);
         }
 
-        function updateForm(formName){
-            if($scope.index != -1 && formName != null)
+        function updateForm(issue){
+            if($scope.index != -1 && issue != null)
             {
-                var selectedForm = $scope.forms[$scope.index];
-                selectedForm.title = formName;
-                FormService.updateFormById(selectedForm._id,selectedForm,renderUpdateForm);
+                var selectedForm = $scope.issues[$scope.index];
+               // selectedForm.title = formName;
+                selectedForm.status = issue.status;
+                selectedForm.title = issue.title;
+                selectedForm.desc = issue.desc;
+                selectedForm.date = issue.date;
+                selectedForm.email_id = issue.email_id;
+                selectedForm.Reported_On = issue.Reported_On;
+                FormService.updateFormById(selectedForm.u_id,selectedForm,renderUpdateForm);
                 $scope.index = -1;
-                $scope.formName = null;
+                $scope.issue = null;
             }
         }
 

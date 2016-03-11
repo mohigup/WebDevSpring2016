@@ -5,7 +5,7 @@
         .module("GitApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $http, $routeParams, GitIntService) {
+    function DetailsController($scope, $http, $routeParams,$rootScope, GitIntService) {
 
         var vm = this;
 
@@ -19,6 +19,7 @@
 
         function fetchRepStats(repo_name) {
             GitIntService.findRepoStatistics(repo_name, renderDetails);
+            $rootScope.repo_url = repo_name
         }
 
         function renderDetails(response) {

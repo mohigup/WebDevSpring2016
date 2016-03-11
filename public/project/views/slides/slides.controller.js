@@ -4,7 +4,7 @@
         .module("GitApp")
         .controller("SlidesController", SlidesController)
 
-    function SlidesController($rootScope, $scope, $http, $routeParams, $location, MovieService) {
+    function SlidesController($rootScope, $scope, $http, $routeParams, $location, GitIntService) {
 
 
         //  $scope.movieTitle = "Star Wars";
@@ -22,13 +22,13 @@
 
         function fetchCommits(sha) {
             console.log("fetch sha");
-            MovieService.findCommitsBySHA(sha, renderCommits)
+            GitIntService.findCommitsBySHA(sha, renderCommits)
         }
 
         function renderCommits(response) {
             //console.log("original data"+JSON.stringify(response));
             console.log("response returned");
-            //MovieService.findRepo(response.repos_url,renderRepo)
+            //GitIntService.findRepo(response.repos_url,renderRepo)
             $scope.data = response.files[0].patch;
             //$scope.data = $scope.data.toString()
             console.log($scope.data)

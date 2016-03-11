@@ -5,7 +5,7 @@
         .module("GitApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $http, $routeParams, MovieService) {
+    function DetailsController($scope, $http, $routeParams, GitIntService) {
 
         var vm = this;
 
@@ -18,10 +18,11 @@
         init();
 
         function fetchRepStats(repo_name) {
-            MovieService.findRepoStatistics(repo_name, renderDetails);
+            GitIntService.findRepoStatistics(repo_name, renderDetails);
         }
 
         function renderDetails(response) {
+            console.log("response returned ");
             console.log(response);
             vm.details = response;
         }

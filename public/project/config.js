@@ -53,6 +53,10 @@
                 templateUrl: "views/slides/slides.view.html",
                 controller: "SlidesController"
             })
+            .when("/contact/", {
+                templateUrl: "views/contact/contact.view.html",
+
+            })
             .otherwise({
                 redirectTo: "/home"
             });

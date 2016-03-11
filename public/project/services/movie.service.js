@@ -1,16 +1,15 @@
 (function(){
     var SHA_URL = "http://api.github.com/repos/jannunzi/WebDev/commits/SHA";
     var GIT_SEARCH_URL = "http://api.github.com/users/USERNAME"
-    var DETAILS_URL = "http://api.github.com/repos/REPONAME/stats/commit_activity";
+    var DETAILS_URL = "https://api.github.com/repos/REPONAME/stats/commit_activity";
 
     angular
         .module("GitApp")
-        .factory("MovieService", MovieService);
+        .factory("GitIntService", GitIntService);
 
-    function MovieService($http) {
+    function GitIntService($http) {
         var api = {
-            findMoviesByTitle: findMoviesByTitle,
-            findMovieByImdbId: findMovieByImdbId,
+            findRepoByUsername: findRepoByUsername,
             findRepo: findRepo,
             findRepoStatistics:findRepoStatistics,
             findCommitsBySHA:findCommitsBySHA
@@ -18,11 +17,7 @@
 
         return api;
 
-        function findMovieByImdbId(imdbId, callback) {
-            var url = DETAILS_URL.replace("IMDBID", imdbId);
-            $http.get(url)
-                .success(callback);
-        }
+
 
         function findRepo(url, callback) {
             //var url = DETAILS_URL.replace("IMDBID", imdbId);
@@ -38,13 +33,18 @@
                 .success(callback);
         }
 
-        function findMoviesByTitle(title, callback) {
-            console.log("findMoviesByTitle");
+        function findRepoByUsername(title, callback) {
+            console.log("findRepoByUsername");
             var url = GIT_SEARCH_URL
                 .replace("USERNAME", title)
                 //.replace("PAGE", 1);
             $http.get(url)
-                .success(callback);
+                .success(function(data, status) {
+                callback(data);
+            }).error(function(data, status) {
+                console.log("Unable to fetch data "+status);
+
+            });
         }
 
         function findCommitsBySHA(sha, callback) {

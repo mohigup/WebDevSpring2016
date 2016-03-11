@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-    <title>FormBuilderApp</title>
+    <title>GitViZ</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -63,9 +63,9 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row">
+    <div  class="row">
         <!--side bar div-->
-        <div ng-controller="SidebarController" ng-include src="'views/sidebar/sidebar.view.html'">
+        <div  ng-controller="SidebarController" ng-include src="'views/sidebar/sidebar.view.html'">
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -74,6 +74,9 @@
 
             </div>
         </div>
+    </div>
+    <!--<div ng-if="!showSideBar" ng-view>-->
+
     </div>
 </div>
 

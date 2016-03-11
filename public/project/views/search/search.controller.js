@@ -1,35 +1,37 @@
 (function(){
-    var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
+
 
     angular
         .module("GitApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope, $http, $routeParams, $location, MovieService) {
+    function SearchController($scope, $http, $routeParams, $location, $route, GitIntService) {
 
 
       //  $scope.movieTitle = "Star Wars";
         console.log("Inside SearchController");
+
         init();
+
         function init() {
-            var movieTitle = $routeParams.title;
-            console.log("movieTitle"+movieTitle);
-            if(movieTitle) {
+            var uname = $routeParams.title;
+            console.log("movieTitle"+uname);
+            if(uname) {
                 console.log("Inside SearchController INIT");
-                fetchMovie(movieTitle);
+                fetchRepo(uname);
             }
         }
 
 
-        function fetchMovie(movieTitle) {
+        function fetchRepo(uname) {
             console.log("fetch movie");
-            MovieService.findMoviesByTitle(movieTitle, renderMovies)
+            GitIntService.findRepoByUsername(uname, renderRepos)
         }
 
-        function renderMovies(response) {
+        function renderRepos(response) {
             //console.log("original data"+JSON.stringify(response));
             console.log("response repo url"+response.repos_url);
-            MovieService.findRepo(response.repos_url,renderRepo)
+            GitIntService.findRepo(response.repos_url,renderRepo)
             $scope.data = response;
 
         }

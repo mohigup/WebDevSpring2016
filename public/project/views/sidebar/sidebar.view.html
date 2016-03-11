@@ -2,9 +2,8 @@
     <ul class="nav nav-sidebar">
         <li ng-class="{'active' : $location.url().indexOf('home') != -1} "><a href="#/home">Home<span class="sr-only">(current)</span></a></li>
         <li ng-if="user.logged" ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a href="#/profile">Profile</a></li>
-            <li ng-if="isAdmin && user.logged" ng-class="{'active' : $location.url().indexOf('admin') != -1}"><a href="#/admin">Admin</a></li>
-        <li ng-if="user.logged" ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/forms">Forms</a></li>
+        <li ng-if="user.logged" ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/forms">User Issues</a></li>
         <li ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search">Search Repo</a></li>
-        <li ng-class="{'active' : $location.url().indexOf('details') != -1}"><a href="#/slidebuilder">Build Rep Commits Slides</a></li>
-    </ul>
+      <!--  <li ng-class="{'active' : $location.url().indexOf('details') != -1}"><a href="#/slidebuilder">Build Rep Commits Slides</a></li>
+   --> </ul>
 </div>

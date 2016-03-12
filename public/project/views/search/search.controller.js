@@ -11,16 +11,16 @@
       //  $scope.movieTitle = "Star Wars";
         console.log("Inside SearchController");
 
-        init();
+       // init();
 
-        function init() {
+       // function init() {
             var uname = $routeParams.title;
             console.log("movieTitle"+uname);
             if(uname) {
                 console.log("Inside SearchController INIT");
                 fetchRepo(uname);
             }
-        }
+        //}
 
 
         function fetchRepo(uname) {

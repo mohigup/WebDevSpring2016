@@ -18,9 +18,10 @@
             FormService.findAllFormsForUser($rootScope.user._id,renderUserForms);
         }
 
-
+        $scope.selectedIssue= null;
         $scope.addForm = addForm;
         $scope.selectForm = selectForm;
+        $scope.unselectIssue = unselectIssue;
         $scope.deleteForm = deleteForm;
         $scope.updateForm = updateForm;
 
@@ -59,6 +60,12 @@
             $scope.index = index;
             var selectedForm = $scope.issues[index];
             $scope.issue = selectedForm;
+            $scope.selectedIssue = true;
+        }
+
+        function unselectIssue(issue){
+            $scope.issue = null;
+            $scope.selectedIssue = null;
         }
 
         function deleteForm(index){

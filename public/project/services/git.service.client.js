@@ -14,6 +14,7 @@
             findRepoStatistics:findRepoStatistics,
             findCommitsBySHA:findCommitsBySHA
         };
+        var url = "";
 
         return api;
 
@@ -25,9 +26,11 @@
                 .success(callback);
         }
 
+
+
         function findRepoStatistics(reponame,callback){
-            var url =   DETAILS_URL
-                .replace("REPONAME", reponame)
+            url =   DETAILS_URL
+                .replace("REPONAME", reponame);
             console.log("finding stats by uRL "+ url)
             $http.get(url)
                 .success(callback);

@@ -12,10 +12,11 @@
         var repo_name = $routeParams.user_name+"/"+$routeParams.repo_name;
         console.log(repo_name);
 
-        function init() {
-            fetchRepStats(repo_name);
-        }
-        init();
+        fetchRepStats(repo_name);
+
+
+
+        //init();
 
         function fetchRepStats(repo_name) {
             GitIntService.findRepoStatistics(repo_name, renderDetails);
@@ -27,5 +28,8 @@
             console.log(response);
             vm.details = response;
         }
+
+
+
     }
 })();

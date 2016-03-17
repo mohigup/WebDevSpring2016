@@ -5,7 +5,7 @@
         .module("GitApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $http, $routeParams,$rootScope, GitIntService) {
+    function DetailsController($scope, $http, $routeParams,$timeout,$rootScope, GitIntService) {
 
         var vm = this;
 
@@ -19,16 +19,27 @@
         //init();
 
         function fetchRepStats(repo_name) {
-            GitIntService.findRepoStatistics(repo_name, renderDetails);
+            GitIntService.findRepoStatistics(repo_name);
+            console.log("added timer 10 ")
+            $timeout(function() {fetchRepStatsAgain(repo_name)}, 10000);
+
+        }
+
+        function fetchRepStatsAgain(repo_name){
+
+            GitIntService.findRepoStatistics(repo_name, renderDetails)
+            console.log("second call made")
             $rootScope.repo_url = repo_name
         }
-
         function renderDetails(response) {
             console.log("response returned ");
+            console.log("new check in controller"+response.status);
             console.log(response);
             vm.details = response;
+            $scope.apply();
         }
 
+        function renderDummy(response){}
 
 
     }

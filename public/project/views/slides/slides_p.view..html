@@ -15,18 +15,6 @@
         <!-- ALL SLIDES GO HERE -->
         <!-- Each section element contains an individual slide -->
 
-        <script>
-            // Check browser support
-            if (typeof(Storage) !== "undefined") {
-                // Store
-
-                // Retrieve
-                var data = document.getElementById('d');
-                data.innerHTML= localStorage.getItem('c');
-            } else {
-                //document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-            }
-        </script>
         <section>
             <div id='d' >
 
@@ -34,6 +22,19 @@
             </div>
 
         </section>
+        <script>
+            // Check browser support
+            if (typeof(Storage) !== "undefined") {
+                // Store
+
+                // Retrieve
+                var data = document.getElementById('d');
+                console.log(data);
+                data.innerHTML= localStorage.getItem('c');
+            } else {
+                //document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+            }
+        </script>
 
 
     </div>

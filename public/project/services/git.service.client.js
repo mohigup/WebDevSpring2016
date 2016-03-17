@@ -33,7 +33,15 @@
                 .replace("REPONAME", reponame);
             console.log("finding stats by uRL "+ url)
             $http.get(url)
-                .success(callback);
+                .success(function(data, status) {
+                    console.log("checking blank response findRepoStatistics")
+                    status = parseInt(status);
+                    console.log("status rerurned"+status)
+                    //callback(data);
+                }).error(function(data, status) {
+                console.log("Unable to fetch data "+status);
+
+            });
         }
 
         function findRepoByUsername(title, callback) {
@@ -43,6 +51,9 @@
                 //.replace("PAGE", 1);
             $http.get(url)
                 .success(function(data, status) {
+                //console.log("checking blank response test")
+                   // status = parseInt(status);
+                //console.log(status)
                 callback(data);
             }).error(function(data, status) {
                 console.log("Unable to fetch data "+status);

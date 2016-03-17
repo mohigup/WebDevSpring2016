@@ -6,6 +6,6 @@
         <li ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search">Search Repo</a></li>
         <li ng-if="repo_url" ng-class="{'active' : $location.url().indexOf('statistics') != -1}">
             <a ng-href="#/statistics/{{repo_url}}">Commit Activity</a></li>
-      <!--  <li ng-class="{'active' : $location.url().indexOf('details') != -1}"><a href="#/slidebuilder">Build Rep Commits Slides</a></li>
-   --> </ul>
+        <li ng-class="{'active' : $location.url().indexOf('details') != -1}"><a href="#/slidebuilder">Build Rep Commits Slides</a></li>
+    </ul>
 </div>

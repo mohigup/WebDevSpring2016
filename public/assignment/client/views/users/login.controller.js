@@ -10,10 +10,11 @@
         console.log("calling login");
         function login(uname, pass) {
             var user;
-            UserService.findUserByCredentials(uname, pass, function (response) {
+            UserService.findUserByCredentials(uname, pass)
+                .then (function(response){
 
-                user = response;
-                console.log("respons is" + response);
+                user = response.data;
+                console.log("respons is" + response.data);
                 console.log("user is " + user);
                 var status = false;
                 if (user == null) {

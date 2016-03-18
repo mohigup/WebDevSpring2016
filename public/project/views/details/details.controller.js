@@ -19,9 +19,9 @@
         //init();
 
         function fetchRepStats(repo_name) {
-            GitIntService.findRepoStatistics(repo_name);
+            GitIntService.findRepoStatistics(repo_name, function(){});
             console.log("added timer 10 ")
-            $timeout(function() {fetchRepStatsAgain(repo_name)}, 10000);
+            $timeout(function() {fetchRepStatsAgain(repo_name)}, 3000);
 
         }
 
@@ -36,7 +36,7 @@
             console.log("new check in controller"+response.status);
             console.log(response);
             vm.details = response;
-            $scope.apply();
+            //$scope.apply();
         }
 
         function renderDummy(response){}

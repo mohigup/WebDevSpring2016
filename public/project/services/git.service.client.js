@@ -37,7 +37,7 @@
                     console.log("checking blank response findRepoStatistics")
                     status = parseInt(status);
                     console.log("status rerurned"+status)
-                    //callback(data);
+                    callback(data);
                 }).error(function(data, status) {
                 console.log("Unable to fetch data "+status);
 

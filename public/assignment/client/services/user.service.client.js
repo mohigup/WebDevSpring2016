@@ -5,9 +5,9 @@
         .factory("UserService", UserService);
 
 
-    function UserService($rootScope) {
+    function UserService($http,$rootScope) {
         'use strict';
-        var users = [
+     /*   var users = [
             {
                 "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
                 "username": "alice", "password": "alice", "roles": ["student"], "email": "alice@skype.com"
@@ -29,7 +29,7 @@
                 "username": "ed", "password": "ed", "roles": ["student"], "email": ""
             }
         ];
-
+*/
 
         var service =
         {
@@ -47,7 +47,7 @@
         return service;
 
         function getAllUsers() {
-            var newUser = {
+          /*  var newUser = {
                 _id: (new Date()).getTime(),
                 username: user.username,
                 password: user.password
@@ -55,12 +55,13 @@
 
 
             users.push(newUser);
-            callback(newUser);
+            callback(newUser);*/
+            return $http.get('/api/assignment/user');
         }
 
 
-        function findUserByCredentials(username, password, callback) {
-            var usr;
+        function findUserByCredentials(username, password) {
+          /*  var usr;
             var success = null;
             for (usr in users) {
                 if (users[usr].username == username && users[usr].password == password) {
@@ -71,21 +72,31 @@
 
             }
 
-            callback(success);
+            callback(success);*/
+
+            return $http.get(
+                '/api/assignment/user',
+                {
+                    params: {
+                        'username': username, 'password': password
+                    }
+                });
         }
 
         function findUserById(userId) {
-            for (var uid in users) {
+            /*for (var uid in users) {
 
                 if (users[uid]._id == userId) {
                     return users[uid];
                 }
             }
-            return null;
+            return null;*/
+
+            return $http.get('/api/assignment/user/' + userId);
         }
 
         function findUserByUsername(username) {
-            var user = null;
+          /*  var user = null;
             for (var uname in users) {
 
                 if (users[uname].username == username) {
@@ -93,40 +104,60 @@
                     break;
                 }
             }
-            return user;
+            return user;*/
+            return $http({
+                method: 'GET',
+                url: '/api/assignment/user',
+                params: {
+                    'username': username
+                }
+            });
+
+
         }
 
-        function createUser(user, callback) {
-            var newUser = {
+        function createUser(user) {
+            /*var newUser = {
                 _id: (new Date()).getTime(),
                 username: user.username,
                 password: user.password
             };
 
             users.push(newUser);
-            callback(newUser);
+            callback(newUser);*/
+            return $http({
+                method: 'POST',
+                url: '/api/assignment/user',
+                data: user
+            });
 
         }
 
-        function deleteUserById(userid, callback) {
-            var index = userData.indexOf(findUserById(userId));
+        function deleteUserById(userid) {
+          /*  var index = userData.indexOf(findUserById(userId));
             if (index >= 0) {
                 userData.splice(index, 1);
             }
 
-            callback(userData);
-
+            callback(userData);*/
+            return $http.delete('/api/assignment/user/' + userid);
         }
 
-        function updateUser(userId, user, callback) {
-            var i;
+        function updateUser(userId, user) {
+          /*  var i;
             for (i in users) {
                 if (users[i]._id == userId) {
                     users[i] = user;
                     callback(users[i]);
                     break;
                 }
-            }
+            }*/
+
+            return $http({
+                method: 'PUT',
+                url: '/api/assignment/user/' + userId,
+                data: user
+            });
         }
 
         function setCurrentUser(user) {

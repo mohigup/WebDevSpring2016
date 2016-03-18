@@ -7,15 +7,16 @@
     function LoginController($scope, UserService, $location, $rootScope) {
         console.log("inside LoginController");
         $scope.login = login;
-        console.log("calling login");
+        console.log("calling login on client");
         function login(uname, pass) {
             var user;
+            console.log("calling login on client- calling client services");
             UserService.findUserByCredentials(uname, pass)
                 .then (function(response){
 
                 user = response.data;
-                console.log("respons is" + response.data);
-                console.log("user is " + user);
+                console.log(user);
+                //console.log("user is " + JSON.parse(user));
                 var status = false;
                 if (user == null) {
                     alert("no such user");

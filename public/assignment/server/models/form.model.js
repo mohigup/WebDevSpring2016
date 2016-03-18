@@ -1,157 +1,105 @@
 "use strict";
 
-var forms = require('./form.mock.json');
+var mock = require("./form.mock.json");
 
-module.exports = function (app) {
+module.exports = function(app) {
 
-    var api = {
-        createForm: createForm,
-        findAllForms: findAllForms,
-        findFormsByUserId: findFormsByUserId,
-        findFormById: findFormById,
-        findFormByTitle: findFormByTitle,
-        updateFormById: updateFormById,
-        deleteFormById: deleteFormById,
-        addFormField: addFormField,
-        findAllFormFields: findAllFormFields,
-        findFormFieldById: findFormFieldById,
-        updateFormFieldById: updateFormFieldById,
-        deleteFormFieldById: deleteFormFieldById
-    };
+    var api = { createForm:createForm,
+        findAll:findAll,
+        findFormById:findFormById,
+        findAllFormsForUser:findAllFormsForUser,
+        deleteFormById:deleteFormById,
+        updateFormById:updateFormById,
+        findFormByTitle:findFormByTitle
+    }
+
     return api;
 
-    function createForm(form) {
-        forms.push(form);
-        return forms;
+    function createForm(form){
+       /* var form = {
+            _id:(new Date).getTime(),
+            title:formName,
+            userId:userId
+        };*/
+    console.log("server side model - ")
+        console.log(form)
+        mock.push(form);
+        console.log("---------------------------------")
+        return(form);
     }
 
-    function findAllForms() {
-        return forms;
+    function findAll(){
+        return(mock);
     }
 
-    function findFormsByUserId(userId) {
+    function findFormById(formId){
+        for(var u in mock){
+            if(mock[u]._id === formId){
+                return mock[u];
+            }
+        }
+        return null;
+    }
+
+    function findAllFormsForUser(userId){
+        console.log("inside findAllFormsForUser on server MODEL JS");
+        console.log("user ID is ");
+        console.log(userId);
+        console.log("All forms in JSON are ");
+        console.log(mock)
+       // console.log(mock[0].userId)
         var userForms = [];
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i].userId === userId) {
-                userForms.push(forms[i]);
+        for(var u in mock) {
+            if (mock[u].userId == userId) {
+                userForms.push(mock[u]);
             }
         }
-        return userForms;
+
+        console.log("forms to display for current user")
+
+        console.log(userForms);
+
+        console.log("END of inside findAllFormsForUser on server MODEL JS");
+        console.log("---------------------------------")
+        return(userForms);
     }
 
-    /* TODO Try the filter form. Consider changing other functions.
-     function findFormsByUserId(userId) {
-     var userForms = forms.filter(function (userId) {
-     return forms.userId === userId;
-     });
-     return userForms.length === 0 userForms : null;
-     }
-     */
-
-    function findFormById(formId) {
-        var formFound = null;
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                formFound = forms[i];
+    function deleteFormById(formId){
+        console.log("Inside deleteFormById on server MODEL JS");
+        console.log("form ID to delete is")
+        console.log(formId)
+        for(var u in mock) {
+            console.log("inside loop to delete form")
+            console.log("comparing "+mock[u]._id + " with "+formId)
+            if (mock[u]._id == formId) {
+                console.log("form to delete is ")
+                console.log(mock[u]._id)
+                mock.splice(u, 1);
                 break;
             }
         }
-        return formFound;
+        console.log("---------------------------------")
+        return(mock);
     }
 
-    function findFormByTitle(title) {
-        var formFound = null;
-        for (var i = 0; forms.length; i++) {
-            if (forms[i].title === title) {
-                formFound = forms[i];
+    function updateFormById(formId, newForm){
+        console.log("Inside updateFormById on server MODEL");
+        for(var u in mock) {
+            if (mock[u]._id === formId) {
+                mock[u] = newForm;
                 break;
             }
         }
-        return formFound;
+        console.log("---------------------------------")
+        return(mock[u]);
     }
 
-    function updateFormById(formId, form) {
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                forms[i] = form;
-                break;
+    function findFormByTitle(title){
+        for(var u in mock){
+            if(mock[u].title === title){
+                return(mock[u]);
             }
         }
-        return forms;
-    }
-
-    function deleteFormById(formId) {
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                forms.splice(i, 1);
-                break;
-            }
-        }
-        return forms;
-    }
-
-    function addFormField(formId, field) {
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                forms[i].fields.push(field);
-                return forms[i].fields;
-            }
-        }
-    }
-
-    function findAllFormFields(formId) {
-        var fields = [];
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                return forms[i].fields;
-            }
-        }
-        return fields;
-    }
-
-    function findFormFieldById(formId, fieldId) {
-        var field = null;
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                var fields = forms[j].fields;
-                for (var j = 0; fields.length; j++) {
-                    if (fields[j]._id === fieldId) {
-                        return fields[j];
-                    }
-                }
-                break;
-            }
-        }
-        return field;
-    }
-
-    function updateFormFieldById(formId, fieldId, field) {
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                var fields = forms[j].fields;
-                for (var j = 0; fields.length; j++) {
-                    if (fields[j]._id === fieldId) {
-                        forms[i].field[j] = field;
-                        return forms[i];
-                    }
-                }
-                return forms[i];
-            }
-        }
-    }
-
-    function deleteFormFieldById(formId, fieldId) {
-        for (var i = 0; forms.length; i++) {
-            if (forms[i]._id === formId) {
-                var fields = forms[j].fields;
-                for (var j = 0; fields.length; j++) {
-                    if (fields[j]._id === fieldId) {
-                        forms[i].fields.splice(j, 1);
-                        return forms[i].fields;
-                    }
-                }
-                return forms[i].fields;
-            }
-        }
+        return null;
     }
 }

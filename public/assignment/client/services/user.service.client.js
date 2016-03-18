@@ -73,7 +73,7 @@
             }
 
             callback(success);*/
-
+            console.log("calling login on client- Inside client services");
             return $http.get(
                 '/api/assignment/user',
                 {
@@ -105,6 +105,8 @@
                 }
             }
             return user;*/
+            console.log("client services -calling findUserByUsername")
+            console.log(username)
             return $http({
                 method: 'GET',
                 url: '/api/assignment/user',
@@ -125,6 +127,8 @@
 
             users.push(newUser);
             callback(newUser);*/
+            console.log("client services -calling createUser")
+            console.log(user)
             return $http({
                 method: 'POST',
                 url: '/api/assignment/user',
@@ -152,7 +156,7 @@
                     break;
                 }
             }*/
-
+            console.log("calling update on client- Inside client services");
             return $http({
                 method: 'PUT',
                 url: '/api/assignment/user/' + userId,

@@ -10,7 +10,7 @@
         console.log("RegisterController");
         function register(user) {
             console.log(user);
-
+            var usrFound;
             $scope.message = null;
             if (user == null) {
                 $scope.message = "Please fill in the required fields";
@@ -28,24 +28,38 @@
                 $scope.message = "Passwords must match";
                 return;
             }
-            var usr = UserService.findUserByUsername(user.username);
-            if (usr != null) {
-                $scope.message = "User Exists Choose Different Username";
-                return;
-            }
+            console.log("client controller -calling findUserByUsername")
+             UserService.findUserByUsername(user.username).then(function(usr){
+                 usrFound = usr.data;
+            console.log("user resuult fro findUserByUsername")
+            console.log(usrFound)
 
 
-            UserService.createUser(user, function (response) {
 
-                var newUser = response;
-                UserService.setCurrentUser(newUser);
-                //$rootScope.user = newUser;
-                //$rootScope.user.logged = true;
-                //$rootScope.user.globalusername = newUser.username;
-                $location.url('/profile');
-                //console.log($rootScope.user.globalusername);
+                 if (usrFound != null) {
+                     console.log("match found in clinet register contorller")
+                     $scope.message = "User Exists Choose Different Username";
+                     return;
+                 }
 
-            });
+                 console.log("no match found in clinet register contorller")
+                 UserService.createUser(user)
+                     .then(function(created){
+
+                         var newUser = created.data;
+                         console.log(newUser)
+                         UserService.setCurrentUser(newUser);
+                         //$rootScope.user = newUser;
+                         //$rootScope.user.logged = true;
+                         //$rootScope.user.globalusername = newUser.username;
+                         $location.url('/profile');
+                         //console.log($rootScope.user.globalusername);
+
+                     });
+
+             });
+
+
 
         }
 

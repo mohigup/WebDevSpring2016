@@ -17,7 +17,7 @@ module.exports = function (app) {
 
     function createUser(user) {
         users.push(user);
-        return users;
+        return user;
     }
 
     function findAllUsers() {
@@ -27,7 +27,7 @@ module.exports = function (app) {
     function findUserById(userId) {
         var userFound = null;
         for (var i = 0; users.length; i++) {
-            if (users[i]._id === userId) {
+            if (users[i]._id == userId) {
                 userFound = users[i];
                 break;
             }
@@ -36,17 +36,24 @@ module.exports = function (app) {
     }
 
     function findUserByUsername(username) {
+
+        console.log("on server model, findUserByUsername")
+        console.log(username)
         var userFound = null;
-        for (var i = 0; users.length; i++) {
-            if (users[i].username === username) {
+        for (var i in users) {
+            if (users[i].username == username) {
                 userFound = users[i];
                 break;
             }
         }
+        console.log("user found");
+        console.log(userFound);
+        console.log("---------------------------------")
         return userFound;
     }
 
     function findUserByCredentials(credentials) {
+        console.log("on server model, findUserByCredentials")
         var userFound = null;
         var username = credentials.username;
         var password = credentials.password;
@@ -56,16 +63,23 @@ module.exports = function (app) {
                 break;
             }
         }
+        console.log("user found")
+        console.log(userFound);
+        console.log("---------------------------------")
         return userFound;
     }
 
     function updateUserById(userId, user) {
-        for (var i = 0; users.length; i++) {
-            if (users[i]._id === userId) {
+
+        console.log("on server model, updateUserById")
+        console.log(users)
+        for (var i in users) {
+            if (users[i]._id == userId) {
                 users[i] = user;
                 break;
             }
         }
+        console.log("---------------------------------")
         return users;
     }
 

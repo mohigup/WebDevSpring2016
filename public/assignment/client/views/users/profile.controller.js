@@ -39,15 +39,21 @@
                 "roles": $scope.roles,
                 "email": $scope.email
             }
-            console.log("calling update service");
-            UserService.updateUser($scope._id, newUser, updateprofileview);
+            console.log("calling update service on client");
+            UserService.updateUser($scope._id, newUser)
+                .then(function (result) {
+
+                console.log('Update Result:');
+                console.log(result.data);
+                UserService.setCurrentUser(result.data);
+                console.log("user updated" + result.data);
+                console.log($rootScope.user.logged)
+
+
+            });
 
         }
 
-        function updateprofileview(user) {
-            UserService.setCurrentUser(user);
-            console.log("user updated" + user);
-            console.log($rootScope.user.logged)
-        }
+
     }
 })();

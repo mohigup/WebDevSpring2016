@@ -1,76 +1,55 @@
 "use strict";
 
-module.exports = function(app, formModel) {
+module.exports = function(app,formModel) {
+    app.get("/api/assignment/user/:userId/form",getFormsForUser);
+    app.get("/api/assignment/form/:formId",findFormById);
+    app.delete("/api/assignment/form/:formId",deleteFormById);
+    app.post("/api/assignment/user/:userId/form",createFormForUser);
+    app.put("/api/assignment/form/:formId",updateFormById);
 
-
-    app.post("/api/assignment/user/:userId/form", createFormByUserId);
-    app.get("/api/assignment/user/:userId/form", findFormsByUserId);
-    app.get("/api/assignment/form/:formId", findFormById);
-    app.put("/api/assignment/form/:formId", updateFormById);
-    app.delete("/api/assignment/form/:formId", deleteFormById);
-
-    function createForm(req, res) {
-        var formObj = req.body;
-        formModel
-            .createForm(formObj)
-            .then(function (forms) {
-                res.json(forms);
-            });
-    }
-
-    function createFormByUserId(req, res) {
+    function getFormsForUser(req,res){
+        console.log("---------------------------------")
+        console.log("Inside getFormsForUser on server JS");
+        console.log("User ID is as nbelow")
         var userId = req.params.userId;
-        var formObj = req.body;
-        formObj.userId = userId;
-
-        formModel
-            .createUser(formObj)
-            .then(function (forms) {
-                res.json(forms);
-            });
+        console.log(userId);
+        res.json(formModel.findAllFormsForUser(userId));
     }
 
-    function findAllForms(req, res) {
-        formModel
-            .findAllForms()
-            .then(function (forms) {
-                res.json(forms);
-            });
+    function findFormById(req,res){
+        var fid = req.params.formId;
+        res.json(formModel.findFormById(fid));
     }
 
-    function findFormsByUserId(req, res) {
+    function deleteFormById(req,res){
+        console.log("---------------------------------")
+        console.log("Inside deleteFormById on server JS");
+        console.log("form ID to delete is ")
+
+        var fid = req.params.formId;
+        console.log(fid)
+        res.json(formModel.deleteFormById(fid));
+    }
+
+    function createFormForUser(req,res){
+        console.log("---------------------------------")
+        console.log("Inside createFormForUser on server JS");
+        console.log(req.body);
+        console.log(req.params.userId);
+
+        console.log("Inside createFormForUser on server JS");
+        var form = req.body;
         var userId = req.params.userId;
-        formModel
-            .findFormsByUserId(userId)
-            .then(function (userForms) {
-                res.json(userForms);
-            });
+        form._id = (new Date).getTime();
+        form.userId = userId;
+        res.json(formModel.createForm(form));
     }
 
-    function findFormById(req, res) {
+    function updateFormById(req,res){
+        console.log("---------------------------------")
+        console.log("Inside updateFormById on server JS");
         var formId = req.params.formId;
-        formModel
-            .findFormById(formId)
-            .then(function (form) {
-                res.json(form);
-            });
+        var form = req.body;
+        res.json(formModel.updateFormById(formId,form));
     }
-
-    function updateFormById(req, res) {
-        var formId = req.params.formId;
-        formModel
-            .updateFormById(formId)
-            .then(function (forms) {
-                res.json(forms);
-            });
-    }
-
-    function deleteFormById(req, res) {
-        var formId = req.params.formId;
-        formModel
-            .deleteFormById(formId)
-            .then(function (forms) {
-                res.json(forms);
-            });
-    }
-}
+};

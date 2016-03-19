@@ -15,6 +15,8 @@ module.exports = function (uuid,formModel) {
         var form;
         field._id =new Date().getTime(); //uuid.v1();//(
         form = formModel.findFormById(formId);
+        console.log("push case")
+        console.log(forms)
         form.fields.push(field);
     }
 

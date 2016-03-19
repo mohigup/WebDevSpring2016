@@ -37,11 +37,14 @@
         function addForm(formName){
             if(formName != null) {
                 // add form is diff
-               // var newForm = {"_id": null, "title": formName, "userId": null};
+               // var newForm = {"_id": null, "title":
+                // formName, "userId": null};
                 var newForm = {
 
                     title: formName,
                     // _id: (new Date()).getTime(),
+                    fields: []
+
                 };
                 console.log("client controller for add form- receiving formname for current user");
                 FormService.createFormForUser($rootScope.user._id, newForm)

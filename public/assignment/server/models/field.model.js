@@ -1,3 +1,4 @@
+"use strict";
 var forms = require("./form.mock.json");
 var uuid = require('node-uuid');
 module.exports = function (uuid,formModel) {
@@ -25,7 +26,7 @@ module.exports = function (uuid,formModel) {
         var fields;
         form = formModel.findFormById(formId);
         fields = form.fields;
-        for (f in fields) {
+        for (var f in fields) {
             if (fields[f]._id == fieldId) {
                 fields.splice(f, 1);
             }
@@ -37,7 +38,7 @@ module.exports = function (uuid,formModel) {
         var fields;
         form = formModel.findFormById(formId);
         fields = form.fields;
-        for (f in fields) {
+        for (var f in fields) {
             if (fields[f]._id == fieldId) {
                 return fields[f];
             }
@@ -56,7 +57,7 @@ module.exports = function (uuid,formModel) {
         var fields;
         form = formModel.findFormById(formId);
         fields = form.fields;
-        for (f in fields) {
+        for (var f in fields) {
             if (fields[f]._id == fieldId) {
                 fields[f] = field;
             }

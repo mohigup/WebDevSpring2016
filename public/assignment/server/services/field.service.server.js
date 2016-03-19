@@ -1,3 +1,5 @@
+
+"use strict";
 module.exports = function(app, formModel, fieldModel) {
     app.get("/api/assignment/form/:formId/field", fieldsForFormId);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);

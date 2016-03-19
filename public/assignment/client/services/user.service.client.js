@@ -74,6 +74,8 @@
 
             callback(success);*/
             console.log("calling login on client- Inside client services");
+            console.log(username)
+            console.log(password)
             return $http.get(
                 '/api/assignment/user',
                 {

@@ -19,6 +19,7 @@
                 //console.log("user is " + JSON.parse(user));
                 var status = false;
                 if (user == null) {
+
                     alert("no such user");
                 }
                 else {

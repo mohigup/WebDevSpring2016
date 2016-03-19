@@ -59,8 +59,8 @@ module.exports = function () {
         var userFound = null;
         var username = credentials.username;
         var password = credentials.password;
-        for (var i = 0; users.length; i++) {
-            if (users[i].username === username && users[i].password === password) {
+        for (var i in users) {
+            if (users[i].username == username && users[i].password == password) {
                 userFound = users[i];
                 break;
             }

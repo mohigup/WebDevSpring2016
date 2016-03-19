@@ -3,7 +3,9 @@ hr {
     align: left;
 
 }
-
+.hover{
+    cursor: pointer;
+}
 .row{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -17,6 +19,7 @@ hr {
 }
 
 .g-icons{
-    float: right;
+
+    align-items: center;
 }
 

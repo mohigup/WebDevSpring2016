@@ -1,8 +1,9 @@
 "use strict";
 
 var mock = require("./form.mock.json");
+var uuid = require('node-uuid');
 
-module.exports = function(app) {
+module.exports = function( ) {
 
     var api = { createForm:createForm,
         findAll:findAll,
@@ -22,6 +23,7 @@ module.exports = function(app) {
             userId:userId
         };*/
     console.log("server side model - ")
+        form._id =  uuid.v1();//(new Date).getTime();
         console.log(form)
         mock.push(form);
         console.log("---------------------------------")

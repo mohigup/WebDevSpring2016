@@ -17,6 +17,7 @@
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
+            findFormById:findFormById
         }
 
         return api;

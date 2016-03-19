@@ -11,13 +11,26 @@
     <title>FormBuilderApp</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Angular JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-route.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <!-- Angular CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+    <!-- Angular route CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+
     <script src="app.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="config.js"></script>
+
+    <!--- newly modified services-->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/form.service.client.js"></script>
+    <script src="services/field.service.client.js"></script>
 
     <script src="views/header/header.controller.js"></script>
     <script src="views/sidebar/sidebar.controller.js"></script>
@@ -26,9 +39,12 @@
     <script src="views/users/profile.controller.js"></script>
     <script src="views/forms/forms.controller.js"></script>
     <script src="views/forms/fields.controller.js"></script>
-    <!--- newly modified services-->
-    <script src="services/user.service.client.js"></script>
-    <script src="services/form.service.client.js"></script>
+    <script src="views/main/main.controller.js"></script>
+
+    <script src="config.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.13.4/sortable.js"></script>
+
     <!-- server offered services -->
    <!-- <script src="../server/services/form.service.server.js"></script>
 -->
@@ -73,7 +89,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-1.12.0.min.js"><\/script>')</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
 </html>

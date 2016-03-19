@@ -29,11 +29,6 @@
                 templateUrl: "views/forms/forms.view.html",
                 controller : "FormController"
             })
-
-            /*.when("/forms-fields", {
-                templateUrl: "views/forms/form-fields.view.html",
-                controller: "FieldsController"
-            })*/
             .when("/form/:formId/fields",{
                 templateUrl:"views/forms/fields.view.html",
                 controller:"FieldsController",

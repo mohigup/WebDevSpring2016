@@ -26,9 +26,9 @@ module.exports = function (uuid,formModel) {
         var fields;
         form = formModel.findFormById(formId);
         fields = form.fields;
-        for (var f in fields) {
-            if (fields[f]._id == fieldId) {
-                fields.splice(f, 1);
+        for (var v in fields) {
+            if (fields[v]._id == fieldId) {
+                fields.splice(v, 1);
             }
         }
     }
@@ -38,9 +38,9 @@ module.exports = function (uuid,formModel) {
         var fields;
         form = formModel.findFormById(formId);
         fields = form.fields;
-        for (var f in fields) {
-            if (fields[f]._id == fieldId) {
-                return fields[f];
+        for (var v in fields) {
+            if (fields[v]._id == fieldId) {
+                return fields[v];
             }
         }
     }
@@ -57,9 +57,9 @@ module.exports = function (uuid,formModel) {
         var fields;
         form = formModel.findFormById(formId);
         fields = form.fields;
-        for (var f in fields) {
-            if (fields[f]._id == fieldId) {
-                fields[f] = field;
+        for (var v in fields) {
+            if (fields[v]._id == fieldId) {
+                fields[v] = field;
             }
         }
     }

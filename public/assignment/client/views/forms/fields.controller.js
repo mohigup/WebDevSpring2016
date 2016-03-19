@@ -1,8 +1,3 @@
-/*
-$scope.formId = $routeParams.formId;
-
-$scope.formTitle = $rootScope.user.formName;
-*/
 
 "use strict";
 (function(){
@@ -30,7 +25,7 @@ $scope.formTitle = $rootScope.user.formName;
             ];
         vm.selection = vm.options[0];
         vm.fieldOptions = null;
-        var formId = "000";
+        var formId ;
         if ($routeParams.formId) {
             formId = $routeParams.formId;
         }

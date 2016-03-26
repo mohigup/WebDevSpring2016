@@ -1,0 +1,5 @@
+[
+  {"_id": 456, "firstName": "Dan", "lastName": "Craig", "username": "dan", "password": "dan","roles": ["faculty", "admin"], "email": "dan@sudogit.com"},
+  {"_id": 567, "firstName": "Edward","lastName": "Norton", "username": "ed", "password": "ed","roles": ["admin"], "email": "edsuper@sudogit.com"}
+]
+

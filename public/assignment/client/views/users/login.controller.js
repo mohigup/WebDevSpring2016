@@ -5,47 +5,53 @@
         .controller("LoginController", LoginController)
 
     function LoginController($scope, UserService, $location, $rootScope) {
+
+        var vm = this;
         console.log("inside LoginController");
-        $scope.login = login;
-        console.log("calling login on client");
-        function login(uname, pass) {
-            var user;
-            console.log("calling login on client- calling client services");
-            UserService.findUserByCredentials(uname, pass)
-                .then (function(response){
-
-                user = response.data;
-                console.log(user);
-                //console.log("user is " + JSON.parse(user));
-                var status = false;
-                if (user == null) {
-
-                    alert("no such user");
-                }
-                else {
-                    console.log("user roles" + user.roles);
-
-                    for (var i in user.roles) {
-                        if (user.roles[i] == "admin") {
-                            status = true;
-                            break;
-                        }
-
-                    }
-                    UserService.setCurrentUser(user);
-                    $rootScope.isAdmin = status;
-                    console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);
-                    //$rootScope.user = user;
-                    //$rootScope.user.logged = true;
-                    //user.logged = true;
-                    //$rootScope.user.globalusername = user.username;
-                    $location.url('/profile');
-
-                }
-            });
-
+        vm.login = login;
+        function init(){
 
         }
+        init();
+
+        function login(user ) {
+            if (!(user && user.username && user.password)) {
+                vm.message = "Please provide username and password to login.";
+            } else {
+                UserService
+                    .findUserByCredentials(user.username, user.password)
+                    .then(function (response) {
+
+                            var currentUser = response.data;
+                            if (currentUser) {
+                                UserService.setCurrentUser(currentUser);
+                                var status = false;
+                                for (var i in user.roles) {
+                                    if (user.roles[i] == "admin") {
+                                        status = true;
+                                        break;
+                                    }
+
+                                }
+                                UserService.setCurrentUser(user);
+                                $rootScope.isAdmin = status;
+                                console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);
+
+                                $location.url("/profile");
+                            } else {
+                                vm.message = "Invalid username/password";
+                            }
+                        },
+                        function (err) {
+
+                        }
+                    );
+            }
+        }
+
+
+
+
 
 
     }

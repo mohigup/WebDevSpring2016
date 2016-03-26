@@ -1,0 +1,59 @@
+<h1>Search Git Repo by Username</h1>
+<h2>Search</h2>
+<input ng-model="model.repo.owner" class="form-control" placeholder="repo owner"/>
+<!--<button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">-->
+<!--Search-->
+<!--</button>-->
+<a ng-click="model.fetchRepo(model.repo)" class="btn btn-primary btn-block">
+    Search
+</a>
+
+
+
+
+
+<h1 class="text-center">
+    <span />{{model.data[0].owner.login}}</span>
+    <br>
+    <a href="{{data.html_url}}" class="btn btn-default">
+        <span class="glyphicon glyphicon-tag"></span>
+        {{data.login}}
+    </a>
+
+</h1>
+<!--<span ng-show="model.data == null"/>Loading...</span>-->
+
+
+
+<div class="panel-body">
+    <div class="list-group">
+        <div ng-repeat="repo in model.data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>
+                        <small>
+                            <span ng-if="repo.fork" class="glyphicon glyphicon-book"></span>
+                            <span ng-if="!repo.fork" class="glyphicon glyphicon-wrench"></span>
+                        </small>
+                            <a href="#/statistics/{{model.data[0].owner.login}}/{{repo.name}}">
+                            {{repo.name}}
+                        </a>
+                        <small>{{repo.description}}</small>
+                        <small></small>
+                    </h4>
+
+
+                </div>
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>Last Updated:</dt>
+                        <dd>{{repo.updated_at | date : short : timezone}}</dd>
+                        <dt>Created:</dt>
+                        <dd>{{repo.created_at| date : short : timezone}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

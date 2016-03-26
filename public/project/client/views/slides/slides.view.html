@@ -1,0 +1,89 @@
+
+<!--<script>
+    $(function() {
+
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 30,
+
+        });
+    });
+
+</script>-->
+
+
+
+
+
+
+<div id = "SB1" class="row" style="background-color:lavender;">
+    <div class="col-xs-12 ">
+<H4> Enter Commit SHA</H4>
+
+        <h1><span class="element"></span>
+        </h1>
+
+        <input ng-model="sha" class="form-control"/>
+        <!--<button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">-->
+        <!--Search-->
+        <!--</button>-->
+        <a href="#/slidebuilder/{{sha}}" class="btn btn-primary btn-block">
+            Generate
+        </a>
+
+    </div>
+
+<!--
+
+<div ng-repeat="comments in data2.split('\n')">
+
+
+</div>
+-->
+
+</div>
+<br/>
+<div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
+
+    <div id ="SB21" class="col-xs-12">
+
+        <div id ="SB211" class="panel panel-default">
+            <div class="panel-heading">Commit Results</div>
+            <div id ="SB2112" class="panel-body" >
+
+                <div id="typed-strings" ng-repeat="line in model.data.split('\n')">
+                    {{line}}
+                </div>
+
+                <!--<div id="typed-strings">
+                    <p>Typed.js is a <strong>jQuery</strong> plugin.</p>
+                    <p>It <em>types</em> out sentences.</p>
+                </div>
+                <span id="typed"></span>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div ng-carousel ng-carousel-name="example-carousel1">
+    <slidecontainer class="carousel-slides">
+        <slide class="carousel-example">Slide 1</slide>
+        <slide class="carousel-example">Slide 2</slide>
+        <slide class="carousel-example">Slide 3</slide>
+        <slide class="carousel-example">Slide 4</slide>
+        <slide class="carousel-example">Slide 5</slide>
+        <slide class="carousel-example">Slide 6</slide>
+    </slidecontainer>
+</div>
+-->
+
+
+<!--
+
+<iframe width="400" height="400" marginheight="0" marginwidth="0" src="views/slides/slides_p.view..html">
+    Fallback text here for unsupporting browsers, of which there are scant few.
+</iframe>
+
+-->

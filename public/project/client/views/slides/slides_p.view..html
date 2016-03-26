@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Reveal.JS-->
+    <link rel="stylesheet" href="../../css/reveal.css">
+    <link rel="stylesheet" href="../../css/simple.css" id="theme">
+</head>
+<body>
+
+<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+<div class="reveal">
+    <!-- Wrap all slides in a single "slides" class -->
+    <div class="slides">
+
+        <!-- ALL SLIDES GO HERE -->
+        <!-- Each section element contains an individual slide -->
+
+        <section>
+            <div id='d' >
+
+
+            </div>
+
+        </section>
+        <script>
+            // Check browser support
+            if (typeof(Storage) !== "undefined") {
+                // Store
+
+                // Retrieve
+                var data = document.getElementById('d');
+                console.log(data);
+                data.innerHTML= localStorage.getItem('c');
+            } else {
+                //document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+            }
+        </script>
+
+
+    </div>
+</div>
+
+
+<script src="../../js/reveal.js"></script>
+<script>
+    // Required, even if empty.
+    Reveal.initialize({});
+</script>
+</body>
+</html>
+
+

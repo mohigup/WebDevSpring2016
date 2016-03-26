@@ -8,6 +8,8 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var uuid = require('node-uuid');
+var cookieParser    = require('cookie-parser');
+var session         = require('express-session');
 
 // end of this section
 
@@ -21,7 +23,8 @@ var uuid = require('node-uuid');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-
+app.use(session({ secret:'1234567890QWERTY' }));
+app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
 
@@ -36,5 +39,6 @@ app.get('/', function(req, res){
 });
 
 require("./public/assignment/server/app.js")(app);
+require("./public/project/server/app.js")(app);
 
 app.listen(port, ipaddress);

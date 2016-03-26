@@ -1,0 +1,23 @@
+{
+  "name": "typedjs-bower",
+  "version": "1.1.2",
+  "homepage": "https://github.com/mattboldt/typed.js",
+  "authors": [
+    "Matt Boldt <me@mattboldt.com>"
+  ],
+  "description": "A jQuery typing animation script",
+  "main": "dist/typed.min.js",
+  "keywords": [
+    "typed",
+    "animation"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "MIT"
+}

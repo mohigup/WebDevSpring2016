@@ -37,17 +37,32 @@
                         vm.data = response.data.files[0].patch;
                         //$scope.data = $scope.data.toString()
                         console.log(vm.data)
-                        var anihere = $("#SB2 #SB2112")
-                        console.log(anihere)
-                        var a=$('.row').filter('.panel-default').find('.panel-body')
+                        //var anihere = $("#SB2 #SB2112")
+                        //console.log(anihere)
+                        //var a=$('.row').filter('.panel-default').find('.panel-body')
+
+//                        var strings = [vm.data.replace(/\n/g,"<br/>")];//.split("\n");//.splice(1, 0, "");
+                        var strings = [vm.data];//.split("\n");//.splice(1, 0, "");
+//                        strings.unshift("");
 
                         console.log("calling typed")
-                        $('.element').typed({
 
-                            strings: ["", "Here you go!"],
-                            contentType:'text',
-                            typeSpeed: 0
-                        });
+                        setTimeout(function() {
+                            $('.element').typed({
+
+                                strings: strings,//["", "Here you go!"],
+                                contentType: 'text',
+                                typeSpeed: 0
+                            });
+                        }, 2000);
+                       /* $(function(){
+                            $("#typed").typed({
+                                strings: vm.data.split("\n"),
+                                contentType:'text'
+//                                stringsElement: $('#typed-strings')
+                            });
+                        });*/
+
                         console.log("ending typed")
                         //localStorage.setItem('c', $scope.data)
                     });

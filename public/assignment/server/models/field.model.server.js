@@ -1,6 +1,6 @@
-"use strict";
-var forms = require("./form.mock.json");
-var uuid = require('node-uuid');
+    "use strict";
+
+
 module.exports = function (uuid,formModel) {
     var api = {
         createField: createField,

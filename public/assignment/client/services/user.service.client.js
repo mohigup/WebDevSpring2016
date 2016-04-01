@@ -38,6 +38,7 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             setCurrentUser: setCurrentUser,
+            getCurrentUser: getCurrentUser,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser
@@ -168,8 +169,15 @@
 
         function setCurrentUser(user) {
             $rootScope.user = user;
-            $rootScope.user.logged = true;
+            if (user ==null){
+                //  $rootScope.user.logged = false;
+            }
+            else $rootScope.user.logged = true;
         }
+        function getCurrentUser() {
+            return $rootScope.user;
+        }
+
 
     }
 

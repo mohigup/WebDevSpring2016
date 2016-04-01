@@ -13,12 +13,30 @@ module.exports = function(app,formModel) {
         console.log("User ID is as nbelow")
         var userId = req.params.userId;
         console.log(userId);
-        res.json(formModel.findAllFormsForUser(userId));
+
+        formModel.findAllFormsForUser(userId)
+            .then(
+                function(forms){
+                    res.json(forms);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function findFormById(req,res){
         var fid = req.params.formId;
-        res.json(formModel.findFormById(fid));
+        formModel.findFormById(formId)
+            .then(
+                function(form){
+                    res.json(form);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function deleteFormById(req,res){
@@ -28,7 +46,18 @@ module.exports = function(app,formModel) {
 
         var fid = req.params.formId;
         console.log(fid)
-        res.json(formModel.deleteFormById(fid));
+
+        formModel.deleteFormById(fid)
+            .then(
+                function(response){
+                    res.send(response.result);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+        res.send(200);
+        //res.json(formModel.deleteFormById(fid));
     }
 
     function createFormForUser(req,res){
@@ -40,9 +69,18 @@ module.exports = function(app,formModel) {
         console.log("Inside createFormForUser on server JS");
         var form = req.body;
         var userId = req.params.userId;
-        form._id = (new Date).getTime();
+
         form.userId = userId;
-        res.json(formModel.createForm(form));
+        formModel.createForm(form)
+            .then(
+                function(form){
+                    res.json(form);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function updateFormById(req,res){
@@ -50,6 +88,14 @@ module.exports = function(app,formModel) {
         console.log("Inside updateFormById on server JS");
         var formId = req.params.formId;
         var form = req.body;
-        res.json(formModel.updateFormById(formId,form));
+        formModel.updateFormById(formId, form)
+            .then(
+                function(response){
+                    res.send(response.result);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 };

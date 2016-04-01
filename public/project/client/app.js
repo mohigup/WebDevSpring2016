@@ -2,6 +2,6 @@
 (function(){
 
     angular
-        .module("GitApp", ['ngRoute']);
+        .module("GitApp", ['ngRoute','angular-carousel']);
 
 })();

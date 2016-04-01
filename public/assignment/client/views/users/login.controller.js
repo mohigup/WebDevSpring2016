@@ -23,17 +23,20 @@
                     .then(function (response) {
 
                             var currentUser = response.data;
+                        console.log("user returned after login is")
+                            console.log(response)
+                        console.log(response.data)
                             if (currentUser) {
                                 UserService.setCurrentUser(currentUser);
                                 var status = false;
-                                for (var i in user.roles) {
-                                    if (user.roles[i] == "admin") {
+                                for (var i in currentUser.roles) {
+                                    if (currentUser.roles[i] == "admin") {
                                         status = true;
                                         break;
                                     }
 
                                 }
-                                UserService.setCurrentUser(user);
+                                //UserService.setCurrentUser(user);
                                 $rootScope.isAdmin = status;
                                 console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);
 

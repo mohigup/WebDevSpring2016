@@ -13,7 +13,16 @@ module.exports = function(app, userModel) {
 
     function createUser(req, res) {
         var usrObj = req.body;
-
+        userModel.createUser(usrObj)
+            .then(
+                function(doc){
+                    //req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
 
 
         /*userModel
@@ -22,7 +31,7 @@ module.exports = function(app, userModel) {
                 res.json(users);
             });*/
 
-        res.json(userModel.createUser(usrObj));
+       // res.json(userModel.createUser(usrObj));
     }
 
     function getUser(req, res) {
@@ -36,22 +45,29 @@ module.exports = function(app, userModel) {
     }
 
     function findAllUsers(req, res) {
-       /* userModel
-            .findAllUsers()
-            .then(function (users) {
-                res.json(users);
-            });*/
-        res.json(userModel.findAllUsers());
+        userModel.findAllUsers()
+            .then(
+                function(docs){
+                    res.json(docs);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findUserById(req, res) {
         var userId = req.params.id;
-        /*userModel
-            .findUserById(userId)
-            .then(function (user) {
-                res.json(user);
-            });*/
-        res.json(userModel.findUserById(userId));
+        userModel.findUserById(userId)
+            .then(
+                function(doc){
+                    res.json(user);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+        //res.json(userModel.findUserById(userId));
 
     }
 
@@ -60,12 +76,16 @@ module.exports = function(app, userModel) {
 
         var userUsername = req.query.username;
         console.log(userUsername)
-      /*  userModel
-            .findUserByUsername(userUsername)
-            .then(function (user) {
-                res.json(user);
-            });*/
-        res.json(userModel.findUserByUsername(userUsername));
+        userModel.findUserByUsername(userUsername)
+            .then(
+                function(doc){
+                    res.json(doc);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function findUserByCredentials(req, res) {
@@ -77,30 +97,57 @@ module.exports = function(app, userModel) {
                 res.json(user);
             });*/
         console.log("on server, validating credentails")
-        res.json(userModel.findUserByCredentials(userCredentials));
+        userModel.findUserByCredentials(userCredentials)
+            .then(
+                function(doc){
+                    //req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function updateUserById(req, res) {
         var userId = req.params.id;
         var userObj = req.body;
         console.log("updated obj received on server")
-        console.log(userObj)
-       /* userModel
-            .updateUser(userId, userObj)
-            .then(function (users) {
-                res.json(users);
-            });*/
-        res.json(userModel.updateUserById(userId, userObj));
+
+        userModel.updateUserById(userId, userObj)
+            .then(
+                function(stats){
+                    return userModel.findUserById(userId);
+                    //res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(user){
+                    console.log(user);
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function deleteUserById(req, res) {
         var userId = req.params.id;
-       /* userModel
-            .deleteUserById(userId)
-            .then(function (users) {
-                res.json(users);
-            });*/
-        res.json(userModel.deleteUserById(userId));
+        userModel.deleteUserById(userId)
+            .then(
+                function(stats){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+       // res.json(userModel.deleteUserById(userId));
 
     }
 }

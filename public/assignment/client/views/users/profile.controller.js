@@ -8,49 +8,55 @@
         console.log("ProfileController");
         // var model = this;
 
+        var vm = this;
 
-        var currentUser = $rootScope.user;
-        $scope._id = currentUser._id;
-        $scope.username = currentUser.username;
-        $scope.password = currentUser.password;
-        $scope.firstName = currentUser.firstName;
-        $scope.lastName = currentUser.lastName;
-        $scope.email = currentUser.email;
-        $scope.roles = currentUser.roles;
+        function init(){
+            var usr = UserService.getCurrentUser();
+            console.log("profile user")
+            console.log(usr)
+            if(usr) {
+                vm.currentUser = {
+                    _id: usr._id,
+                    username: usr.username,
+                    firstName: usr.firstName,
+                    lastName: usr.lastName,
+                    password: usr.password,
+                    email: usr.email,
+                    roles: usr.roles
+                };
+            }else{
+                $location.url("/home");
+            }
+        }
+        init();
 
-        console.log("logged in user profile");
+        vm.update = update;
 
-        console.log($scope.username);
-        console.log($scope.firstName);
-        console.log($scope.lastName);
-        console.log($scope.password);
-        console.log($scope._id);
-        $scope.update = update;
-
-        function update() {
+        function update(user) {
 
             console.log("inside update");
-            var newUser = {
-                "_id": $scope._id,
-                "firstName": $scope.firstName,
-                "lastName": $scope.lastName,
-                "username": $scope.username,
-                "password": $scope.password,
-                "roles": $scope.roles,
-                "email": $scope.email
-            }
-            console.log("calling update service on client");
-            UserService.updateUser($scope._id, newUser)
-                .then(function (result) {
 
-                console.log('Update Result:');
-                console.log(result.data);
-                UserService.setCurrentUser(result.data);
-                console.log("user updated" + result.data);
-                console.log($rootScope.user.logged)
-
-
-            });
+            console.log("calling update service");
+            console.log("currently looged user updating form ")
+            console.log(user)
+            UserService
+                .updateUser(user._id, user)
+                .then(
+                    function(response){
+                        var updatedUser = response.data;
+                        console.log("user received from update service on profile controller.")
+                        console.log(updatedUser);
+                        if(updatedUser){
+                            vm.message = "User updated successfully";
+                            UserService.setCurrentUser(updatedUser);
+                        }else{
+                            vm.message = "Unable to update the user";
+                        }
+                    },
+                    function(err){
+                        console.log("API Failure");
+                    }
+                );
 
         }
 

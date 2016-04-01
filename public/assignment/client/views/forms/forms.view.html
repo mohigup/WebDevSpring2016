@@ -14,27 +14,23 @@
         </thead>
         <tbody>
         <tr>
-            <td><input type="text" class="form-control" ng-model="formName" id="username2" placeholder="name"></td>
+            <td><input type="text" class="form-control" ng-model="model.form.title" id="username2" placeholder="name"></td>
             <td class="form-icons">
                 <div class="g-icons">
-                    <a ng-click="addForm(formName)" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-click="updateForm(formName)" class="btn btn-default">
-                        <span class="glyphicon glyphicon-ok"></span></a>
-                </div>
+                    <a ng-show="model.selectedForm" ng-click="model.unselectForm()" class="glyphicon glyphicon-remove btn btn-danger"></a>
+                    <a ng-hide="model.selectedForm" ng-click="model.addForm(model.form)" class="glyphicon glyphicon-plus btn btn-primary"></a>
+                    <a ng-show="model.selectedForm" ng-click="model.updateForm(model.form)" class="glyphicon glyphicon-ok btn btn-success"></a>       </div>
             </td>
 
         </tr>
         <!--<tr ng-repeat="form in forms">-->
            <!-- <td><a href="#/forms-fields">{{form.title}}</a></td>-->
-        <tr ng-repeat="form in forms" >
+        <tr ng-repeat="form in model.forms" >
             <td><a href="#/form/{{form._id}}/fields">{{form.title}}</a></td>
             <td class="form-icons">
                 <div class="g-icons">
-                    <a ng-click="deleteForm($index)" class="btn btn-default"> <span
-                            class="glyphicon glyphicon-remove"></span></a>
-                    <a ng-click="selectForm($index)" ng-model="index" class="btn btn-default"> <span
-                            class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-click="model.deleteForm(form)" class="glyphicon glyphicon-remove btn btn-danger"></a>
+                    <a ng-click="model.selectForm(form)" class="glyphicon glyphicon-pencil btn btn-info"></a>
                 </div>
             </td>
 
@@ -43,4 +39,5 @@
 
         </tbody>
     </table>
+
 </div>

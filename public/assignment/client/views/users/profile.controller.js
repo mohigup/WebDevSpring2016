@@ -47,10 +47,10 @@
                         console.log("user received from update service on profile controller.")
                         console.log(updatedUser);
                         if(updatedUser){
-                            vm.message = "User updated successfully";
+                            vm.message = "User Profile Updated";
                             UserService.setCurrentUser(updatedUser);
                         }else{
-                            vm.message = "Unable to update the user";
+                            vm.message = "Unable to update the User Profile";
                         }
                     },
                     function(err){

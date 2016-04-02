@@ -7,29 +7,7 @@
 
     function UserService($http,$rootScope) {
         'use strict';
-     /*   var users = [
-            {
-                "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
-                "username": "alice", "password": "alice", "roles": ["student"], "email": "alice@skype.com"
-            },
-            {
-                "_id": 234, "firstName": "Bob", "lastName": "Hope",
-                "username": "bob", "password": "bob", "roles": ["admin"], "email": ""
-            },
-            {
-                "_id": 345, "firstName": "Charlie", "lastName": "Brown",
-                "username": "charlie", "password": "charlie", "roles": ["faculty"], "email": ""
-            },
-            {
-                "_id": 456, "firstName": "Dan", "lastName": "Craig",
-                "username": "dan", "password": "dan", "roles": ["faculty", "admin"], "email": ""
-            },
-            {
-                "_id": 567, "firstName": "Edward", "lastName": "Norton",
-                "username": "ed", "password": "ed", "roles": ["student"], "email": ""
-            }
-        ];
-*/
+
 
         var service =
         {
@@ -41,7 +19,10 @@
             getCurrentUser: getCurrentUser,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            // ADDING FOR SESSION
+            logout: logout,
+            getLoggedUser: getLoggedUser
 
         };
 
@@ -176,6 +157,16 @@
         }
         function getCurrentUser() {
             return $rootScope.user;
+        }
+
+        // ADDING FOR SESSION
+        function getLoggedUser(){
+            console.log("getLoggedUser")
+            return $http.get("/api/assignment/user/loggedin");
+        }
+
+        function logout(){
+            return $http.post("/api/assignment/user/logout");
         }
 
 

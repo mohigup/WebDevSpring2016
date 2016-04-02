@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController as model"> <!--ADDING FOR SESSION-->
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -10,9 +10,10 @@
             </button>
             <a class="navbar-brand" href="#/home">FormMaker</a>
         </div>
+        <!--ADDING FOR SESSION-->
         <div id="navbar" class="collapse navbar-collapse" ng-controller="HeaderController">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('register') != -1} "><a
+               <!-- <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('register') != -1} "><a
                         href="#/register">Register</a>
                 <li ng-if="user.logged"><a href="#/profile"><span ng-bind="user.username"></span></a></li>
                 <li class="visible-xs" ng-if="user.logged"
@@ -20,7 +21,14 @@
                 <li ng-if="isAdmin && user.logged"><a href="#/admin">Admin</a></li>
                 <li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('login') != -1} "><a
                         href="#/login">Login</a></li>
-                <li ng-if="user.logged" ng-click="logoutUser()"><a href="#/home">Logout</a></li>
+                <li ng-if="user.logged" ng-click="logoutUser()"><a href="#/home">Logout</a></li>-->
+
+                <li ng-hide="user" ng-class="{'active' : model.$location.url() == '/register'}"><a href="#/register">Register</a></li>
+                <li ng-hide="user" ng-class="{'active' : model.$location.url() == '/login'}"><a href="#/login">Login</a></li>
+                <li ng-show="user" ng-class="{'active' : model.$location.url() == '/profile'}"><a href="#/profile">{{user.username}}</a></li>
+                <li class="visible-xs" ng-show="user" ng-class="{'active' : model.$location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
+                <li ng-show="user.roles.indexOf('admin') > -1" ng-class="{'active' : model.$location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+                <li ng-show="user" ng-class="{'active' : model.$location.url() == '/logout'}"><a href ng-click="model.logoutUser()">Logout</a></li>
 
             </ul>
 

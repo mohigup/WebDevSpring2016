@@ -9,12 +9,13 @@
         var vm = this;
         console.log("inside LoginController");
         vm.login = login;
-        function init(){
+        function init() {
 
         }
+
         init();
 
-        function login(user ) {
+        function login(user) {
             if (!(user && user.username && user.password)) {
                 vm.message = "Please provide username and password to login.";
             } else {
@@ -23,9 +24,9 @@
                     .then(function (response) {
 
                             var currentUser = response.data;
-                        console.log("user returned after login is")
+                            console.log("user returned after login is")
                             console.log(response)
-                        console.log(response.data)
+                            console.log(response.data)
                             if (currentUser) {
                                 UserService.setCurrentUser(currentUser);
                                 var status = false;
@@ -51,10 +52,6 @@
                     );
             }
         }
-
-
-
-
 
 
     }

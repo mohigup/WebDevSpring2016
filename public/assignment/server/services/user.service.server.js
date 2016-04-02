@@ -6,6 +6,9 @@ module.exports = function(app, userModel) {
     app.post("/api/assignment/user", createUser);
     /*app.get("/api/assignment/user", findAllUsers);
     app.get("/api/assignment/user", findUserByUsername);*/
+    // ADDING FOR SESSION
+    app.post("/api/assignment/user/logout", logout);
+    app.get("/api/assignment/user/loggedin", loggedin);
     app.get('/api/assignment/user', getUser);
     app.get("/api/assignment/user/:id", findUserById);
     app.put("/api/assignment/user/:id", updateUserById);
@@ -16,7 +19,8 @@ module.exports = function(app, userModel) {
         userModel.createUser(usrObj)
             .then(
                 function(doc){
-                    //req.session.currentUser = doc;
+                    // ADDING FOR SESSION
+                    req.session.currentUser = doc;
                     res.json(doc);
                 },
                 function(err){
@@ -100,7 +104,8 @@ module.exports = function(app, userModel) {
         userModel.findUserByCredentials(userCredentials)
             .then(
                 function(doc){
-                    //req.session.currentUser = doc;
+                    // ADDING FOR SESSION
+                    req.session.currentUser = doc;
                     res.json(doc);
                 },
                 function(err){
@@ -127,6 +132,7 @@ module.exports = function(app, userModel) {
             .then(
                 function(user){
                     console.log(user);
+                    // ADDING FOR SESSION
                     req.session.currentUser = user;
                     res.json(user);
                 },
@@ -140,14 +146,25 @@ module.exports = function(app, userModel) {
         var userId = req.params.id;
         userModel.deleteUserById(userId)
             .then(
-                function(stats){
+                function (stats) {
                     res.send(200);
                 },
-                function(err){
+                function (err) {
                     res.status(400).send(err);
                 }
             );
-       // res.json(userModel.deleteUserById(userId));
-
+        // res.json(userModel.deleteUserById(userId));
     }
-}
+        // ADDING FOR SESSION
+        function loggedin(req, res) {
+                    res.json(req.session.currentUser);
+                }
+        // ADDING FOR SESSION
+        function logout(req, res) {
+                        req.session.destroy();
+                        res.send(200);
+                    }
+
+
+
+};

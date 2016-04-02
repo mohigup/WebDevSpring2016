@@ -107,7 +107,8 @@ module.exports = function(db,mongoose ) {
                     deferred.resolve(doc);
                 }
             });
-
+        console.log("waht is formModel")
+        console.log(FormModel)
         console.log("END of inside findAllFormsForUser on server MODEL JS");
         console.log("---------------------------------")
 

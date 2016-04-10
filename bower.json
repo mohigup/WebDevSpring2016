@@ -1,0 +1,40 @@
+{
+  "name": "webdevspring2016",
+  "description": "webdevspring2016",
+  "main": "server.js",
+  "authors": [
+    "Mohit"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-carousel": "lifely-angular-carousel#^1.2.0",
+    "typed.js": "^1.1.1",
+    "typedjs-bower": "^1.1.2",
+    "underscore": "^1.8.3",
+    "d3": "^3.5.16",
+    "nvd3": "^1.8.2",
+    "angularjs-nvd3-directives": "^0.0.7"
+  },
+  "resolutions": {
+    "d3": "~3.4.1",
+    "nvd3": "~v1.1.15-beta"
+  }
+}

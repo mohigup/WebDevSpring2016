@@ -5,7 +5,7 @@
         .module("GitApp")
         .controller("SearchController", SearchController);
 
-    function SearchController(GitIntService) {
+    function SearchController(GitIntService,UserService) {
 
         var vm = this;
 
@@ -21,21 +21,33 @@
         console.log("Inside SearchController");
 
         function fetchRepo(repo) {
-            var uname = repo.owner;
-            console.log("Repo Owner in param is " + uname);
-            if (uname) {
+            if(!(repo && repo.owner)){
+                vm.message = "Please Enter Username !";
+            }
+            else{
+
+                var uname = repo.owner;
+                console.log("Repo Owner in param is " + uname);
                 console.log("Inside SearchController INIT");
                 GitIntService
                     .findRepoByUsername(repo.owner)
                     .then(function (response) {
+                        UserService.setCurrentGitUser(repo);
                         console.log("response");
                         console.log(response);
                         vm.data = response.data;
                         console.log("vm.data")
-                        console.log(response.data)
+                        console.log(vm.data)
 
-                    });
+                    },
+                        function(err){
+
+                            vm.message = "No Such User Exists";
+                        }
+                    );
+
             }
+
 
 
         }

@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default" >
+            <div class="panel-heading"><b>Top 100 Open Issues with Assignee</b></div>
+            <div class="panel-body">
+                <div nvd3-pie-chart data="data" width="500" height="500" x="x()" y="y()" showLabels="true" donut="true" donutLabelsOutside="true"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default" ng-controller="PullRequestDashboardController">
+            <div class="panel-heading">
+                <b>Top 100 Pull Requests Closed</b>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" ng-click="page = page + 1;loadData();">&laquo;</button>
+                    <button type="button" class="btn btn-default" ng-click="page = page - 1;loadData();" ng-disabled="page == 1">&raquo;</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div nvd3-stacked-area-chart data="data2" showXAxis="true" showYAxis="true" width="500" height="500" showLegend="true"></div>
+            </div>
+        </div>
+    </div>
+</div>

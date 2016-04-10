@@ -13,22 +13,24 @@
         var vm = this;
         function init(){
 
+            if(UserService.getCurrentUser() == null){
+                $location.path("/home");
+            }
 
+            else{
+                FormService
+                    .findAllForms()
+                    .then(function(response){
+                        console.log(response)
+                        console.log(response.data)
+                        renderUserForms(response.data)
+                        vm.$location = $location
+                    });
+            }
         }
         init()
 
-        if(UserService.getCurrentUser() == null){
-            $location.path("/home");
-        }
 
-        else{
-            FormService
-                .findAllForms()
-                .then(function(response){
-                    console.log(response.data)
-                    renderUserForms(response.data)
-                });
-        }
 
 
         vm.selectedIssue= null;
@@ -55,18 +57,16 @@
             if(issue != null) {
                 console.log("issue is not null")
                 var newForm = {
-                    "u_id": (new Date).getTime(),
                     "status": issue.status,
                     "title": issue.title,
                     "desc": issue.desc,
-                    "Reported_On": issue.Reported_On,
-                    "email_id":issue.email_id};
+                    "email":issue.email};
                 console.log("newForm to be added");
                 console.log(newForm);
 
                     FormService.createFormForUser(newForm)
                                 .then(function(response){
-                                    renderAddForm(response.data)
+                                    init();///renderAddForm(response.data)
                                 });
             }
         }
@@ -82,12 +82,12 @@
         function selectForm(issue){
 
             vm.issue = {
-                u_id: issue.u_id,
+                _id: issue._id,
                 title : issue.title,
                 status : issue.status,
                 desc : issue.desc,
-                email_id : issue.email_id,
-                Reported_On : issue.Reported_On
+                email : issue.email,
+                created : issue.created
             };
             vm.selectedIssue = true;
         }
@@ -100,9 +100,9 @@
         function deleteForm(issue){
             console.log("delete forms controller")
             FormService
-                .deleteFormById(issue.u_id)
+                .deleteFormById(issue._id)
                 .then(function(response) {
-                    renderUserForms(response.data);
+                    init();//renderUserForms(response.data);
                 });
         }
 
@@ -111,20 +111,24 @@
             console.log("inside update form client controller")
 
                 var updatedIssue = {
-                    u_id: issue.u_id,
                     title : issue.title,
                     status : issue.status,
                     desc : issue.desc,
-                    email_id : issue.email_id,
-                    Reported_On : issue.Reported_On
+                    email : issue.email,
+                    created : issue.created
                 };
             console.log("form to be updaed is ");
             console.log(issue);
-            console.log(issue.u_id);
-                FormService.updateFormById(issue.u_id,updatedIssue)
-                    .then(function(response) {
-                        renderUserForms(response.data);
-                    });
+            console.log(issue._id);
+                FormService.updateFormById(issue._id,updatedIssue)
+                    .then(
+                        function (response) {
+                            init();
+                        },
+                        function(err){
+                            console.log("Error updating isssue");
+                        }
+                    );
                 vm.index = -1;
 
         }

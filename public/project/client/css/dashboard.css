@@ -13,7 +13,7 @@ body {
  */
 
 .sub-header {
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #eee;
 }
 
@@ -90,7 +90,7 @@ body {
  */
 
 .placeholders {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-align: center;
 }
 .placeholders h4 {

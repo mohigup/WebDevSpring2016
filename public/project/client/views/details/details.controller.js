@@ -1,17 +1,23 @@
 (function () {
-    var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
-
     angular
         .module("GitApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $http, $routeParams, $timeout, $rootScope, GitIntService) {
+    function DetailsController($routeParams, $timeout, $rootScope, GitIntService,UserService) {
 
         var vm = this;
 
         var repo_name = $routeParams.user_name + "/" + $routeParams.repo_name;
         console.log(repo_name);
-
+        var currentGitUser = UserService.getCurrentGitUser();
+        console.log(currentGitUser)
+        var usr = {
+            owner: currentGitUser.owner,
+            reponame: $routeParams.repo_name
+        };
+        console.log(usr)
+        UserService.setCurrentGitUser(usr)
+        console.log(UserService.getCurrentGitUser());
         fetchRepStats(repo_name);
 
 
@@ -25,8 +31,12 @@
                     console.log("call back after 3 seconds ")
                     $timeout(function () {
                         fetchRepStatsAgain(repo_name)
-                    }, 3000);
+                    }, 1000);
 
+
+                },function(err){
+                    console.log("seds")
+                    vm.message = "No Respone or Data Found";
 
                 });
 

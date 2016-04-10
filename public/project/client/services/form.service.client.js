@@ -45,16 +45,16 @@
         }
 
         function findAllForms() {
-         var allForms = [];
+        /* var allForms = [];
 
             for (var i in issues_tracker) {
 
                     allForms.push(issues_tracker[i]);
 
-            }
+            }*/
             //return $http.get("/api/admin/form");
             console.log("all forms")
-            console.log(allForms);
+            //  console.log(allForms);
             return $http.get("/api/admin/form");
         }
 

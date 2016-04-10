@@ -14,9 +14,9 @@
 
 
 -->
-
-<h1> Last year of commit activity grouped by Week.</h1>
-    Refresh the page if no data is seen
+<div ng-show="model.message" class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">{{model.message}}</div>
+<h1> Last year of commit activity grouped by Week</h1>
+<div ng-hide="model.details"> Data loads in 3 seconds.....</div>
 <table class="table table-striped"  >
     <thead>
     <tr>

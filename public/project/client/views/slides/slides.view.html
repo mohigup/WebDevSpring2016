@@ -43,14 +43,31 @@
 -->
 
 </div>
-<br/>
-<div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
 
+<div ng-if="!model.data && model.sha!=null" id="loader-gif">
+    <img src="img/gif-load.gif">
+</div>
+<br/>
+
+<div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
+    <ol class="breadcrumb">
+        Commit Results
+    </ol>
+    <nav>
+        <ul class="pager">
+            <li class="previous "><a ng-disabled='model.page ==0' type="button" class="btn btn-default"  ng-click="model.loadData(model.page - 1)"><span aria-hidden="true">&larr;</span> Older</a></li>
+            <li class="next"><a type="button" class="btn btn-default"  ng-click="model.loadData(model.page + 1)">Newer <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
     <div id ="SB21" class="col-xs-12">
 
         <div id ="SB211" class="panel panel-default">
-            <div class="panel-heading">Commit Results</div>
+            <div class="panel-heading">
+                <li>File Modified is {{(model.data)[0].filename}}</li>
+                <li> File Modified by {{(model.data)[0].author}} on {{(model.data)[0].date | date:'medium'}}</li>
+            </div>
             <div id ="SB2112" class="panel-body" >
+
                <!-- <span class="element" style="white-space:pre"></span>-->
                <!-- <div id="typed-strings" ng-repeat="line in model.data.split('\n')">
                     <p>{{line}}</p>
@@ -62,21 +79,32 @@
                     <p>It <em>types</em> out sentences.</p>
                 </div>
                 <span id="typed"></span>-->
+
+                <span class="element" style="white-space:pre"></span>
+
             </div>
         </div>
     </div>
 </div>
 
-<div ng-carousel ng-carousel-name="example-carousel1">
+<!--
+<div ng-carousel ng-carousel-name="example-carousel2" >
     <slidecontainer class="carousel-slides">
-        <slide class="carousel-example"><span class="element" style="white-space:pre"></span></slide>
+        <slide class="carousel-example"> <span class="element" style="white-space:pre"></span></slide>
         <slide class="carousel-example">Slide 2</slide>
         <slide class="carousel-example">Slide 3</slide>
         <slide class="carousel-example">Slide 4</slide>
         <slide class="carousel-example">Slide 5</slide>
         <slide class="carousel-example">Slide 6</slide>
     </slidecontainer>
+    <div class="carousel-arrow carousel-arrow-left">
+        <button ng-click="Carousel.get('example-carousel2').previous()">back</button>
+    </div>
+    <div class="carousel-arrow carousel-arrow-right">
+        <button ng-click="Carousel.get('example-carousel2').next()">forth</button>
+    </div>
 </div>
+-->
 
 
 <!--

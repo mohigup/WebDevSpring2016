@@ -47,7 +47,25 @@
             })
             .when("/contact/", {
                 templateUrl: "views/contact/contact.view.html",
+                controller: "ContactController",
+                controllerAs: "model"
 
+            })
+            .when("/release/", {
+                templateUrl: "views/details/release.details.view.html",
+                controller: "ReleaseDetailsController",
+                controllerAs: "model"
+
+            })
+            .when("/release/:username/:repository", {
+                templateUrl: "views/details/release.details.view.html",
+                controller: "ReleaseDetailsController",
+                controllerAs: "model"
+
+            })
+            .when("/issuesdashboard", {
+                templateUrl: "views/dashboard/issues.dashboard.html",
+                controller: "IssueDashBoardController"
             })
             .otherwise({
                 redirectTo: "/home"

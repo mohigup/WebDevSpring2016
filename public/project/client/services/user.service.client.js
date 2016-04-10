@@ -16,7 +16,8 @@
 
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
-
+            setCurrentGitUser: setCurrentGitUser,
+            getCurrentGitUser: getCurrentGitUser,
             updateThisUser: updateThisUser,
             logout: logout
 
@@ -68,6 +69,15 @@
         function getCurrentUser() {
             return $rootScope.user;
         }
+
+        function setCurrentGitUser(user){
+            $rootScope.CurrentGitUser = user;
+        }
+
+        function getCurrentGitUser(){
+        return $rootScope.CurrentGitUser;
+        }
+
 
         function logout(){
 

@@ -40,51 +40,7 @@
                     .findCommitsBySHA(setsha,UserService.getCurrentGitUser());
 
                 setTimeout(print, 3000)
-                //$scope.$apply();
 
-
-                  //  .then(function (response) {
-/*
-                        while (count<3  ){
-                            console.log("response returned");
-                            console.log(response.data)
-                            var obj ={
-                                content: response.data.files[0].patch,
-                                filename: response.data.files[0].filename
-                            }
-                            slides.push(obj);
-                            count = count +1;
-                            console.log('parent sha is')
-                            console.log(response.data.parents[0].sha)
-                            var newsha = response.data.parents[0].sha
-                            fetchCommits(newsha)
-                        }*/
-
-                          /*  console.log("slides")
-                            console.log(response);
-//                            renderCommits(slides);
-
-                        vm.data = response;*/
-                       // vm.data = response.data;
-                        /*console.log("vm.data set correctly is");
-                        console.log(vm.data.files[0].patch)
-
-                        var strings = [vm.data.files[0].patch];
-
-                        console.log("calling typed")
-
-                        setTimeout(function() {
-                            $('.element').typed({
-
-                                strings: strings,//["", "Here you go!"],
-                                contentType: 'text',
-                                typeSpeed: 30
-                            });
-                        }, 2000);
-
-                        console.log("ending typed")*/
-
-                    //});
             }
 
         function print(){
@@ -110,15 +66,6 @@
             setTimeout( function(){
                 $('.element').typed(tobj);
             }, 2000);
-          /*  setTimeout(function(){
-
-                $('.element').typed();
-            }, 2000);*/
-
-               /* $('pre code').each(function (i, block) {
-                    console.log("calling higlisht")
-                    hljs.highlightBlock(block);
-                });*/
 
 
             console.log("ending typed");

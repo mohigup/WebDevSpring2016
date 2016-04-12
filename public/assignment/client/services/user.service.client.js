@@ -59,7 +59,7 @@
             console.log(username)
             console.log(password)
             return $http.get(
-                '/api/assignment/user',
+                '/api/assignment/login',
                 {
                     params: {
                         'username': username, 'password': password
@@ -93,7 +93,7 @@
             console.log(username)
             return $http({
                 method: 'GET',
-                url: '/api/assignment/user',
+                url: '/api/assignment/user/username',
                 params: {
                     'username': username
                 }

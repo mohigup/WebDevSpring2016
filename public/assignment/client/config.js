@@ -65,10 +65,10 @@
 
         UserService
             .getLoggedUser()
-            .then(function(response) {
-                var currentUser = response.data;
-                if(currentUser) {
-                    UserService.setCurrentUser(currentUser);
+            .success(function(user) {
+                if(user !== '0') {
+                    console.log("User logged in")
+                    UserService.setCurrentUser(user);
                     deferred.resolve();
                 } else {
                     deferred.reject();
@@ -83,10 +83,11 @@
 
         UserService
             .getLoggedUser()
-            .then(function(response){
-                console.log("response returned from get logged in");
-                var currentUser = response.data;
-                UserService.setCurrentUser(currentUser);
+            .success(function(user){
+                if(user !== '0'){
+                    console.log("User logged out")
+                    UserService.setCurrentUser(user);
+                }
                 deferred.resolve();
             });
         return deferred.promise;

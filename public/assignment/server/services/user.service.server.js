@@ -5,15 +5,14 @@ var LocalStrategy    = require('passport-local').Strategy;
 
 module.exports = function(app, userModel) {
     var auth = authorized;
-
-    app.post("/api/assignment/user", auth, createUser);
-    /*app.get("/api/assignment/user", findAllUsers);
-    app.get("/api/assignment/user", findUserByUsername);*/
+    console.log("reached user service on server")
+    app.get('/api/assignment/login' , passport.authenticate('local'), login);
+    app.post("/api/assignment/register", createUser);
     // ADDING FOR SESSION
     app.post("/api/assignment/user/logout", logout);
     app.get("/api/assignment/user/loggedin", loggedin);
-    app.get('/api/assignment/login' , passport.authenticate('local'), login);
-    app.get("/api/assignment/user/:id", auth, findUserById);
+
+    app.get("/api/assignment/user/:id",  auth, findUserById);
     app.get("/api/assignment/user", auth, findAllUsers);
     app.get("/api/assignment/user/username", findUserByUsername);
     app.put("/api/assignment/user/:id", auth, updateUserById);
@@ -29,11 +28,17 @@ module.exports = function(app, userModel) {
             .findUserByCredentials({username: username, password: password})
             .then(
                 function(user) {
-                    console.log("local Strategy")
-                    if (!user) { return done(null, false); }
+                    console.log("local Strategy 1")
+                    //console.log(+req.isAuthenticated())
+                    if (!user) {
+                        console.log("local Strategy 2")
+                        //console.log(+req.isAuthenticated())
+                        return done(null, false); }
                     return done(null, user);
                 },
                 function(err) {
+                    console.log("local Strategy 3")
+                    //console.log(+req.isAuthenticated())
                     if (err) { return done(err); }
                 }
             );
@@ -61,17 +66,52 @@ module.exports = function(app, userModel) {
 
     function createUser(req, res) {
         var usrObj = req.body;
-        userModel.createUser(usrObj)
+       /* userModel.createUser(usrObj)
             .then(
                 function(doc){
                     // ADDING FOR SESSION
+                    console.log("user registeredddddd")
                     req.session.currentUser = doc;
+
                     res.json(doc);
                 },
                 function(err){
                     res.status(400).send(err);
                 }
-            );
+            );*/
+
+        userModel.findUserByUsername(usrObj.username)
+            .then(
+                function (user) {
+                    if (user) {
+                        res.json(null);
+                    }
+                    else {
+                        return userModel.createUser(usrObj);
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (user) {
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
+                                res.status(400).send(err);
+                            }
+                            else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
+
+
 
 
         /*userModel
@@ -201,6 +241,7 @@ module.exports = function(app, userModel) {
                     res.json(req.session.currentUser);
                 }*/
     function loggedin(req, res) {
+        console.log("inside loggedin req.isAuthenticated() "+req.isAuthenticated() )
         res.send(req.isAuthenticated() ? req.user : '0');
     }
         // ADDING FOR SESSION
@@ -216,8 +257,10 @@ module.exports = function(app, userModel) {
 
     function authorized (req, res, next) {
         if (!req.isAuthenticated()) {
+            console.log(" inside authorized req.isAuthenticated()"+req.isAuthenticated())
             res.send(401);
         } else {
+            console.log("inside authorized else condition "+req.isAuthenticated())
             next();
         }
     };

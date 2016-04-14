@@ -34,7 +34,7 @@
             if (user.password != user.verifypassword) {
                 vm.message = "Passwords must match";
                 return;
-            }
+            }/*
             console.log("client controller -calling findUserByUsername")
              UserService.findUserByUsername(user.username).then(function(usr){
                  usrFound = usr.data;
@@ -49,7 +49,7 @@
                      return;
                  }
 
-                 console.log("no match found in clinet register contorller")
+                 console.log("no match found in clinet register contorller")*/
                  UserService.createUser(user)
                      .then(function(created){
 
@@ -64,7 +64,7 @@
 
                      });
 
-             });
+            /// });
 
 
 

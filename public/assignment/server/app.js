@@ -15,4 +15,5 @@ module.exports = function(app, db, mongoose) {
     var userService = require("./services/user.service.server.js")(app, userModel);
     var formService = require("./services/form.service.server.js")(app, formModel);
     var fieldService = require("./services/field.service.server.js") (app, formModel, fieldModel);
+    var adminService = require("./services/admin.service.server.js")(app, userModel);
 }

@@ -54,10 +54,38 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
+            .when("/admin",{
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve:{
+                    loggedin: checkAdmin
+                }
+            })
             .otherwise({
                 redirectTo: "/home"
             });
     }
+
+    var checkAdmin = function(UserService, $q, $location){
+        var deferred = $q.defer();
+        UserService
+            .getLoggedUser()
+            .success(function(user){
+                // User is Authenticated
+                if (user !== '0' && user.roles.indexOf('admin') != -1)
+                {
+                    UserService.setCurrentUser(user);
+                    deferred.resolve();
+                }else{
+                    deferred.reject();
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
+    };
+
     // ADDING FOR SESSION
     function checkLoggedIn(UserService, $q, $location) {
 
@@ -71,6 +99,7 @@
                     UserService.setCurrentUser(user);
                     deferred.resolve();
                 } else {
+                    console.log("User not logged in")
                     deferred.reject();
                     $location.url("/home");
                 }

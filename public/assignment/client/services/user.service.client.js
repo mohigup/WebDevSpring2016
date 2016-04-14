@@ -38,7 +38,7 @@
 
             users.push(newUser);
             callback(newUser);*/
-            return $http.get('/api/assignment/user');
+            return $http.get('/api/assignment/user/');
         }
 
 
@@ -113,11 +113,12 @@
             callback(newUser);*/
             console.log("client services -calling createUser")
             console.log(user)
-            return $http({
+            /*return $http({
                 method: 'POST',
                 url: '/api/assignment/user',
                 data: user
-            });
+            });*/
+            return $http.post("/api/assignment/register", user);
 
         }
 

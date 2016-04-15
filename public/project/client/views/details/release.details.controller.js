@@ -65,10 +65,10 @@
             if (err) {
                 html = "<div class='col-md-6 col-md-offset-3 error output'>" + errMessage + "</div>";
             } else {
-                html += "<div class='col-md-6 col-md-offset-3 output'>";
+
                 var latest = true;
                 var totalDownloadCount = 0;
-
+                html +="<div class='container-fluid'>";
                 $.each(data, function (index, item) {
                     var releaseTag = item.tag_name;
                     var releaseURL = item.html_url;
@@ -77,33 +77,51 @@
                     var releaseAuthor = item.author;
                     var publishDate = item.published_at.split("T")[0];
 
+
                     if (latest) {
+                        html += "<div class='col-md-6 col-md-offset-3 output'>";
                         html += "<div class='row release latest-release'>" +
                             "<h2><a href='" + releaseURL + "' target='_blank'>" +
                             "<span class='glyphicon glyphicon-tag'></span>&nbsp&nbsp" +
                             "Latest Release: " + releaseTag +
                             "</a></h2><hr class='latest-release-hr'>";
+                        html += "<h4><span class='glyphicon glyphicon-info-sign'></span>&nbsp&nbsp" +
+                            "Release Info:</h4>";
+
+                        html += "<ul>";
+
+                        html += "<li><span class='glyphicon glyphicon-user'></span>&nbsp&nbspRelease Author: " +
+                            "<a href='" + releaseAuthor.html_url + "'>" + releaseAuthor.login + "</a><br></li>";
+
+                        html += "<li><span class='glyphicon glyphicon-calendar'></span>&nbsp&nbspPublished on: " +
+                            publishDate + "</li>";
+
+                        html += "</ul>";
+                        html += "</div></div>";
                         latest = false;
                     } else {
-                        html += "<div class='row release'>" +
+
+                        html += "<div class='col-md-4 release'>" +
                             "<h4><a href='" + releaseURL + "' target='_blank'>" +
                             "<span class='glyphicon glyphicon-tag'></span>&nbsp&nbsp" +
                             releaseTag +
                             "</a></h4><hr class='release-hr'>";
+                        html += "<h4><span class='glyphicon glyphicon-info-sign'></span>&nbsp&nbsp" +
+                            "Release Info:</h4>";
+
+                        html += "<ul>";
+
+                        html += "<li><span class='glyphicon glyphicon-user'></span>&nbsp&nbspRelease Author: " +
+                            "<a href='" + releaseAuthor.html_url + "'>" + releaseAuthor.login + "</a><br></li>";
+
+                        html += "<li><span class='glyphicon glyphicon-calendar'></span>&nbsp&nbspPublished on: " +
+                            publishDate + "</li>";
+
+                        html += "</ul>";
+                        html += "</div>";
                     }
 
-                    html += "<h4><span class='glyphicon glyphicon-info-sign'></span>&nbsp&nbsp" +
-                        "Release Info:</h4>";
 
-                    html += "<ul>";
-
-                    html += "<li><span class='glyphicon glyphicon-user'></span>&nbsp&nbspRelease Author: " +
-                        "<a href='" + releaseAuthor.html_url + "'>" + releaseAuthor.login + "</a><br></li>";
-
-                    html += "<li><span class='glyphicon glyphicon-calendar'></span>&nbsp&nbspPublished on: " +
-                        publishDate + "</li>";
-
-                    html += "</ul>";
 
                     if (hasAssets) {
                         html += "<h4><span class='glyphicon glyphicon-download'></span>" +
@@ -117,9 +135,9 @@
                                 asset.download_count + " times.<br><i>Last updated on " + lastUpdate + "</i></li>";
                             totalDownloadCount += asset.download_count;
                         });
-                        html += "</ul>";
+
                     }
-                    html += "</div>";
+
                 });
 
                 if (totalDownloadCount > 0) {
@@ -131,7 +149,7 @@
                     html += "</div>";
                 }
 
-                html += "</div>";
+                html += "</div></div>";
             }
 
             var resultDiv = $("#stats-result");

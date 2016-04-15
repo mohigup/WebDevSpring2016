@@ -11,6 +11,7 @@
         var count = 0;
         var slides = [];
         var response;
+        vm.repo = UserService.getCurrentGitUser().reponame;
         vm.loadData = loadData;
         function init() {
 
@@ -52,23 +53,32 @@
             vm.data = response[vm.page];
             console.log("vm.data");
             var commit = vm.data;
-            var strings = [commit[0].content];
-            console.log(strings)
-            console.log("calling typed")
-
-            //console.log($(".element").text(''));
-            //console.log($("#SB2112").html(""));
-            var tobj = {
-                strings: strings,
-                contentType: 'text',
-                typeSpeed: -30
-            }
             setTimeout( function(){
-                $('.element').typed(tobj);
+                for(var i in vm.data){
+                    var strings = [commit[i].content];
+                    console.log(strings)
+                    console.log("calling typed")
+
+                    //console.log($(".element").text(''));
+                    //console.log($("#SB2112").html(""));
+                    var tobj = {
+                        strings: strings,
+                        contentType: 'text',
+                        typeSpeed: -30
+                    }
+                    var t = '.element_'+i;
+
+                    console.log(t);
+                    //setTimeout( function(){
+                    $(t).typed(tobj);
+                    console.log("running")
+                    //}, 2000);
+
+
+                    console.log("ending typed");
+                }
             }, 2000);
 
-
-            console.log("ending typed");
             $scope.$apply();
         }
 
@@ -79,24 +89,30 @@
             console.log("vm.data 2");
             console.log(vm.data);
             var commit = vm.data;
-            var strings = [commit[0].content];
-            console.log(strings)
-            console.log("calling typed 2")
-            console.log(  $(".element").text())
-            /*------------------------------------------*/
-            var options = {
-                strings: strings,
-                contentType: 'text',
-                typeSpeed: -30,
+            setTimeout( function(){
+            for(var i in vm.data) {
+                var strings = [commit[i].content];
+                var t = '.element_'+i;
+                var tp = "#SB2112_" + i;
+                console.log(strings)
+                console.log("calling typed 2")
+                console.log($(t).text())
+                /*------------------------------------------*/
+                var options = {
+                    strings: strings,
+                    contentType: 'text',
+                    typeSpeed: -30,
                 };
-            $(".element").text('');
-            $("#SB2112").html("");
-            $("#SB2112").append(' <span class="element" style="white-space:pre"></span>');
-            $(".element").typed(options);
-            /*------------------------------------------*/
+                $(t).text('');
+                $(tp).html("");
+                $(tp).append(' <span class="element" style="white-space:pre"></span>');
+                $(".element").typed(options);
+                /*------------------------------------------*/
 
 
-            console.log("ending typed 2")
+                console.log("ending typed 2")
+            }
+        }, 2000);
             vm.page = page ;
             console.log("new page no is "+vm.page)
 

@@ -4,9 +4,9 @@
 
     angular
         .module("GitApp")
-        .controller("FormController", FormController);
+        .controller("IssueController", IssueController);
 
-    function FormController($scope, $location, $rootScope,  FormService, UserService) {
+    function IssueController($scope, $location, $rootScope,  FormService, UserService) {
 
 
 

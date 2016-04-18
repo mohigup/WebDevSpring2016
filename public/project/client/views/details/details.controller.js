@@ -19,7 +19,7 @@
         UserService.setCurrentGitUser(usr)
         console.log(UserService.getCurrentGitUser());
         fetchRepStats(repo_name);
-
+        GitIntService.findAllCommits(usr);
 
         //init();
 

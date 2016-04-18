@@ -25,6 +25,7 @@
                 vm.sha = sha;
                 console.log("Inside SlidesController INIT");
                 fetchCommits(sha);
+
                 //vm.showloader = false;
             }
             }
@@ -38,7 +39,7 @@
                 console.log("sha set is "+setsha)
                 console.log(count)
                 response = GitIntService
-                    .findCommitsBySHA(setsha,UserService.getCurrentGitUser());
+                    .findCommitsBySHA(setsha,UserService.getCurrentGitUser(),0);
 
                 setTimeout(print, 3000)
 
@@ -49,9 +50,11 @@
             console.log("print func ")
             console.log(response);
 //                            renderCommits(slides);
-            response.reverse();
+            //response.reverse();
             vm.data = response[vm.page];
             console.log("vm.data");
+            vm.commitscount = GitIntService.getCommitsCount();
+            console.log(vm.commitscount);
             var commit = vm.data;
             setTimeout( function(){
                 for(var i in vm.data){
@@ -68,14 +71,17 @@
                     }
                     var t = '.element_'+i;
 
-                    console.log(t);
+
                     //setTimeout( function(){
                     $(t).typed(tobj);
                     console.log("running")
                     //}, 2000);
 
 
+
                     console.log("ending typed");
+                    console.log($(t).text());
+                    console.log($(t).html());
                 }
             }, 2000);
 
@@ -84,6 +90,16 @@
 
         function loadData(page){
 
+        if(page % 2 ==0){
+            var ci = response.length - 1;
+            console.log("ci is "+ci)
+            console.log("response sha to be searched"+(response[ci])[0].sha)
+             response = GitIntService
+                .findCommitsBySHA((response[ci])[0].sha,UserService.getCurrentGitUser(),ci);
+
+        }
+
+            console.log("length"+response.length)
             console.log("next-------------- button")
             vm.data = response[page];
             console.log("vm.data 2");

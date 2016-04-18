@@ -1,4 +1,4 @@
-<h2 align="middle">Search Git Repo by Username</h2>
+<h2 class="h1-search" align="middle" style="">Search Git Repo by Username</h2>
 
 <div ng-show="model.message" class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">{{model.message}}</div>
 
@@ -25,7 +25,7 @@
 
 
 
-<h1 class="text-center">
+<h1 class="text-center" ng-if="model.data">
     <span />{{model.data[0].owner.login}}</span>
     <br>
     <a href="https://github.com/{{model.data[0].owner.login}}   " class="btn btn-default">

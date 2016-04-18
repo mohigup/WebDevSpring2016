@@ -19,7 +19,7 @@
 
 <div id = "SB1" class="row" style="background-color:lavender;">
     <div class="col-xs-12 ">
-<H4> Enter Commit SHA to See Changes in Repository: {{model.repo}}</H4>
+<H4> Enter Parent Commit SHA to See Changes in Repository: {{model.repo}}</H4>
 
 
         <input ng-model="sha" class="form-control"/>
@@ -49,12 +49,12 @@
 
 <div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
     <ol class="breadcrumb">
-        <div align="center ">Commit Results </div>
+        <div align="center ">{{model.commitscount}} Commits Found </div>
     </ol>
     <nav>
         <ul class="pager">
             <li class="previous "><a ng-disabled='model.page ==0' type="button" class="btn btn-default"  ng-click="model.loadData(model.page - 1)"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <li class="next"><a ng-disabled='model.page ==3'type="button" class="btn btn-default"  ng-click="model.loadData(model.page + 1)">Next <span aria-hidden="true">&rarr;</span></a></li>
+            <li class="next"><a ng-disabled='model.page == model.commitscount'type="button" class="btn btn-default"  ng-click="model.loadData(model.page + 1)">Next <span aria-hidden="true">&rarr;</span></a></li>
         </ul>
     </nav>
     <div ng-repeat="d in model.data">
@@ -62,10 +62,11 @@
 
         <div id ="SB211" class="panel panel-default">
             <div class="panel-heading">
+                <li>Commit message is {{d.msg}}</li>
                 <li>File Modified is {{d.filename}}</li>
-                <li> File Modified by {{d.author}} on {{d.date | date:'medium'}}</li>
+                <li>File Modified by {{d.author}} on {{d.date | date:'medium'}}</li>
             </div>
-            <div id ="SB2112_{{ $index }}" class="panel-body" >
+            <div id ="SB2112_{{ $index }}" class="panel-body table-responsive" >
 
                <!-- <span class="element" style="white-space:pre"></span>-->
                <!-- <div id="typed-strings" ng-repeat="line in model.data.split('\n')">
@@ -78,8 +79,7 @@
                     <p>It <em>types</em> out sentences.</p>
                 </div>
                 <span id="typed"></span>-->
-
-                <span class="element_{{ $index }}" align ="center" style="white-space:pre"></span>
+                <div class="element_{{ $index }} " align ="left" style="white-space:pre"></div>
 
             </div>
         </div>

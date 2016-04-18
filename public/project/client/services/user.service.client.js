@@ -5,7 +5,18 @@
         .factory("UserService", UserService);
 
 
-    function UserService($http,$rootScope) {
+    function UserService($http,$rootScope) {/*var mapObj = {
+                    USERNAME:user.owner,
+                    REPONAME:user.reponame,
+                    PGN:c
+                };
+                var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
+                SHA_URL = SHA_URL.replace(re, function(matched){
+                    return mapObj[matched];
+                });
+                $http.get(ALLCOMMITS_URL).success(function (data) {
+
+                });*/
         'use strict';
 
 

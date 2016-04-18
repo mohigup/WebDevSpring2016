@@ -8,24 +8,30 @@
         .module("GitApp")
         .factory("GitIntService", GitIntService);
 
-    function GitIntService($http) {
+    function GitIntService($http,$q) {
         var api = {
             findRepoByUsername: findRepoByUsername,
 
             findRepoStatistics:findRepoStatistics,
-            findCommitsBySHA:findCommitsBySHA
+            findCommitsBySHA:findCommitsBySHA,
+            findAllCommits:findAllCommits,
+            getCommitsCount:getCommitsCount
         };
         var url = "";
-
+        var commits = [];
+        var slides =[];
+        var response;
+        var sourceSHAPos;
         return api;
 
 
-/*
-            function findRepo(url, callback) {
-            //var url = DETAILS_URL.replace("IMDBID", imdbId);
-            $http.get(url)
-                .success(callback);
-        }*/
+
+        /*
+         function findRepo(url, callback) {
+         //var url = DETAILS_URL.replace("IMDBID", imdbId);
+         $http.get(url)
+         .success(callback);
+         }*/
 
 
 
@@ -33,54 +39,107 @@
             url =   DETAILS_URL
                 .replace("REPONAME", reponame);
             console.log("finding stats by uRL "+ url)
-           return  $http.get(url);
-           /*     .success(function(data, status) {
-                    console.log("checking blank response findRepoStatistics")
-                    status = parseInt(status);
-                    console.log("status rerurned"+status)
-                    callback(data);
-                }).error(function(data, status) {
-                console.log("Unable to fetch data "+status);
+            return  $http.get(url);
+            /*     .success(function(data, status) {
+             console.log("checking blank response findRepoStatistics")
+             status = parseInt(status);
+             console.log("status rerurned"+status)
+             callback(data);
+             }).error(function(data, status) {
+             console.log("Unable to fetch data "+status);
 
-            });*/
+             });*/
         }
 
         function findRepoByUsername(repoowner) {
             console.log("findRepoByUsername");
             var url = GIT_SEARCH_URL.replace("USERNAME", repoowner)
 
-                return $http.get(url);
+            return $http.get(url);
         }
 
-        function findAllComits(user){
+        function findAllCommits(user){
 
-            var c = 1
-            while(c <=5 ){
-
+            var promises = [];
+            var pages = [1,2,3,4,5,6];
+            angular.forEach(pages, function(value, key) {
+                var deferred = $q.defer();
+                console.log(key + ': ' + value);
+                var COMMITSURL = ALLCOMMITS_URL;
                 var mapObj = {
                     USERNAME:user.owner,
                     REPONAME:user.reponame,
-                    PGN:c
+                    PGN:value
                 };
                 var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
-                SHA_URL = SHA_URL.replace(re, function(matched){
+                COMMITSURL  = COMMITSURL.replace(re, function(matched){
                     return mapObj[matched];
+                })
+                console.log(COMMITSURL);
+                console.log("calling")
+                $http.get(COMMITSURL).success(function (data) {
+                    console.log("inside")
+                    deferred.resolve(data);
                 });
-                $http.get(ALLCOMMITS_URL).success(function (data) {
+                promises.push(deferred.promise);
+            });
+            $q.all(promises).then(
+                // success
+                // results: an array of data objects from each deferred.resolve(data) call
+                function(results) {
+                    console.log(results);
+                    for (var i in results){
+                        for (var j in results[i]){
+                            commits.push ({
+                                sha:(results[i])[j].sha,
+                                URL: (results[i])[j].url,
+                                msg: (results[i])[j].commit.message
+                            })
 
-                });
-            }
+
+                        }
+                    }
+                    console.log(commits.reverse())
+                    console.log(commits.length)
+                },
+                // error
+                function(results) {
+                }
+            );
+
+
+
+
         }
-        function findCommitsBySHA(sha,user) {
-            var slides =[];
-            var response;
+
+        function getCommitsCount(){
+
+            var count = commits.length - sourceSHAPos + 1
+            console.log("comits ")
+            console.log(count)
+            console.log(sourceSHAPos)
+            return count;
+
+        }
+        function findCommitsBySHA(sha,user,page) {
+
+            if (page !=0) page = 1
             var mapObj;
             console.log(user);
-            var inSHA = sha;
-            console.log("inSHA"+inSHA);
-            console.log(SHA_URL);
-
-            mapObj = {
+            var elementPos = commits.map(function(x) {return x.sha; }).indexOf(sha);
+            sourceSHAPos = elementPos;
+            console.log("before adding page no"+elementPos);
+            console.log(commits[elementPos])
+            elementPos = elementPos + page;
+            var objectFound = commits[elementPos];
+            var NEW_SHA_URL = objectFound.URL;
+            console.log("element position is "+elementPos)
+            console.log("after adding page no ");
+            console.log(objectFound);
+            console.log("NEW_SHA_URL"+NEW_SHA_URL);
+            console.log(NEW_SHA_URL);
+            SHA_URL = NEW_SHA_URL +ID;
+           /* mapObj = {
                 USERNAME:user.owner,
                 REPONAME:user.reponame,
                 SHA:inSHA
@@ -88,20 +147,40 @@
             var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
             SHA_URL = SHA_URL.replace(re, function(matched){
                 return mapObj[matched];
-            });
-            console.log("SHA URL IS ");
+            });*/
+            console.log("SHA URL IS @"+elementPos);
+            // C#1
             console.log(SHA_URL)
-            var c =0;
-           /* while (c < 2){
-                $.ajax({
-                    type: "GET",
-                    data: JSON,
-                    url: SHA_URL,
-                    async: false}
-                ).done(function (result) {
-                    /!* if result is a JSon object *!/
-                    response = result;
-                    console.log('results in $http.get :');
+
+            $http.get(SHA_URL).success(function (data) {
+                response = data;
+                console.log('results in $http.get :1');
+                console.log(response)
+                var sc =[];
+                for (var v in response.files){
+                    sc.push({
+                        content: response.files[v].patch,
+                        filename: response.files[v].filename,
+                        author: response.commit.author.name,
+                        date: response.commit.author.date,
+                        msg: response.commit.message,
+                        sha: response.sha
+
+                    })
+                }
+                console.log("array 1 is ")
+                console.log(sc)
+                slides.push(sc);
+                console.log("slides with 1 el  is ")
+                console.log(slides)
+               // SHA_URL = response.parents[0].url + ID;
+                SHA_URL = commits[elementPos +1].URL + ID;
+                console.log("SHA URL IS @"+elementPos +1);
+                console.log(SHA_URL)
+                //C#2
+                $http.get(SHA_URL).success(function (data1) {
+                    response = data1;
+                    console.log('results in $http.get :2');
                     console.log(response)
                     var sc =[];
                     for (var v in response.files){
@@ -109,58 +188,47 @@
                             content: response.files[v].patch,
                             filename: response.files[v].filename,
                             author: response.commit.author.name,
-                            date: response.commit.author.date
+                            date: response.commit.author.date,
+                            msg: response.commit.message,
+                            sha: response.sha
                         })
                     }
-                    SHA_URL = response.parents[0].url + ID;
-                    slides.push(sc);
-
-                });
-                c = c+1;
-            }*/
-
-
-                $http.get(SHA_URL).success(function (data) {
-                    response = data;
-                    console.log('results in $http.get :1');
-                    console.log(response)
-                    var sc =[];
-                    for (var v in response.files){
-                        sc.push({
-                            content: response.files[v].patch,
-                            filename: response.files[v].filename,
-                            author: response.commit.author.name,
-                            date: response.commit.author.date
-                        })
-                    }
-                    console.log("array 1 is ")
+                    console.log("array 2 is ")
                     console.log(sc)
                     slides.push(sc);
-                    console.log("slides with 1 el  is ")
+                    console.log("slides with 2 el  is ")
                     console.log(slides)
-                    SHA_URL = response.parents[0].url + ID;
+                    SHA_URL = commits[elementPos+2].URL + ID;
+                    console.log("SHA URL IS @"+elementPos +2);
+                    console.log(SHA_URL)
+                    //C#3
                     $http.get(SHA_URL).success(function (data1) {
                         response = data1;
-                        console.log('results in $http.get :2');
+                        console.log('results in $http.get :3');
                         console.log(response)
-                        var sc =[];
-                        for (var v in response.files){
+                        var sc = [];
+                        for (var v in response.files) {
                             sc.push({
                                 content: response.files[v].patch,
                                 filename: response.files[v].filename,
                                 author: response.commit.author.name,
-                                date: response.commit.author.date
+                                date: response.commit.author.date,
+                                msg: response.commit.message,
+                                sha: response.sha
                             })
                         }
-                        console.log("array 2 is ")
+                        console.log("array 3 is ")
                         console.log(sc)
                         slides.push(sc);
-                        console.log("slides with 2 el  is ")
+                        console.log("slides with 3 el  is ")
                         console.log(slides)
-                        SHA_URL = response.parents[0].url + ID;
+                        SHA_URL = commits[elementPos+3].URL + ID;
+                        console.log("SHA URL IS @"+elementPos +3);
+                        console.log(SHA_URL)
+                        //C#4
                         $http.get(SHA_URL).success(function (data1) {
                             response = data1;
-                            console.log('results in $http.get :3');
+                            console.log('results in $http.get :4');
                             console.log(response)
                             var sc = [];
                             for (var v in response.files) {
@@ -168,41 +236,26 @@
                                     content: response.files[v].patch,
                                     filename: response.files[v].filename,
                                     author: response.commit.author.name,
-                                    date: response.commit.author.date
+                                    date: response.commit.author.date,
+                                    msg: response.commit.message,
+                                    sha: response.sha
                                 })
                             }
-                            console.log("array 3 is ")
+                            console.log("array 4 is ")
                             console.log(sc)
                             slides.push(sc);
-                            console.log("slides with 3 el  is ")
+                            console.log("Made 4 calls and updated slides with 4 commits, Slides Length is")
                             console.log(slides)
-                            SHA_URL = response.parents[0].url + ID;
-                            $http.get(SHA_URL).success(function (data1) {
-                                response = data1;
-                                console.log('results in $http.get :4');
-                                console.log(response)
-                                var sc = [];
-                                for (var v in response.files) {
-                                    sc.push({
-                                        content: response.files[v].patch,
-                                        filename: response.files[v].filename,
-                                        author: response.commit.author.name,
-                                        date: response.commit.author.date
-                                    })
-                                }
-                                console.log("array 4 is ")
-                                console.log(sc)
-                                slides.push(sc);
-                                console.log("slides with 4 el  is ")
-                                console.log(slides)
-                            });
+                            console.log(slides.length)
                         });
                     });
                 });
+            });
 
 
 
-            console.log("out of http and below is slides generteated")
+
+
             console.log(slides)
             return slides;
             //return $http.get(SHA_URL);

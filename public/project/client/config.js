@@ -13,7 +13,10 @@
             .when("/profile", {
                 templateUrl: "views/admin/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
             .when("/login", {
                 templateUrl: "views/admin/login.view.html",
@@ -25,8 +28,8 @@
                 templateUrl: "views/issues/issues.view.html",
                 controller : "IssueController",
                 controllerAs: "model",
-                resolve:{
-                    isSession: isSession
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
                 }
             })
             .when("/search", {
@@ -67,10 +70,7 @@
             .when("/release/", {
                 templateUrl: "views/details/release.details.view.html",
                 controller: "ReleaseDetailsController",
-                controllerAs: "model",
-                resolve:{
-                    isSession: isSession
-                }
+                controllerAs: "model"
 
             })
             .when("/release/:username/:repository", {
@@ -92,6 +92,35 @@
             .otherwise({
                 redirectTo: "/home"
             });
+
+        function checkLoggedIn(UserService, $q, $location) {
+            var deferred = $q.defer();
+            UserService
+                .getLoggedinUser()
+                .success(function(user) {
+                    if(user !== '0') {
+                        UserService.setCurrentUser(user);
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $location.url("/home");
+                    }
+                });
+            return deferred.promise;
+        }
+        function getLoggedIn(UserService, $q){
+            var deferred = $q.defer();
+
+            UserService
+                .getLoggedinUser()
+                .success(function(user){
+                    if(user !== '0'){
+                        UserService.setCurrentUser(user);
+                    }
+                    deferred.resolve();
+                });
+            return deferred.promise;
+        }
     }
     var isSession = function(UserService, $q, $location){
         var deferred = $q.defer();
@@ -107,9 +136,8 @@
                     deferred.reject();
                     $location.url("/home");
                 }
-
-
         return deferred.promise;
     };
+
 })();
 

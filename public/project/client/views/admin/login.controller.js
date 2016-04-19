@@ -19,7 +19,10 @@
                 vm.message = "Please provide username and password to login.";
             } else {
                 UserService
-                    .findUserByCredentials(user.username, user.password)
+                    .findUserByCredentials({
+                        username: user.username,
+                        password:user.password
+                    })
                     .then(function (response) {
 
                             var currentUser = response.data;

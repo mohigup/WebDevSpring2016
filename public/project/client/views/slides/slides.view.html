@@ -13,43 +13,64 @@
 </script>-->
 
 
+<div class="panel panel-default">
+    <div class="panel-heading"><H4 class="slidesheader"> Enter Parent Commit SHA to See all child Commits for Repository: {{model.repo}}</H4></div>
+    <div class="panel-body">
+        <form class="form-horizontal" >
+            <div class="form-group">
+                <label for="sha" class="col-sm-3 control-label"><span class="pull-left"></span></label>
+                <div class="col-sm-6">
+                    <input ng-model="sha" type="text" class="form-control" id="sha" placeholder="Source SHA">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <a  href="#/slidebuilder/{{sha}}"  class="btn btn-success btn-block" id="get-stats-button" >
+                        Click here to View
+                    </a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
 
 
 
-
-<div id = "SB1" class="row" style="background-color:lavender;">
+<!--<div id = "SB1" class="row" style="background-color:lavender;">
     <div class="col-xs-12 ">
 <H4> Enter Parent Commit SHA to See Changes in Repository: {{model.repo}}</H4>
 
 
         <input ng-model="sha" class="form-control"/>
-        <!--<button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">-->
-        <!--Search-->
-        <!--</button>-->
+        &lt;!&ndash;<button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">&ndash;&gt;
+        &lt;!&ndash;Search&ndash;&gt;
+        &lt;!&ndash;</button>&ndash;&gt;
         <a href="#/slidebuilder/{{sha}}" class="btn btn-primary btn-block">
             Generate
         </a>
 
     </div>
 
-<!--
+&lt;!&ndash;
 
 <div ng-repeat="comments in data2.split('\n')">
 
 
 </div>
--->
+&ndash;&gt;
 
-</div>
+</div>-->
 
 <div ng-if="!model.data && model.sha!=null" id="loader-gif">
-    <img src="img/hourglass.gif">
+    <img src="img/squares.gif">
 </div>
 <br/>
 
+
 <div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
     <ol class="breadcrumb">
-        <div align="center ">{{model.commitscount}} Commits Found </div>
+        <div align="center "> Found {{model.commitscount}} commits</div>
     </ol>
     <nav>
         <ul class="pager">
@@ -62,9 +83,9 @@
 
         <div id ="SB211" class="panel panel-default">
             <div class="panel-heading">
-                <li>Commit message is {{d.msg}}</li>
-                <li>File Modified is {{d.filename}}</li>
-                <li>File Modified by {{d.author}} on {{d.date | date:'medium'}}</li>
+                <li>Commit message is <span style = 'font-weight: bold'>{{d.msg }}</span></li>
+                <li>File Modified is <span style = 'font-weight: bold'>{{d.filename}}</span></li>
+                <li>File Modified by <span style = 'font-weight: bold'>{{d.author}} on {{d.date | date:'medium'}}</span></li>
             </div>
             <div id ="SB2112_{{ $index }}" class="panel-body table-responsive" >
 

@@ -30,6 +30,7 @@
             setCurrentGitUser: setCurrentGitUser,
             getCurrentGitUser: getCurrentGitUser,
             updateThisUser: updateThisUser,
+            getLoggedinUser:getLoggedinUser,
             logout: logout
 
         };
@@ -38,19 +39,20 @@
 
 
 
-        function findUserByCredentials(username, password) {
+        function findUserByCredentials(userdata) {
             var usr;
 
             console.log("calling login on client- Inside client services");
-            console.log(username)
-            console.log(password)
-            return $http.get(
-                '/api/admin/user',
+            console.log(userdata.username)
+            console.log(userdata.password)
+            return $http.post("/api/admin/login", userdata);
+           /* return $http.get(
+                '/api/admin/login',
                 {
                     params: {
                         'username': username, 'password': password
                     }
-                });
+                });*/
         }
 
 
@@ -92,8 +94,12 @@
 
         function logout(){
 
-            console.log("inside client side logot service")
+            console.log("inside client side logout service")
             return $http.post("/api/admin/logout");
+        }
+
+        function getLoggedinUser(){
+            return $http.get("/api/admin/loggedin");
         }
     }
 

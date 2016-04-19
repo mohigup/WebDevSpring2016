@@ -40,7 +40,7 @@
 <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 <div class="row">
     <div class="col-md-8">
-        <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+        <div ng-show="model.message" class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span>{{model.message}}</strong></div>
         <div ng-show="model.error" class="alert alert-success" role="alert">{{model.error}}</div>
         <h3>Send us a Message</h3>
         <form name="sentMessage" id="contactForm" novalidate>

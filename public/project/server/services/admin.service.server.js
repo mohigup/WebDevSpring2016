@@ -1,15 +1,75 @@
 "use strict";
 
+var passport        = require('passport');
+var LocalStrategy   = require('passport-local').Strategy;
+var bcrypt          = require("bcrypt-nodejs");
+
 module.exports = function(app, adminModel) {
 
 
-
+    var auth = authorized;
+    console.log("server admin")
+    app.post("/api/admin/login",   passport.authenticate('local'), login);
     app.get('/api/admin/user', getUser);
+    app.get("/api/admin/loggedin",    loggedin);
     app.post("/api/admin/logout", logout);
-    app.get("/api/admin/user/:id", findUserById);
-    app.put("/api/admin/user/:id", updateUserById);
+    app.get("/api/admin/user/:id",auth, findUserById);
+    app.put("/api/admin/user/:id",auth, updateUserById);
 
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
 
+    function localStrategy(username, password, done) {
+        adminModel
+            .findUserByCredentials({username: username, password: password})
+            .then(
+                function(user){
+                    console.log("user"+user)
+                    console.log("server findUserByUsername")
+
+                    console.log("----------------------------------")
+                    if(user){
+                        console.log("server findUserByUsername success")
+                        return done(null, user);
+                    }else{
+                        console.log("server findUserByUsername failure")
+                        return done(null, false);
+                    }
+                },
+                function(err){
+                    if (err) { console.log("server findUserByUsername last failure")
+                        return done(err); }
+                }
+            )
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        adminModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        console.log("server MAIN LOGIN")
+        var user = req.user;
+        res.json(user);
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
 
     function getUser(req, res) {
         if (req.query.username && req.query.password) {
@@ -91,6 +151,7 @@ module.exports = function(app, adminModel) {
     function updateUserById(req, res) {
         var userId = req.params.id;
         var userObj = req.body;
+        //userObj.password = bcrypt.hashSync(userObj.password);
         console.log("updated obj received on server")
         console.log(userObj)
 
@@ -120,6 +181,13 @@ module.exports = function(app, adminModel) {
     function logout(req, res){
         req.session.destroy();
         res.send(200);
+    }
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
     }
 
 }

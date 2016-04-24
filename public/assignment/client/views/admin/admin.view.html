@@ -47,9 +47,9 @@
                 <input type="text" class="form-control" id="roles" placeholder="student,admin" ng-model="model.user.roles"/>
             </td>
             <td class="action-column">
-                <a ng-show="model.selectedUser" ng-click="model.unselectUser()" class="glyphicon glyphicon-remove btn btn-danger"></a>
-                <a ng-hide="model.selectedUser" ng-click="model.addUser(model.user)" class="glyphicon glyphicon-plus btn btn-primary"></a>
-                <a ng-show="model.selectedUser" ng-click="model.updateUser(model.user)" class="glyphicon glyphicon-ok btn btn-success"></a>
+                <a ng-show="model.selectedUser" ng-click="model.unselectUser()" class="glyphicon glyphicon-remove" style="font-size: 20px; cursor: pointer ;color: #d9534f" aria-hidden="true"></a>
+                <a ng-hide="model.selectedUser" ng-click="model.addUser(model.user)" class="glyphicon glyphicon-plus " style="font-size: 20px ; cursor: pointer" aria-hidden="true"></a>
+                <a ng-show="model.selectedUser" ng-click="model.updateUser(model.user)" class="glyphicon glyphicon-ok " style="font-size: 20px; cursor: pointer; color: #5cb85c" aria-hidden="true"></a>
             </td>
         </tr>
         <tr ng-repeat="user in model.users">
@@ -60,8 +60,8 @@
             <td>{{user.lastName}}</td>
             <td>{{user.roles}}</td>
             <td class="action-column">
-                <a ng-click="model.deleteUser(user)" class="glyphicon glyphicon-remove btn btn-danger"></a>&nbsp;
-                <a ng-click="model.selectUser(user)" class="glyphicon glyphicon-cog btn btn-info"></a>
+                <a ng-click="model.deleteUser(user)" class="glyphicon glyphicon-remove" style="font-size: 20px; color: #d9534f; cursor: pointer" aria-hidden="true" ></a>&nbsp;
+                <a ng-click="model.selectUser(user)" class="glyphicon glyphicon-cog "  style="font-size: 20px; cursor: pointer" aria-hidden="true"></a>
             </td>
         </tr>
         </tbody>

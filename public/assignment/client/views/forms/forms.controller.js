@@ -57,22 +57,31 @@
 
         function addForm(formName){
             if(formName != null) {
-                // add form is diff
-               // var newForm = {"_id": null, "title":
-                // formName, "userId": null};
                 var newForm = {
 
                     title: formName.title,
                     // _id: (new Date()).getTime()
 
                 };
+            }
+            else {
+                // add form is diff
+                // var newForm = {"_id": null, "title":
+                // formName, "userId": null};
+                var newForm = {
+                    title: "New Form"
+                    ,
+                    // _id: (new Date()).getTime()
+
+                };
+            }
                 console.log("client controller for add form- receiving formname for current user");
                 console.log(vm.usr)
                 FormService.createFormForUser(vm.usr._id, newForm)
                     .then(function(response){
                         init();//renderAddForm(response.data)
                     });
-            }
+
         }
 
         function renderAddForm(newForm){

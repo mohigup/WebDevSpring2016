@@ -3,8 +3,8 @@
         .module("GitApp")
         .controller("IssueDashBoardController", IssueDashBoardController);
     function IssueDashBoardController($scope, $http,UserService) {
-
-        var ISSUES_URL = "https://api.github.com/repos/OWNER/REPO/issues?state=open&sort=updated&page=1&per_page=100&assignee=*"
+        var ID="&client_id=baeec5dce056f6a02d9f&client_secret=7212a596cc30e4b6be2590e3361a8e20910dc9bd";
+        var ISSUES_URL = "https://api.github.com/repos/OWNER/REPO/issues?state=open&sort=updated&page=1&per_page=100&assignee=*"+ID;
 
         $scope.x = function() {
             return function(d) {

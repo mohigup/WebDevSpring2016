@@ -7,7 +7,8 @@
          $scope.page = 1;
 
         console.log("Inside PullRequestDashboardController")
-        var ISSUES_URL ='https://api.github.com/repos/OWNER/REPO/pulls?state=closed&sort=updated&page=' + $scope.page + '&per_page=100&sort=updated'
+        var ID="&client_id=baeec5dce056f6a02d9f&client_secret=7212a596cc30e4b6be2590e3361a8e20910dc9bd";
+        var ISSUES_URL ='https://api.github.com/repos/OWNER/REPO/pulls?state=closed&sort=updated&page=' + $scope.page + '&per_page=100&sort=updated'+ID;
 
 
         var NEWURL1 =   ISSUES_URL.replace("OWNER", UserService.getCurrentGitUser().owner);

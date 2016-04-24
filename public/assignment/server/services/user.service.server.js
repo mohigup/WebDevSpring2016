@@ -2,6 +2,7 @@
 
 var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(app, userModel) {
     var auth = authorized;
@@ -24,28 +25,51 @@ module.exports = function(app, userModel) {
     passport.deserializeUser(deserializeUser);
 
     function localStrategy(username, password, done) {
-        userModel
-            .findUserByCredentials({username: username, password: password})
+        userModel.findUserByUsername(username)
+              /*  .findUserByCredentials({username: username, password: password})
+                .then(
+                    function(user) {
+                        console.log("local Strategy 1")
+                        //console.log(+req.isAuthenticated())
+                        if (!user) {
+                            console.log("local Strategy 2")
+                            //console.log(+req.isAuthenticated())
+                            return done(null, false); }
+                        return done(null, user);
+                    },
+                    function(err) {
+                        console.log("local Strategy 3")
+                        //console.log(+req.isAuthenticated())
+                        if (err) { return done(err); }
+                    }
+                );*/
             .then(
                 function(user) {
-                    console.log("local Strategy 1")
-                    //console.log(+req.isAuthenticated())
-                    if (!user) {
-                        console.log("local Strategy 2")
-                        //console.log(+req.isAuthenticated())
-                        return done(null, false); }
-                    return done(null, user);
+                    console.log("usernma entered is"+username);
+                    console.log("passowrd is"+password);
+                    // if the user exists, compare passwords with bcrypt.compareSync
+                    console.log("User Found ....");
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        console.log("User Authenticated For Assignment....")
+                        return done(null, user);
+                    } else {
+                        console.log("User Authenticated For Assignment failed...."+user)
+                        console.log("original pass")
+                        console.log(user.password);
+                        console.log("chk status  ")
+                        console.log(bcrypt.compareSync(password, user.password))
+                        return done(null, false);
+                    }
                 },
                 function(err) {
-                    console.log("local Strategy 3")
-                    //console.log(+req.isAuthenticated())
+                    console.log("User Authenticated Failed passing");
                     if (err) { return done(err); }
                 }
             );
     }
 
     function serializeUser(user, done) {
-        console.log("serializeUser ")
+        console.log("serializeUser running  ")
         done(null, user);
     }
 
@@ -54,11 +78,11 @@ module.exports = function(app, userModel) {
             .findUserById(user._id)
             .then(
                 function(user){
-                    console.log("deserializeUser no error ")
+                    console.log("deserializeUser passed ")
                     done(null, user);
                 },
                 function(err){
-                    console.log("deserializeUser error ")
+                    console.log("deserializeUser failed ")
                     done(err, null);
                 }
             );
@@ -66,6 +90,7 @@ module.exports = function(app, userModel) {
 
     function createUser(req, res) {
         var usrObj = req.body;
+        usrObj.roles = ["student"];
        /* userModel.createUser(usrObj)
             .then(
                 function(doc){
@@ -79,7 +104,7 @@ module.exports = function(app, userModel) {
                     res.status(400).send(err);
                 }
             );*/
-
+        console.log("inside create user")
         userModel.findUserByUsername(usrObj.username)
             .then(
                 function (user) {
@@ -87,6 +112,7 @@ module.exports = function(app, userModel) {
                         res.json(null);
                     }
                     else {
+                        usrObj.password = bcrypt.hashSync(usrObj.password);
                         return userModel.createUser(usrObj);
                     }
                 },
@@ -124,6 +150,7 @@ module.exports = function(app, userModel) {
     }
 
     function login(req, res) {
+        console.log("login passed")
         var user = req.user;
         res.json(user);
     }
@@ -198,6 +225,9 @@ module.exports = function(app, userModel) {
     function updateUserById(req, res) {
         var userId = req.params.id;
         var userObj = req.body;
+        if(userObj.password) {
+            userObj.password = bcrypt.hashSync(userObj.password);
+        }
         console.log("updated obj received on server")
 
         userModel.updateUserById(userId, userObj)

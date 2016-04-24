@@ -33,7 +33,9 @@
         vm.update = update;
 
         function update(user) {
-
+            if(!vm.changePassword){
+                delete user.password;
+            }
             console.log("inside update");
 
             console.log("calling update service");

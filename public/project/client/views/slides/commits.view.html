@@ -1,0 +1,25 @@
+<H4 class="slidesheader"> Click on Commit message to view Slides{{model.repo}}</H4>
+<div class = "table-responsive">
+    <table id="commitsTable" class=" table table-bordered" >
+        <thead>
+        <tr>
+            <th>Commit message</th>
+            <th>Commit SHA</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="details in model.commits">
+
+            <td>
+                <a href="#/slidebuilder/{{details.sha}}/{{false}}">
+                {{details.msg}}
+                    </a>
+            </td>
+            <td>
+                {{details.sha}}
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>

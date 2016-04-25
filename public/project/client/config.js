@@ -38,6 +38,14 @@
                 controllerAs: "model",
 
             })
+            .when("/commits", {
+                templateUrl: "views/slides/commits.view.html",
+                controller: "CommitsController",
+                controllerAs: "model",
+                resolve:{
+                    isSession: isSession
+                }
+            })
             .when("/statistics/:user_name/:repo_name", {
                 templateUrl: "views/details/details.view.html",
                 controller: "DetailsController as model",
@@ -53,7 +61,7 @@
                     isSession: isSession
                 }
             })
-            .when("/slidebuilder/:sha", {
+            .when("/slidebuilder/:sha/:flag", {
                 templateUrl: "views/slides/slides.view.html",
                 controller: "SlidesController",
                 controllerAs: "model",
@@ -61,6 +69,7 @@
                     isSession: isSession
                 }
             })
+
             .when("/contact/", {
                 templateUrl: "views/contact/contact.view.html",
                 controller: "ContactController",

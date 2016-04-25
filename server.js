@@ -35,6 +35,33 @@ var db = mongoose.connect(connectionString);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
+// everyauth
+
+/*
+var gh_clientId ="baeec5dce056f6a02d9f";
+var gh_secret = "7212a596cc30e4b6be2590e3361a8e20910dc9bd";
+
+everyauth.github
+    .appId(gh_clientId)
+    .appSecret(gh_secret)
+    .findOrCreateUser( function (session, accessToken, accessTokenExtra, githubUserMetadata) {
+        // find or create user logic goes here
+        session.oauth = accessToken;
+        return session.uid = githubUserMetadata.login;
+    })
+    .redirectPath('/home');
+everyauth.everymodule.handleLogout( function (req, res) {
+    req.logout();
+    req.session.uid = null;
+    res.writeHead(303, { 'Location': this.logoutRedirectPath() });
+    res.end();
+});
+*/
+
+
+
+
+
 // this section is for server side
 
 app.use(bodyParser.json());
@@ -48,6 +75,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
+//app.use(everyauth.middleware());
 
 
 // end of this section

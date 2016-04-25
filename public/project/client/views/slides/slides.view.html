@@ -12,7 +12,7 @@
 
 </script>-->
 
-
+<div ng-if="!model.flag" class="animate-if">
 <div class="panel panel-default">
     <div class="panel-heading"><H4 class="slidesheader"> Enter Parent Commit SHA to See all child Commits for Repository: {{model.repo}}</H4></div>
     <div class="panel-body">
@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <a  href="#/slidebuilder/{{sha}}"  class="btn btn-success btn-block" id="get-stats-button" >
+                    <a  href="#/slidebuilder/{{sha}}/{{true}}"  class="btn btn-success btn-block" id="get-stats-button" >
                         Click here to View
                     </a>
                 </div>
@@ -34,6 +34,7 @@
 
     </div>
 </div>
+    </div>
 
 
 
@@ -70,7 +71,7 @@
 
 <div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
     <ol class="breadcrumb">
-        <div align="center "> Found {{model.commitscount}} commits</div>
+        <div align="center "> View upto {{model.commitscount}} commits </div>
     </ol>
     <nav>
         <ul class="pager">

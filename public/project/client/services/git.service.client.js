@@ -8,7 +8,7 @@
         .module("GitApp")
         .factory("GitIntService", GitIntService);
 
-    function GitIntService($http,$q) {
+    function GitIntService($http,$q,UserService) {
         var api = {
             findRepoByUsername: findRepoByUsername,
 
@@ -101,6 +101,8 @@
                     }
                     console.log(commits.reverse())
                     console.log(commits.length)
+                    UserService.getCurrentGitUser().commits =commits;
+
                 },
                 // error
                 function(results) {

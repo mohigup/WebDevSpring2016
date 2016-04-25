@@ -20,6 +20,8 @@
 
             console.log("Inside SlidesController");
             var sha = $routeParams.sha;
+            vm.flag = $routeParams.flag;
+            console.log("flag is "+vm.flag);
             console.log("sha" + sha);
             if (sha) {
                 vm.sha = sha;

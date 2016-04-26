@@ -1,44 +1,52 @@
-<!-- Full Page Image Background Carousel Header -->
-<header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+<!-- Full Width Image Header -->
+<header class="header-image">
+    <div class="headline">
+        <div class="container">
+            <h1  style="color:whitesmoke;font-family:Consolas">WELCOME</h1>
+            <h2  style="color:whitesmoke;font-family:Consolas">GIT Analyzer & Presenter</h2>
 
-    <!-- Wrapper for Slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <!-- Set the first background image using inline CSS below. -->
-            <div class="fill" style="background-image:url('https://images8.alphacoders.com/430/430944.jpg/1900x1080&text=Slide One');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 1</h2>
-            </div>
-        </div>
-        <div class="item">
-            <!-- Set the second background image using inline CSS below. -->
-            <div class="fill" style="background-image:url('https://s3.amazonaws.com/f.cl.ly/items/3a2h193d3W3O0L3g2U43/octocat_darkwood.jpg/1900x1080&text=Slide Two');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 2</h2>
-            </div>
-        </div>
-        <div class="item">
-            <!-- Set the third background image using inline CSS below. -->
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 3</h2>
-            </div>
+           <div class="row">
+               <div class="col-sm-12"><h3  style="color:whitesmoke;font-family:Consolas">Click Search Now to Get Started</h3>
+                   <div class="col-sm-12"> <p><a class="btn btn-lg btn-primary" href="#/search" role="button">Search Now</a></p></div>
+               <!--<div class="row"> <div class="col-sm-12"> <p><a class="btn btn-lg btn-primary" href="#/search" role="button">Sign-up</a></p></div></div>-->
         </div>
     </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="icon-next"></span>
-    </a>
-
 </header>
 
+
+<!-- Page Content -->
+<div class="container">
+
+    <hr class="featurette-divider">
+
+    <!-- First Featurette -->
+    <div class="featurette" id="about">
+        <img class="featurette-image img-circle img-responsive pull-right" src="img/search1.png">
+            <h2 style="font-family:Rockwell" class="featurette-heading">Search Git Repo & View Statistics
+            <!--<span class="text-muted">Will Catch Your Eye</span>-->
+        </h2>
+        <p style="font-family:Calisto MT" class="lead">Search Repos, learn statistics about your commit history and top issues, pull requests in a click.</p>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Second Featurette -->
+    <div class="featurette" id="contact">
+        <img class="featurette-image img-circle img-responsive pull-left" src="img/ppt1.png">
+        <h2 style="font-family:Rockwell" class="featurette-heading"> Commits Presenter
+           <!-- <span class="text-muted">Is Pretty Cool Too.</span>-->
+        </h2>
+        <p style="font-family:Calisto MT" class="lead">Finding yourself copying a lot of code from a repository per commit into Powerpoint during training session/classes. Save time and use our Presenter to see commits on-the-fly. </p>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Third Featurette -->
+    <div class="featurette" id="services">
+        <img class="featurette-image img-circle img-responsive pull-right" src="img/release.png">
+        <h2 style="font-family:Rockwell" class="featurette-heading">Fetch Git Release Details
+           <!-- <span class="text-muted">Will Seal the Deal.</span>-->
+        </h2>
+        <p style="font-family:Calisto MT"class="lead">Easy Navigation and interface that helps you view nay Git Repo details in seconds.</p>
+    </div>
+    </div>

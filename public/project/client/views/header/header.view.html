@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/home">GitAnalyze</a>
+            <a class="navbar-brand" href="#/home">GitViz</a>
         </div>
 
         <div id="navbar" class="collapse navbar-collapse" >
@@ -31,16 +31,16 @@
                 <li ng-if="user.logged" ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a href="#/profile">Profile</a></li>
                 <li ng-if="user.logged" ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/forms">User Issues</a></li>
                 <li ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search">Search Repo</a></li>
-                <li ng-if="CurrentGitUser.reponame" ng-class="{'active' : $location.url().indexOf('details') != -1}"><a href="#/slidebuilder">Git Commits Presenter</a></li>
-                <li ng-if="CurrentGitUser" class="dropdown">
+                <li ng-class="{'active' : $location.url().indexOf('release') != -1}"><a href="#/release">Release Stats</a></li>
+                <li ng-if="CurrentGitUser.reponame" class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore More <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li ng-if="CurrentGitUser.reponame" ng-class="{'active' : $location.url().indexOf('statistics') != -1}">
                             <a ng-href="#/statistics/{{repo_url}}">Commit Activity</a></li>
                         <li ng-if="CurrentGitUser.reponame" ng-class="{'active' : $location.url().indexOf('commits') != -1}">
-                            <a ng-href="#/commits/">Browse Commits</a></li>
-                        <li ng-class="{'active' : $location.url().indexOf('release') != -1}"><a href="#/release">Release Stats</a></li>
-                        <li ng-if="CurrentGitUser.reponame" ng-class="{'active' : $location.url().indexOf('issuesdashboard') != -1}"><a href="#/issuesdashboard">Issues DashBoard</a></li>
+                            <a ng-href="#/commits/">Commits Browser</a></li>
+                        <li ng-if="CurrentGitUser.reponame" ng-class="{'active' : $location.url().indexOf('details') != -1}"><a href="#/slidebuilder">View Commits by SHA</a></li>
+                        <li ng-if="CurrentGitUser.reponame" ng-class="{'active' : $location.url().indexOf('issuesdashboard') != -1}"><a href="#/issuesdashboard">Issues & Pull DashBoard</a></li>
                     </ul>
                 </li>
 

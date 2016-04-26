@@ -81,8 +81,8 @@ app.use(express.static(__dirname + '/public'));
 // end of this section
 
 // top level on server  reference to app , db, mongoose
-require("./public/assignment/server/app.js")(app, db, mongoose);
-//require("./public/project/server/app.js")(app, db,mongoose);
+//require("./public/assignment/server/app.js")(app, db, mongoose);
+require("./public/project/server/app.js")(app, db,mongoose);
 
 // listens for incoming connections
 app.listen(port, ipaddress);

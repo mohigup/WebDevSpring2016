@@ -32,6 +32,8 @@
         };
         if(currentSessionUser){
             console.log("call to update current reporname")
+            //bycrypt
+            delete newUser.password;
             UserService.updateThisUser(newUser._id,newUser).then(function (response) {
                 console.log("old response")
                 console.log(UserService.getCurrentUser())

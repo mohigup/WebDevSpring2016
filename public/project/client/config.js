@@ -20,6 +20,10 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/learn", {
+                templateUrl: "views/home/HowitWorks.html",
+
+            })
             .when("/profile", {
                 templateUrl: "views/admin/profile.view.html",
                 controller: "ProfileController",

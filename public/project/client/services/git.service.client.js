@@ -118,6 +118,8 @@
                         recent_reponame:currentSessionUser.recent_reponame,
                         recent_commits : commits
                     };
+                    //bycrypt
+                    delete newUser.password;
                     UserService.updateThisUser(newUser._id,newUser)
                 },
                 // error

@@ -22,9 +22,10 @@ module.exports = function(app, adminModel) {
     passport.deserializeUser(deserializeUser);
 
     function localStrategy(username, password, done) {
-        adminModel
-            .findUserByCredentials({username: username, password: password})
-            .then(
+
+        adminModel.findUserByUsername(username)
+            /*.findUserByCredentials({username: username, password: password})*/
+           /* .then(
                 function(user){
                     console.log("user"+user)
                     console.log("server findUserByUsername")
@@ -42,7 +43,30 @@ module.exports = function(app, adminModel) {
                     if (err) { console.log("server findUserByUsername last failure")
                         return done(err); }
                 }
-            )
+            )*/
+            .then(
+                function(user) {
+                    console.log("usernma entered is"+username);
+                    console.log("passowrd is"+password);
+                    // if the user exists, compare passwords with bcrypt.compareSync
+                    console.log("User Found ....");
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        console.log("User Authenticated For Assignment....")
+                        return done(null, user);
+                    } else {
+                        console.log("User Authenticated For Assignment failed...."+user)
+                        console.log("original pass")
+                        console.log(user.password);
+                        console.log("chk status  ")
+                        console.log(bcrypt.compareSync(password, user.password))
+                        return done(null, false);
+                    }
+                },
+                function(err) {
+                    console.log("User Authenticated Failed passing");
+                    if (err) { return done(err); }
+                }
+            );
     }
 
     function serializeUser(user, done) {
@@ -64,7 +88,7 @@ module.exports = function(app, adminModel) {
 
     function createUser(req, res) {
         var usrObj = req.body;
-        usrObj.roles = ["guest"];
+        usrObj.roles = ["admin"];
         usrObj.searchhistory =[];
         usrObj.recent_repoowner=null;
         usrObj.recent_reponame=null;
@@ -79,7 +103,8 @@ module.exports = function(app, adminModel) {
                         res.json(null);
                     }
                     else {
-                       // usrObj.password = bcrypt.hashSync(usrObj.password);
+                        //bycrypt
+                        usrObj.password = bcrypt.hashSync(usrObj.password);
                         console.log("entering db")
                         return adminModel.createUser(usrObj);
                     }
@@ -190,6 +215,9 @@ module.exports = function(app, adminModel) {
         var userId = req.params.id;
         var userObj = req.body;
         //userObj.password = bcrypt.hashSync(userObj.password);
+        if(userObj.password) {
+            userObj.password = bcrypt.hashSync(userObj.password);
+        }
         console.log("updated obj received on server")
         console.log(userObj)
 

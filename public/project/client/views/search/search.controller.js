@@ -54,6 +54,8 @@
                                 email: cu.email,
                                 recent_repoowner:repo.owner,
                             };
+                            //bycrypt
+                            delete newUser.password;
                             UserService.updateThisUser(newUser._id,newUser)
                         }
 

@@ -28,6 +28,8 @@
                             console.log(response)
                             console.log(response.data)
                             if (currentUser) {
+                                console.log("logged in first");
+                                console.log(currentUser)
                                 UserService.setCurrentUser(currentUser);
                                 var status = false;
                                 for (var i in currentUser.roles) {
@@ -47,7 +49,7 @@
                             }
                         },
                         function (err) {
-
+                            vm.message = "Invalid username/password";
                         }
                     );
             }

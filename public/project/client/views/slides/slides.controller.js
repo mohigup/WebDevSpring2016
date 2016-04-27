@@ -11,7 +11,7 @@
         var count = 0;
         var slides = [];
         var response;
-        vm.repo = UserService.getCurrentGitUser().reponame;
+        vm.repo = UserService.getCurrentUser().recent_reponame;
         vm.loadData = loadData;
         function init() {
 

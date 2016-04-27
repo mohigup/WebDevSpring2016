@@ -13,10 +13,12 @@
 
         function init() {
 
-            vm.commits = UserService.getCurrentGitUser().commits;
+            vm.commits = UserService.getCurrentUser().recent_commits;
             console.log(vm.commits.length);
             console.log(vm.commits[0].msg);
             setTimeout( function(){$('#commitsTable').dataTable(); }, 2000);
+            console.log("commits")
+            console.log(UserService.getCurrentUser())
         }
 
         init();

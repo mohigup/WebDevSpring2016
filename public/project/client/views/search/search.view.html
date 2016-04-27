@@ -1,3 +1,5 @@
+
+
 <h2 class="h1-search" align="middle" style="">Search Git Repo by Username</h2>
 
 <div ng-show="model.message" class="alert alert-danger col-sm-offset-3 col-sm-6" role="alert">{{model.message}}</div>
@@ -48,7 +50,10 @@
                             <span ng-if="repo.fork" class="glyphicon glyphicon-book"></span>
                             <span ng-if="!repo.fork" class="glyphicon glyphicon-wrench"></span>
                         </small>
-                            <a href="#/statistics/{{model.data[0].owner.login}}/{{repo.name}}">
+                            <a ng-hide="!user" href="#/statistics/{{model.data[0].owner.login}}/{{repo.name}}">
+                            {{repo.name}}
+                        </a>
+                        <a ng-hide="user" href="div#myDisplay" data-toggle="modal" data-target="div#myDisplay">
                             {{repo.name}}
                         </a>
                         <small>{{repo.description}}</small>
@@ -68,5 +73,29 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myDisplay" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" align="center" style="font-weight:bold">Register/Login to Access all Features</h4>
+                </div>
+                <div class="modal-body">
+                    Non Signed Users can only search a Git repository & view its releases details. Sign-in with your credentials or register now.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Done with modal -->
 
 </div>

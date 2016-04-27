@@ -27,6 +27,8 @@
 
                             var currentUser = response.data;
                             if (currentUser) {
+                                console.log("user returned after login is")
+                                console.log(currentUser);
                                 UserService.setCurrentUser(currentUser);
                                 $rootScope.isAdmin = true;
                                 console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);

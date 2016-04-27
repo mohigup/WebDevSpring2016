@@ -10,11 +10,12 @@ module.exports = function(app, adminModel) {
     var auth = authorized;
     console.log("server admin")
     app.post("/api/admin/login",   passport.authenticate('local'), login);
-    app.get('/api/admin/user', getUser);
+    app.post("/api/admin/register", createUser);
     app.get("/api/admin/loggedin",    loggedin);
     app.post("/api/admin/logout", logout);
     app.get("/api/admin/user/:id",auth, findUserById);
     app.put("/api/admin/user/:id",auth, updateUserById);
+    app.put("/api/admin/add/:id",auth, addUserSearchById);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -61,6 +62,55 @@ module.exports = function(app, adminModel) {
             );
     }
 
+    function createUser(req, res) {
+        var usrObj = req.body;
+        usrObj.roles = ["guest"];
+        usrObj.searchhistory =[];
+        usrObj.recent_repoowner=null;
+        usrObj.recent_reponame=null;
+        usrObj.recent_commits=[];
+        console.log("inside create user")
+        console.log(usrObj.username);
+        adminModel.findUserByUsername(usrObj.username)
+            .then(
+                function (user) {
+                    if (user!=null) {
+                        console.log("username exists serrvices on server")
+                        res.json(null);
+                    }
+                    else {
+                       // usrObj.password = bcrypt.hashSync(usrObj.password);
+                        console.log("entering db")
+                        return adminModel.createUser(usrObj);
+                    }
+                },
+                function (err) {
+                    console.log("neither db nor found")
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (user) {
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
+                                console.log("login failed after register")
+                                res.status(400).send(err);
+                            }
+                            else {
+                                console.log("login passed after register")
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (err) {
+                    console.log("login passed after register entiehr failed or paxssed")
+                    res.status(400).send(err);
+                });
+
+    }
+
     function login(req, res) {
         console.log("server MAIN LOGIN")
         var user = req.user;
@@ -71,18 +121,6 @@ module.exports = function(app, adminModel) {
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 
-    function getUser(req, res) {
-        if (req.query.username && req.query.password) {
-            var usr = findUserByCredentials(req, res);
-            console.log(req.session);
-            req.session.currentUser = usr;
-            return usr;
-        } else if (req.query.username) {
-            return findUserByUsername(req, res);
-        } else {
-            return findAllUsers(req, res);
-        }
-    }
 
     function findAllUsers(req, res) {
 
@@ -156,6 +194,36 @@ module.exports = function(app, adminModel) {
         console.log(userObj)
 
         adminModel.updateUserById(userId, userObj)
+            .then(
+                function(stats){
+                    return adminModel.findUserById(userId);
+                    //res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(user){
+                    console.log(user);
+                    // ADDING FOR SESSION
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function addUserSearchById(req, res) {
+        var userId = req.params.id;
+        var userObj = req.body;
+        //userObj.password = bcrypt.hashSync(userObj.password);
+        console.log("updated obj received on server")
+        console.log(userObj)
+
+        adminModel.addUserSearchById(userId, userObj)
             .then(
                 function(stats){
                     return adminModel.findUserById(userId);

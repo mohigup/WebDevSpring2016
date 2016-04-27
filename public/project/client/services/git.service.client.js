@@ -101,8 +101,24 @@
                     }
                     console.log(commits.reverse())
                     console.log(commits.length)
+                    // local git user
                     UserService.getCurrentGitUser().commits =commits;
-
+                    //new logic for keeping commit in session
+                    var currentSessionUser =UserService.getCurrentUser();
+                    console.log("inside git service before call to update commits")
+                    console.log(currentSessionUser.recent_reponame)
+                    var newUser = {
+                        _id: currentSessionUser._id,
+                        username: currentSessionUser.username,
+                        firstName: currentSessionUser.firstName,
+                        lastNamefindAllCommits: currentSessionUser.lastName,
+                        password: currentSessionUser.password,
+                        email: currentSessionUser.email,
+                        recent_repoowner:currentSessionUser. recent_repoowner,
+                        recent_reponame:currentSessionUser.recent_reponame,
+                        recent_commits : commits
+                    };
+                    UserService.updateThisUser(newUser._id,newUser)
                 },
                 // error
                 function(results) {
@@ -128,9 +144,11 @@
             if (page !=0) page = 1
             var mapObj;
             console.log(user);
+            commits = UserService.getCurrentUser().recent_commits;
             var elementPos = commits.map(function(x) {return x.sha; }).indexOf(sha);
             sourceSHAPos = elementPos;
             console.log("before adding page no"+elementPos);
+            console.log(commits);
             console.log(commits[elementPos])
             elementPos = elementPos + page;
             var objectFound = commits[elementPos];

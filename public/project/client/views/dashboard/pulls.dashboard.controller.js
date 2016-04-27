@@ -11,8 +11,8 @@
         var ISSUES_URL ='https://api.github.com/repos/OWNER/REPO/pulls?state=closed&sort=updated&page=' + $scope.page + '&per_page=100&sort=updated'+ID;
 
 
-        var NEWURL1 =   ISSUES_URL.replace("OWNER", UserService.getCurrentGitUser().owner);
-        var NEWURL2 =   NEWURL1.replace("REPO",UserService.getCurrentGitUser().reponame);
+        var NEWURL1 =   ISSUES_URL.replace("OWNER", UserService.getCurrentUser().recent_repoowner);
+        var NEWURL2 =   NEWURL1.replace("REPO",UserService.getCurrentUser().recent_reponame);
         $scope.loadData = function() {
             console.log("inside load func")
             $http.get(NEWURL2).success(function(pulls) {

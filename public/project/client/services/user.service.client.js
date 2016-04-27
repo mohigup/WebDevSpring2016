@@ -5,31 +5,20 @@
         .factory("UserService", UserService);
 
 
-    function UserService($http,$rootScope) {/*var mapObj = {
-                    USERNAME:user.owner,
-                    REPONAME:user.reponame,
-                    PGN:c
-                };
-                var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
-                SHA_URL = SHA_URL.replace(re, function(matched){
-                    return mapObj[matched];
-                });
-                $http.get(ALLCOMMITS_URL).success(function (data) {
-
-                });*/
-        'use strict';
-
-
+    function UserService($http,$rootScope) {
         var service =
         {
-
-            findUserByCredentials: findUserByCredentials,
-
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
             setCurrentGitUser: setCurrentGitUser,
             getCurrentGitUser: getCurrentGitUser,
+            createUser: createUser,
+            findUserById: findUserById,
+            findUserByUsername: findUserByUsername,
+            findUserByCredentials: findUserByCredentials,
             updateThisUser: updateThisUser,
+            addUserSearchById:addUserSearchById,
+            // ADDING FOR SESSION
             getLoggedinUser:getLoggedinUser,
             logout: logout
 
@@ -37,11 +26,28 @@
 
         return service;
 
+        function createUser(user) {
+            console.log("client services -calling createUser")
+            console.log(user)
+            return $http.post("/api/admin/register", user);
+        }
 
-
+        function findUserById(userId) {
+            return $http.get('/api/admin/user/' + userId);
+        }
+        function findUserByUsername(username) {
+            console.log("client services -calling findUserByUsername")
+            console.log(username)
+            return $http({
+                method: 'GET',
+                url: '/api/admin/user/username',
+                params: {
+                    'username': username
+                }
+            });
+        }
         function findUserByCredentials(userdata) {
             var usr;
-
             console.log("calling login on client- Inside client services");
             console.log(userdata.username)
             console.log(userdata.password)
@@ -55,17 +61,20 @@
                 });*/
         }
 
-
-
-
-
-
-
         function updateThisUser(userId, user) {
             console.log("calling update on client- Inside client services");
             return $http({
                 method: 'PUT',
                 url: '/api/admin/user/' + userId,
+                data: user
+            });
+        }
+
+        function addUserSearchById(userId, user) {
+            console.log("calling addUserSearchById on client- Inside client services");
+            return $http({
+                method: 'PUT',
+                url: '/api/admin/add/' + userId,
                 data: user
             });
         }

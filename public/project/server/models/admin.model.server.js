@@ -23,6 +23,7 @@ module.exports = function (db,mongoose) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUserById: updateUserById,
+        addUserSearchById:addUserSearchById,
         deleteUserById: deleteUserById
     };
     return api;
@@ -31,12 +32,15 @@ module.exports = function (db,mongoose) {
         /*   user._id = uuid.v1();//(new Date).getTime();
          users.push(user);
          return user;*/
-
+        console.log("on server model, creating user")
+        console.log(user)
         var deferred = q.defer();
         UserModel.create(user, function (err, doc) {
             if(err){
+                console.log(err)
                 deferred.reject(err);
             }else{
+                console.log(doc)
                 deferred.resolve(doc);
             }
         });
@@ -81,18 +85,6 @@ module.exports = function (db,mongoose) {
     function findUserByUsername(username) {
 
         console.log("on server model, findUserByUsername")
-        /* console.log(username)
-         var userFound = null;
-         for (var i in users) {
-         if (users[i].username == username) {
-         userFound = users[i];
-         console.log(userFound);
-         break;
-         }
-         }
-         console.log("user found");
-         console.log(userFound);
-         return userFound;*/
 
         var deferred = q.defer();
         UserModel.findOne(
@@ -154,13 +146,6 @@ module.exports = function (db,mongoose) {
     function updateUserById(userId, user) {
 
         console.log("on server model, updateUserById")
-        /* console.log(users)
-         for (var i in users) {
-         if (users[i]._id == userId) {
-         users[i] = user;
-         break;
-         }
-         } return users;*/
 
         var deferred = q.defer();
         console.log(userId);
@@ -168,6 +153,32 @@ module.exports = function (db,mongoose) {
         UserModel.update(
             {_id: userId},
             {$set: user},
+            function(err, stats){
+                if(err){
+                    deferred.reject();
+                }else{
+                    deferred.resolve(stats);
+                }
+            }
+        );
+        return deferred.promise;
+        console.log("---------------------------------")
+
+    }
+
+    function addUserSearchById(userId, user) {
+
+        console.log("on server model, updateUserById")
+
+        var deferred = q.defer();
+        console.log(userId);
+        console.log(user);
+        var reponame =user.recent_reponame;
+        var owner = user.recent_repoowner;
+        console.log("inside add new service ")
+        UserModel.update(
+            {_id: userId},
+            { $addToSet: { searchhistory:  [{ repo: reponame, owner : owner }] } },
             function(err, stats){
                 if(err){
                     deferred.reject();

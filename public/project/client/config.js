@@ -10,6 +10,14 @@
             .when("/home", {
                 templateUrl: "views/home/home.view.v2.html",
                 controller: "HomeController",
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
+            })
+            .when("/register", {
+                templateUrl: "views/users/register.view.html",
+                controller: "RegisterController",
                 controllerAs: "model"
             })
             .when("/profile", {
@@ -31,7 +39,7 @@
                 controller : "IssueController",
                 controllerAs: "model",
                 resolve: {
-                    checkLoggedIn: checkLoggedIn
+                    checkLoggedIn: checkAdmin
                 }
             })
             .when("/search", {
@@ -45,14 +53,23 @@
                 controller: "CommitsController",
                 controllerAs: "model",
                 resolve:{
-                    isSession: isSession
+                    checkLoggedIn: checkLoggedIn
                 }
             })
+            .when("/repohistory", {
+                templateUrl: "views/users/repo.search.view.html",
+                controller: "RepoSearchHistoryController",
+                controllerAs: "model",
+                resolve:{
+                    checkLoggedIn: checkLoggedIn
+                }
+            })
+
             .when("/statistics/:user_name/:repo_name", {
                 templateUrl: "views/details/details.view.html",
                 controller: "DetailsController as model",
                 resolve:{
-                    isSession: isSession
+                    checkLoggedIn: checkLoggedIn
                 }
             })
             .when("/slidebuilder/", {
@@ -60,7 +77,7 @@
                 controller: "SlidesController",
                 controllerAs: "model",
                 resolve:{
-                    isSession: isSession
+                    checkLoggedIn: checkLoggedIn
                 }
             })
             .when("/slidebuilder/:sha/:flag", {
@@ -68,7 +85,7 @@
                 controller: "SlidesController",
                 controllerAs: "model",
                 resolve:{
-                    isSession: isSession
+                    checkLoggedIn: checkLoggedIn
                 }
             })
 
@@ -88,21 +105,38 @@
                 templateUrl: "views/details/release.details.view.html",
                 controller: "ReleaseDetailsController",
                 controllerAs: "model",
-                resolve:{
-                    isSession: isSession
-                }
+
 
             })
             .when("/issuesdashboard", {
                 templateUrl: "views/dashboard/issues.dashboard.html",
                 controller: "IssueDashBoardController",
                 resolve:{
-                    isSession: isSession
+                    checkLoggedIn: checkLoggedIn
                 }
             })
             .otherwise({
                 redirectTo: "/home"
             });
+    }
+        var checkAdmin = function(UserService, $q, $location){
+            var deferred = $q.defer();
+            UserService
+                .getLoggedinUser()
+                .success(function(user){
+                    // User is Authenticated
+                    if (user !== '0' && user.roles.indexOf('admin') != -1)
+                    {
+                        UserService.setCurrentUser(user);
+                        deferred.resolve();
+                    }else{
+                        deferred.reject();
+                        $location.url("/home");
+                    }
+                });
+
+            return deferred.promise;
+        };
 
         function checkLoggedIn(UserService, $q, $location) {
             var deferred = $q.defer();
@@ -127,12 +161,13 @@
                 .success(function(user){
                     if(user !== '0'){
                         UserService.setCurrentUser(user);
+
                     }
                     deferred.resolve();
                 });
             return deferred.promise;
         }
-    }
+
     var isSession = function(UserService, $q, $location){
         var deferred = $q.defer();
         var usr= UserService

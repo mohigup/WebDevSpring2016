@@ -18,8 +18,8 @@
             };
         };
         console.log(UserService.getCurrentGitUser())
-        var newurl =   ISSUES_URL.replace("OWNER", UserService.getCurrentGitUser().owner);
-        $http.get(newurl.replace("REPO",UserService.getCurrentGitUser().reponame))
+        var newurl =   ISSUES_URL.replace("OWNER", UserService.getCurrentUser().recent_repoowner);
+        $http.get(newurl.replace("REPO",UserService.getCurrentUser().recent_reponame))
             .success(function(issues) {
             var assignees = [], data = [];
             issues.forEach(function(issue) {

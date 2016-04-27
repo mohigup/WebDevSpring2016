@@ -1,7 +1,7 @@
 "use strict";
 (function () {
     angular
-        .module("FormBuilderApp")
+        .module("GitApp")
         .controller("RegisterController", RegisterController)
 
     function RegisterController($scope, UserService, $location, $rootScope) {
@@ -54,13 +54,19 @@
                      .then(function(created){
 
                          var newUser = created.data;
-                         console.log(newUser)
-                         UserService.setCurrentUser(newUser);
-                         //$rootScope.user = newUser;
-                         //$rootScope.user.logged = true;
-                         //$rootScope.user.globalusername = newUser.username;
-                         $location.url('/profile');
-                         //console.log($rootScope.user.globalusername);
+                         if (newUser == null) {
+                             vm.message = "User Exists. Please Choose Different UserName";
+                             $location.url('/register');}
+                         else{
+                             console.log(newUser)
+                             UserService.setCurrentUser(newUser);
+                             //$rootScope.user = newUser;
+                             //$rootScope.user.logged = true;
+                             //$rootScope.user.globalusername = newUser.username;
+                             $location.url('/profile');
+                             //console.log($rootScope.user.globalusername);
+                         }
+
 
                      });
 

@@ -9,17 +9,48 @@
 
         var repo_name = $routeParams.user_name + "/" + $routeParams.repo_name;
         console.log(repo_name);
-        var currentGitUser = UserService.getCurrentGitUser();
-        console.log(currentGitUser)
+
+       var currentGitUser = UserService.getCurrentGitUser();
+        var currentSessionUser = UserService.getCurrentUser();
+        console.log("chk if user is updated with reponame")
+        console.log(currentSessionUser)
+
         var usr = {
-            owner: currentGitUser.owner,
+            owner: currentSessionUser.recent_repoowner,
             reponame: $routeParams.repo_name
         };
-        console.log(usr)
         UserService.setCurrentGitUser(usr)
-        console.log(UserService.getCurrentGitUser());
-        fetchRepStats(repo_name);
-        GitIntService.findAllCommits(usr);
+        var newUser = {
+            _id: currentSessionUser._id,
+            username: currentSessionUser.username,
+            firstName: currentSessionUser.firstName,
+            lastName: currentSessionUser.lastName,
+            password: currentSessionUser.password,
+            email: currentSessionUser.email,
+            recent_repoowner:currentSessionUser. recent_repoowner,
+            recent_reponame:$routeParams.repo_name
+        };
+        if(currentSessionUser){
+            console.log("call to update current reporname")
+            UserService.updateThisUser(newUser._id,newUser).then(function (response) {
+                console.log("old response")
+                console.log(UserService.getCurrentUser())
+                console.log("response returned from call to reposname")
+                console.log(response.data)
+
+               UserService.setCurrentUser(response.data);
+                fetchRepStats(repo_name);
+                GitIntService.findAllCommits(usr);
+            },function(err){
+
+            });
+        }
+
+
+        //UserService.setCurrentGitUser(usr)
+
+
+
 
         //init();
 
@@ -29,6 +60,7 @@
                 .then(function (response) {
 
                     console.log("call back after 3 seconds ")
+                    console.log(UserService.getCurrentUser());
                     $timeout(function () {
                         fetchRepStatsAgain(repo_name)
                     }, 1000);

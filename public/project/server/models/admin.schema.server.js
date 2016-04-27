@@ -10,7 +10,11 @@ module.exports = function(mongoose) {
             firstName: String,
             lastName: String,
             email: String,
-            roles: [String]
+            roles: [String],
+            recent_repoowner:String,
+            recent_reponame:String,
+            recent_commits:Array,
+            searchhistory:[{repo:String, owner:String}]
         }, {collection: "project.user"});
     return UserSchema;
 };

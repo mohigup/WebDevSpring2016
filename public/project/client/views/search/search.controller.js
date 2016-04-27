@@ -32,17 +32,37 @@
                 GitIntService
                     .findRepoByUsername(repo.owner)
                     .then(function (response) {
+
+                            console.log("response");
+                            console.log(response);
+                            vm.data = response.data;
+                            console.log("vm.data")
+                            console.log(vm.data)
+
                         UserService.setCurrentGitUser(repo);
-                        console.log("response");
-                        console.log(response);
-                        vm.data = response.data;
-                        console.log("vm.data")
-                        console.log(vm.data)
+                        console.log("repo")
+                        console.log(repo)
+                        var cu = UserService.getCurrentUser();
+                        if(cu){
+                            console.log("updating user reponame")
+                            var newUser = {
+                                _id: cu._id,
+                                username: cu.username,
+                                firstName: cu.firstName,
+                                lastName: cu.lastName,
+                                password: cu.password,
+                                email: cu.email,
+                                recent_repoowner:repo.owner,
+                            };
+                            UserService.updateThisUser(newUser._id,newUser)
+                        }
+
+
 
                     },
                         function(err){
 
-                            vm.message = "No Such User Exists";
+                            vm.message = "We are currently facing Issues. Please after a while";
                         }
                     );
 

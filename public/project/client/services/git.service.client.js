@@ -1,7 +1,7 @@
 (function(){
     var ID="?client_id=baeec5dce056f6a02d9f&client_secret=7212a596cc30e4b6be2590e3361a8e20910dc9bd";
-    var SHA_URL = "http://api.github.com/repos/USERNAME/REPONAME/commits/SHA"+ID;
-    var GIT_SEARCH_URL = "http://api.github.com/users/USERNAME/repos?per_page=100&client_id=baeec5dce056f6a02d9f&client_secret=7212a596cc30e4b6be2590e3361a8e20910dc9bd"
+    var SHA_URL = "https://api.github.com/repos/USERNAME/REPONAME/commits/SHA"+ID;
+    var GIT_SEARCH_URL = "https://api.github.com/users/USERNAME/repos?per_page=100&client_id=baeec5dce056f6a02d9f&client_secret=7212a596cc30e4b6be2590e3361a8e20910dc9bd"
     var DETAILS_URL = "https://api.github.com/repos/REPONAME/stats/commit_activity?client_id=baeec5dce056f6a02d9f&client_secret=7212a596cc30e4b6be2590e3361a8e20910dc9bd";
     var ALLCOMMITS_URL = "https://api.github.com/repos/USERNAME/REPONAME/commits"+ID+"&page=PGN&per_page=100"
     angular

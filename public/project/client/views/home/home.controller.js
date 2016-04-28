@@ -18,6 +18,13 @@
             $(t).typed(tobj);
         //},1000)
         console.log("end")*/
+        var vm = this;
+        if(UserService.getCurrentUser()){
+
+            vm.href ="#/signedinlearn"
+        }
+        else vm.href ="#/learn"
+
     }
 
 

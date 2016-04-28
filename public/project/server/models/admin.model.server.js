@@ -150,9 +150,20 @@ module.exports = function (db,mongoose) {
         var deferred = q.defer();
         console.log(userId);
         console.log(user);
+        delete user.userId;
         UserModel.update(
             {_id: userId},
-            {$set: user},
+           {$set: user}
+            /*{username: user.username,
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            roles: user.roles,
+            recent_repoowner:user.recent_repoowner,
+            recent_reponame:user.recent_reponame,
+            recent_commits:user.recent_commits,
+            searchhistory:user.searchhistory}*/,
             function(err, stats){
                 if(err){
                     deferred.reject();

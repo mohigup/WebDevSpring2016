@@ -32,14 +32,17 @@
                                 UserService.setCurrentUser(currentUser);
                                 $rootScope.isAdmin = true;
                                 console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);
-
+                                console.log("here 1")
                                 $location.url("/profile");
+
                             } else {
                                 vm.message = "Invalid username/password";
+                                console.log("here 2")
                             }
                         },
                         function (err) {
-
+                            vm.message = "Invalid Username/Password";
+                            console.log("here 3")
                         }
                     );
             }

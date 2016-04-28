@@ -15,6 +15,14 @@
                     getLoggedIn: getLoggedIn
                 }
             })
+            .when("/signedinlearn", {
+                templateUrl: "views/home/features.view.html",
+                controller: "FeaturesController",
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
+            })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
                 controller: "RegisterController",

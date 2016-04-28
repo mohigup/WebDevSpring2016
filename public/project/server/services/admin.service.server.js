@@ -56,9 +56,9 @@ module.exports = function(app, adminModel) {
                     } else {
                         console.log("User Authenticated For Assignment failed...."+user)
                         console.log("original pass")
-                        console.log(user.password);
+                        //console.log(user.password);
                         console.log("chk status  ")
-                        console.log(bcrypt.compareSync(password, user.password))
+                       // console.log(bcrypt.compareSync(password, user.password))
                         return done(null, false);
                     }
                 },
@@ -218,6 +218,12 @@ module.exports = function(app, adminModel) {
         if(userObj.password) {
             userObj.password = bcrypt.hashSync(userObj.password);
         }
+
+        /*else{
+            userObj.password = req.user.password;
+        }
+*/
+
         console.log("updated obj received on server")
         console.log(userObj)
 

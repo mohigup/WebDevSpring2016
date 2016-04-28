@@ -15,7 +15,7 @@
             vm.sh = user.searchhistory.reverse();
             console.log(user.searchhistory);
             if(user.searchhistory == null || vm.sh.length <=0){
-                console.log(user.searchhistory.length)
+                //console.log(user.searchhistory.length)
                 vm.message =" No Recent Git Repositry Search history Found"
             }
             else{

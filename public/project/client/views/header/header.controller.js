@@ -23,6 +23,25 @@
             vm.sh = user.searchhistory;
             console.log("sadsaf")
             console.log(vm.sh)
+
+            if(user.searchhistory==null){
+
+                UserService
+                    .logout()
+                    .then(
+                        function (response) {
+                            console.log("------------------logged out called sh =null-----------")
+                            console.log(response)
+                            UserService.setCurrentUser(null);
+                            $location.url('/home');
+                        },
+                        function (err) {
+                            console.log("Failure");
+                        }
+                    );
+            }
+
+            else {
             if (user.searchhistory.length > 0) {
                 for (var v in user.searchhistory) {
                     if (user.recent_reponame == user.searchhistory[v][0].repo && user.recent_repoowner == user.searchhistory[v][0].owner) {
@@ -82,7 +101,7 @@
                         }
                     );
 
-            }
+            }}
         }
 
 

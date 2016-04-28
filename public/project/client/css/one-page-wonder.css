@@ -1,6 +1,7 @@
 /*!
  * Start Bootstrap - One Page Wonder HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
+ https://s3.amazonaws.com/f.cl.ly/items/3a2h193d3W3O0L3g2U43/octocat_darkwood.jpg
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
@@ -12,7 +13,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    background: url('https://s3.amazonaws.com/f.cl.ly/items/3a2h193d3W3O0L3g2U43/octocat_darkwood.jpg') no-repeat center center scroll;
+    background: url('../img/jetpack.jpg') no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -25,6 +26,7 @@ body {
 
 .headline h1 {
     font-size: 130px;
+    text-shadow: -7px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     background: #fff;
     background: rgba(0,0,0,.0001);
 }
@@ -61,7 +63,7 @@ footer {
 
 @media(max-width:1200px) {
     .headline h1 {
-        font-size: 100px;
+        font-size: 150px;
     }
 
     .headline h2 {

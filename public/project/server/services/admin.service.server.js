@@ -88,7 +88,7 @@ module.exports = function(app, adminModel) {
 
     function createUser(req, res) {
         var usrObj = req.body;
-        usrObj.roles = ["admin"];
+        usrObj.roles = ["guest"];
         usrObj.searchhistory =[];
         usrObj.recent_repoowner=null;
         usrObj.recent_reponame=null;

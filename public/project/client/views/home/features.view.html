@@ -2,68 +2,66 @@
     <section >
         <div class="row" style="padding-bottom:30px;">
             <div class="col-md-12 text-center">
-                <h2>Six Types Of Bootstrap Panels</h2>
+                <h2>Quick Overview Of Features</h2>
             </div>
         </div>
         <!-- ROW END -->
         <div class="row">
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-danger">
                     <div class="panel-heading">
                         Search Repo
                     </div>
                     <div class="panel-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Search Git Repo by providing Username or Author Name.
                         </p>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Click on any results returned in Repo to view more details
                         </p>
                     </div>
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-default "> <i class="glyphicon glyphicon-arrow-up"></i> footer button</a>
+                        <a href="#/search" class="btn btn-danger "> <i class="glyphicon glyphicon-arrow-up"></i>Click Here</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-info">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
-                        INFO PANEL
+                        Commits Activity
                     </div>
                     <div class="panel-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Explore last year commits by week
                         </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                        <p>CurrentGitUser.reponame
+                            Click on Commits Activity from Explore Menu
+                        </p>
+                        <p>Enabled only when a Repo is selected.
+
                         </p>
                     </div>
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-info "> <i class="glyphicon glyphicon-arrow-up"></i> footer button</a>
+                        <a ng-disabled="!CurrentGitUser.reponame" href="#/commits" class="btn btn-warning "> <i class="glyphicon glyphicon-arrow-up"></i>Click Here</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel panel-primary">
+                <div class="panel panel-success">
                     <div class="panel-heading">
-                        PRIMARY PANEL
+                        Commits Browser
                     </div>
                     <div class="panel-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            View Upto 600 Commits of Repo selected in search flow
                         </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+                        <p>Enabled only when a Repo is selected
+
                         </p>
                     </div>
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-primary "> <i class="glyphicon glyphicon-arrow-up"></i> footer button</a>
+                        <a ng-disabled="!CurrentGitUser.reponame" href="#/statistics/{{repo_url}}" class="btn btn-success "> <i class="glyphicon glyphicon-arrow-up"></i> Click Here</a>
                     </div>
                 </div>
             </div>
@@ -73,60 +71,60 @@
             <div class="col-md-4">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
-                        DANGER PANEL
+                        Commits Presenter
                     </div>
                     <div class="panel-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Dynamic View of Commits for ppts.
                         </p>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Choose commits from either Commit Browser or use Commits by SHA or click button below
+                        </p>
+                        <p> Enabled only when a Repo is selected.
+
                         </p>
                     </div>
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-danger "> <i class="glyphicon glyphicon-arrow-up"></i> footer button</a>
+                        <a ng-disabled="!CurrentGitUser.reponame" href="#/slidebuilder" class="btn btn-danger "> <i class="glyphicon glyphicon-arrow-up"></i> Click Here</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        WARNING PANEL
+                        Search History
                     </div>
                     <div class="panel-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            View your last repository search history
                         </p>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Click on Search History from Top navigation to see the results.
                         </p>
                     </div>
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-warning "> <i class="glyphicon glyphicon-arrow-up"></i> footer button</a>
+                        <a  href="#/repohistory/" class="btn btn-warning "> <i class="glyphicon glyphicon-arrow-up"></i> Click Here</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        SUCCESS PANEL
+                        Issues and Pull Dashboard
                     </div>
                     <div class="panel-body">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            View top 100 issues by assignes and top 100 pull requests
                         </p>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Click on Commits Activity from Explore Menu or click button below
+                        </p>
+                        <p>Enabled only when a Repo is selected.
+
                         </p>
                     </div>
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-success "> <i class="glyphicon glyphicon-arrow-up"></i> footer button</a>
+                        <a ng-disabled="!CurrentGitUser.reponame" href="#/issuesdashboard" class="btn btn-success "> <i class="glyphicon glyphicon-arrow-up"></i> Click Here</a>
                     </div>
                 </div>
             </div>

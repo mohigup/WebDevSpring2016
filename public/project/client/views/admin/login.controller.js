@@ -30,8 +30,9 @@
                                 console.log("user returned after login is")
                                 console.log(currentUser);
                                 UserService.setCurrentUser(currentUser);
-                                $rootScope.isAdmin = true;
-                                console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);
+                                //console.log(user.roles.indexOf('admin'))
+                                //$rootScope.isAdmin = true;
+                                //console.log("$rootScope.user.isAdmin" + $rootScope.isAdmin);
                                 console.log("here 1")
                                 $location.url("/profile");
 

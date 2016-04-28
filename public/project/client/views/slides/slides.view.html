@@ -13,7 +13,7 @@
 </script>-->
 
 <div ng-if="!model.flag" class="animate-if">
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading"><H4 class="slidesheader"> Enter Parent Commit SHA to See all child Commits for Repository: {{model.repo}}</H4></div>
     <div class="panel-body">
         <form class="form-horizontal" >
@@ -71,7 +71,7 @@
 
 <div id = "SB2" ng-if="model.data" class="row2" style="background-color:lavender;">
     <ol class="breadcrumb">
-        <div align="center "> View upto {{model.commitscount}} commits </div>
+        <div align="center" style="font-weight:800"> Found {{model.commitscount}} Child Commits </div>
     </ol>
     <nav>
         <ul class="pager">

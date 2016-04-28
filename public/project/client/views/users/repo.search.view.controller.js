@@ -17,6 +17,7 @@
             if(user.searchhistory == null || vm.sh.length <=0){
                 //console.log(user.searchhistory.length)
                 vm.message =" No Recent Git Repository Search History Found"
+                vm.message2=" Search History is updated after Logout"
             }
             else{
                 vm.message = "Recent Git Repository Search History"

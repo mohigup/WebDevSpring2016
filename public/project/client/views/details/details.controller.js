@@ -49,7 +49,7 @@
         }
 
 
-        //UserService.setCurrentGitUser(usr)
+        //UserService.setCurrentUser()
 
 
 
@@ -80,6 +80,7 @@
         }
 
         function fetchRepStatsAgain(repo_name) {
+            console.log("user is updated new???????????????? "+UserService.getCurrentUser().recent_commits.length);
 
             GitIntService
                 .findRepoStatistics(repo_name)

@@ -71,6 +71,17 @@
                     REPONAME:user.reponame,
                     PGN:value
                 };
+                console.log("test crucuial")
+                console.log(commits)
+                if(commits.length <= 0) {}
+                else{
+                    if((commits[1].URL).indexOf(UserService.getCurrentUser().recent_reponame) == -1){
+                        console.log("commits empty now"+commits.length)
+                        commits=[]
+                        console.log("commits emptied"+commits.length)
+                    }
+                    }
+                console.log()
                 var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
                 COMMITSURL  = COMMITSURL.replace(re, function(matched){
                     return mapObj[matched];
@@ -120,7 +131,10 @@
                     };
                     //bycrypt
                     delete newUser.password;
-                    UserService.updateThisUser(newUser._id,newUser)
+                    UserService.updateThisUser(newUser._id,newUser).then(function(){
+                        console.log("user is updated")
+                        console.log("user is updated new "+UserService.getCurrentUser().recent_commits.length);
+                    })
                 },
                 // error
                 function(results) {
@@ -220,37 +234,16 @@
                     slides.push(sc);
                     console.log("slides with 2 el  is ")
                     console.log(slides)
-                    SHA_URL = commits[elementPos+2].URL + ID;
-                    console.log("SHA URL IS @"+elementPos +2);
-                    console.log(SHA_URL)
-                    //C#3
-                    $http.get(SHA_URL).success(function (data1) {
-                        response = data1;
-                        console.log('results in $http.get :3');
-                        console.log(response)
-                        var sc = [];
-                        for (var v in response.files) {
-                            sc.push({
-                                content: response.files[v].patch,
-                                filename: response.files[v].filename,
-                                author: response.commit.author.name,
-                                date: response.commit.author.date,
-                                msg: response.commit.message,
-                                sha: response.sha
-                            })
-                        }
-                        console.log("array 3 is ")
-                        console.log(sc)
-                        slides.push(sc);
-                        console.log("slides with 3 el  is ")
-                        console.log(slides)
-                        SHA_URL = commits[elementPos+3].URL + ID;
-                        console.log("SHA URL IS @"+elementPos +3);
+
+                    if(commits[elementPos+2]!=null){
+
+                        SHA_URL = commits[elementPos+2].URL + ID;
+                        console.log("SHA URL IS @"+elementPos +2);
                         console.log(SHA_URL)
-                        //C#4
+                        //C#3
                         $http.get(SHA_URL).success(function (data1) {
                             response = data1;
-                            console.log('results in $http.get :4');
+                            console.log('results in $http.get :3');
                             console.log(response)
                             var sc = [];
                             for (var v in response.files) {
@@ -263,14 +256,48 @@
                                     sha: response.sha
                                 })
                             }
-                            console.log("array 4 is ")
+                            console.log("array 3 is ")
                             console.log(sc)
                             slides.push(sc);
-                            console.log("Made 4 calls and updated slides with 4 commits, Slides Length is")
+                            console.log("slides with 3 el  is ")
                             console.log(slides)
-                            console.log(slides.length)
+
+                            if(commits[elementPos+3]!=null){
+
+                                SHA_URL = commits[elementPos+3].URL + ID;
+                                console.log("SHA URL IS @"+elementPos +3);
+                                console.log(SHA_URL)
+                                //C#4
+                                $http.get(SHA_URL).success(function (data1) {
+                                    response = data1;
+                                    console.log('results in $http.get :4');
+                                    console.log(response)
+                                    var sc = [];
+                                    for (var v in response.files) {
+                                        sc.push({
+                                            content: response.files[v].patch,
+                                            filename: response.files[v].filename,
+                                            author: response.commit.author.name,
+                                            date: response.commit.author.date,
+                                            msg: response.commit.message,
+                                            sha: response.sha
+                                        })
+                                    }
+                                    console.log("array 4 is ")
+                                    console.log(sc)
+                                    slides.push(sc);
+                                    console.log("Made 4 calls and updated slides with 4 commits, Slides Length is")
+                                    console.log(slides)
+                                    console.log(slides.length)
+                                });
+
+                            }
+
+
                         });
-                    });
+                    }
+
+
                 });
             });
 

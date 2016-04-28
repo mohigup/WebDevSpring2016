@@ -67,7 +67,7 @@
                     console.log(UserService.getCurrentUser());
                     $timeout(function () {
                         fetchRepStatsAgain(repo_name)
-                    }, 2000);
+                    }, 3000);
 
 
                 },function(err){

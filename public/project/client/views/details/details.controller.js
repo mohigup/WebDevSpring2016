@@ -27,7 +27,7 @@
             lastName: currentSessionUser.lastName,
             password: currentSessionUser.password,
             email: currentSessionUser.email,
-            recent_repoowner:currentSessionUser. recent_repoowner,
+            recent_repoowner:currentSessionUser.recent_repoowner,
             recent_reponame:$routeParams.repo_name
         };
         if(currentSessionUser){
@@ -61,11 +61,13 @@
                 .findRepoStatistics(repo_name)
                 .then(function (response) {
 
+                    console.log("response")
+                    console.log(response)
                     console.log("call back after 3 seconds ")
                     console.log(UserService.getCurrentUser());
                     $timeout(function () {
                         fetchRepStatsAgain(repo_name)
-                    }, 1000);
+                    }, 2000);
 
 
                 },function(err){

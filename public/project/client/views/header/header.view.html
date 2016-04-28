@@ -27,11 +27,11 @@
             </ul>-->
             <ul class="nav navbar-nav navbar-left">
                 <li ng-class="{'active' : $location.url().indexOf('home') != -1} "><a href="#/home">Home<span class="sr-only">(current)</span></a></li>
-                <li ng-show="user.roles.indexOf('admin') > -1" ng-class="{'active' : model.$location.url() == '/forms'}"><a href="#/forms">User Issues</a></li>
+                <li ng-show="user.roles.indexOf('admin') > -1" ng-class="{'active' : model.$location.url() == '/forms'}"><a href="#/forms">User Issues Tracker</a></li>
                 <li ng-show="user" ng-class="{'active' : $location.url().indexOf('repohistory') != -1}">
                     <a ng-href="#/repohistory/">Search History</a></li>
-                <li ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search">Search Repo</a></li>
-                <li ng-class="{'active' : $location.url().indexOf('release') != -1}"><a href="#/release">Release Stats</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search">Search Git Repo</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('release') != -1}"><a href="#/release">Git Repo Release Fetcher</a></li>
                 <li ng-if="CurrentGitUser.reponame && user" class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore More <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -51,7 +51,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!--<li ng-if="!user.logged" ng-class="{'active' : $location.url().indexOf('register') != -1} "><a
                         href="#/register">Register</a>-->
-                <li ng-hide="user" ng-class="{'active' : model.$location.url() == '/register'}"><a href="#/register">Sign Up</a></li>
+                <li ng-hide="user" ng-class="{'active' : model.$location.url() == '/register'}"><a href="#/register">Register</a></li>
                 <li ng-hide="user" ng-class="{'active' : model.$location.url() == '/login'}"><a href="#/login">Sign-In</a></li>
                 <li ng-show="user" ng-class="{'active' : model.$location.url() == '/profile'}"><a href="#/profile">{{user.username}}</a></li>
 

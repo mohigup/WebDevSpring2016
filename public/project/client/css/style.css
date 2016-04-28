@@ -52,3 +52,11 @@ hr {
         border-top: 3px solid #e7e7e7;
     }
 }
+
+.sortorder:after {
+    content: '\25b2';
+}
+.sortorder.reverse:after {
+    content: '\25bc';
+}
+

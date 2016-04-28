@@ -64,7 +64,7 @@
                     },
                         function(err){
 
-                            vm.message = "We are currently facing Issues. Please after a while";
+                            vm.message = "We are currently facing Issues. Please try after some-time";
                         }
                     );
 

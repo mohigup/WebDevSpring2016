@@ -43,6 +43,7 @@
         vm.updateForm = updateForm;
 
 
+
         function renderUserForms(userAllForms) {
             vm.issues = userAllForms;
             vm.issue = null;

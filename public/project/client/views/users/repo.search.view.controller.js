@@ -16,11 +16,11 @@
             console.log(user.searchhistory);
             if(user.searchhistory == null || vm.sh.length <=0){
                 //console.log(user.searchhistory.length)
-                vm.message =" No Recent Git Repositry Search history Found"
+                vm.message =" No Recent Git Repository Search History Found"
             }
             else{
                 vm.message = "Recent Git Repository Search History"
-                vm.message2 = "Current Git Repo is set to "+user.searchhistory[0][0].repo+" whose author is "+user.searchhistory[0][0].owner
+                vm.message2 = "Current Git Repo is set to "+user.recent_reponame+" whose author is "+user.recent_repoowner
             }
 
         }

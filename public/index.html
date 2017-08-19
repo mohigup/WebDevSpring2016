@@ -1,407 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Mohit Gupta Portfolio</title>
+    <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
-
-    <title>Mohit Gupta</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="favicon1.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
     
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <!-- github calendar css -->
+    <link rel="stylesheet" href="assets/plugins/github-calendar/dist/github-calendar.css"
+/>
+    <!-- github acitivity css -->
+    <link rel="stylesheet" href="assets/plugins/github-activity/src/github-activity.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css">
     
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-    
-    <script src="assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/smoothscroll.js"></script> 
-    <script src="assets/js/Chart.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+    
+</head> 
 
-  <body data-spy="scroll" data-offset="0" data-target="#nav">
+<body>
+    <!-- ******HEADER****** --> 
+    <header class="header">
+        <div class="container">                       
+            <img class="profile-image img-responsive pull-left" src="assets/images/profile1.png" alt="James Lee" />
+            <div class="profile-content pull-left">
+                <h1 class="name">Mohit Gupta</h1>
+                <h2 class="desc">MS CS Graduate Student | Web App Developer | Backend Developer</h2>   
+                <ul class="social list-inline">
+                    <li><a href="https://www.facebook.com/mohitgupta001"><i class="fa fa-facebook"></i></a></li>                   
+                    <li><a href="https://www.linkedin.com/in/mohitgupta17"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://github.com/mohigup"><i class="fa fa-github-alt"></i></a></li>
+                     <li><a href="https://stackoverflow.com/story/mohitgupta17"><i class="fa fa-stack-overflow"></i></a></li>
+                               
+                </ul> 
+            </div><!--//profile-->
+            <a class="btn btn-cta-primary pull-right" href="gupta.moh@husky.neu.edu" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a>              
+        </div><!--//container-->
+    </header><!--//header-->
+    
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">About Me</h2>
+                        <div class="content">
+                            <p>I am graduate student with more than 4 years of experience, pursuing Master of Science in Computer Science from Northeastern University graduating in December 2017, seeking to better understand algorithm design principles and web development technologies for tackling the technology industry’s toughest problems.
+                            I am specialising in building web apps, consider myself full-stack developer but I tend to work more on the back-end.</p>    
+         
+        <p>In Summer 2017, I applied my technical expertise as VMware intern in building scalable search solution using Elasticsearch and Kafka for a performance monitoring tool</p>
+        <p>Furthermore, I worked as full stack developer intern in Summer, Fall 2016 at New York Life Labs developing applications for Insurance and Finance Industry, working on the back-end and front-end, enabling the existence of features and application development using AWS.</p>
 
-	<div id="section-topbar">
-		<div id="topbar-inner">
-			<div class="container">
-				<div class="row">
-					<div class="dropdown">
-						<ul id="nav" class="nav">
-							<li class="menu-item"><a class="smoothScroll" href="#about" title="About"><i class="icon-user"></i></a></li>
-							<li class="menu-item"><a class="smoothScroll" href="#resume" title="Resume"><i class="icon-file"></i></a></li>
-							<li class="menu-item"><a class="smoothScroll" href="#work" title="Works"><i class="icon-briefcase"></i></a></li>
-							<li class="menu-item"><a class="smoothScroll" href="#contact" title="Contact"><i class="icon-envelope"></i></a></li>
-						</ul><!--/ uL#nav -->
-					</div><!-- /.dropdown -->
+        <p>I’m always interested in hearing from interesting folk, so feel free to contact me if you’d like to connect</p>
+                         
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+                    <section class="experience section">
+                    <div class="section-inner">
+                        <h2 class="heading">Work Experience</h2>
+                        <div class="content">
+                            <div class="item">
+                                <h3 class="title">MTS Intern<span class="place"><a href="#"> Vmware</a></span> <span class="year">(May 2017 - August 2017)</span></h3>
+                                <p>Implemented distributed, real-time universal search solution for an performance monitoring tool that empowers the ends users to explore multiple properties across different metadata objects</p>
+                            </div><!--//item-->
+                            <div class="item">
+                                <h3 class="title">Cloud Software Engineer Intern<span class="place"><a href="#"> New York Life Insurance</a></span> <span class="year">(May 2016 - Dec 2016)</span></h3>
+                                <p>Developed comprehensive Web facing Life Insurance policy administration system using nodeJS, Angular 2 framework and AWS Services.
+                                Integrated and enhanced of claim management solution using AWS SWF, Step Functions Cognito, Lambda, DynamoDB and S3</p>
+                            </div><!--//item-->
+                            
+                            <div class="item">
+                                <h3 class="title">Software Engineering Sr. Analyst <span class="place"><a href="#">Accenture</a></span> <span class="year">(2011 - 2015)</span></h3>
+                                <p>Built J2EE modules and handled production deployment activities for a web-facing reservation system and mobile apps gateway</p>
+                            </div><!--//item-->
+                            
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
 
-					<div class="clear"></div>
-				</div><!--/.row -->
-			</div><!--/.container -->
+               <section class="latest section">
+                    <div class="section-inner">
+                        <h2 class="heading">Latest Projects</h2>
+                        <div class="content">    
+                                               
+                            <div class="item featured text-center">
+                                <h3 class="title"><a href="https://github.com/chime4life/zoi" target="_blank">Chime4Life</a></h3>
+                                <p class="summary">Platform for volunteers in reaching out to refugee girl children seeking formal education</p>
+                                <div class="featured-image">
+                                    <a href="https://raw.githubusercontent.com/chime4life/zoi/master/app.gif" target="_blank">
+                                    <img class="img-responsive project-image" src="assets/images/projects/project-featured.png" alt="project name" />
+                                    </a>
+                                    <div class="ribbon">
+                                        <div class="text">New</div>
+                                        </div>
+                                    </div>
+                                    
+                                <div class="desc text-left">                                    
+                                    <p>An hybrid app that served as a platform for volunteers in reaching out to refugee girl children seeking formal education, mapping courses to their goals, tracking their progress, providing guidance in-person as well as online and bringing sponsors courses are tailored to their aspirations. It was built as part of Chimehack 4, 2017</p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->
+                            <hr class="divider" />
+                            <div class="item row">
+                                <a class="col-md-4 col-sm-4 col-xs-12" href="#" target="_blank">
+                                <img class="img-responsive project-image" src="assets/images/projects/project-1.png" alt="project name" />
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title"><a href="https://github.com/mohigup/spark-ml-prediction" target="_blank">Red-winged Blackbird Prediction Spark MLlib</a></h3>
+                                    <p>Red-winged Blackbird Predictor built against an unlabeled eBird reference data set using Spark MLlib Random Forest Classification implementation on Apache Spark Hadoop YARN Cluster (AWS EMR).</p> <p>Awarded First Place for Best Prediction for sightings of Red-winged Blackbird across Spring 2017. 
+                                    </p>
+                                    <p><a class="more-link" href="https://github.com/mohigup/spark-ml-prediction" target="_blank"><i class="fa fa-external-link"></i> View on GitHub</a></p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->
+                            
+                            <div class="item row">
+                                <a class="col-md-4 col-sm-4 col-xs-12" href="#" target="_blank">
+                                <img class="img-responsive project-image" src="assets/images/projects/project-2.png" alt="project name" />
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title"><a href="project/client/index.html">Git Analyzer and Presenter</a></h3>
+                                    <p>Mobile-first web based application on M.E.A.N architecture aimed to search, analyze Git Repo and view git commits on-the-fly.</p>    
 
-			<div class="clear"></div>
-		</div><!--/ #topbar-inner -->
-	</div><!--/ #section-topbar -->
-	
-	<div id="headerwrap">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-12">
-					<h1>Mohit Gupta</h1>
-					<h3>Cloud Software Engineer | gupta.moh@husky.neu.edu</h3>
-				</div><!--/.col-lg-12 -->
-			</div><!--/.row -->
-		</div><!--/.container -->
-	</div><!--/.#headerwrap -->
-	
+                                    <p><h7><b>Click on Title to view the project</b></h7></p>
+                                    <p><a class="more-link" href="https://github.com/mohigup/Git-AnalyzerPresenter"target="_blank"><i class="fa fa-external-link"></i> View on GitHub</a></p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->
+                            
+                            <div class="item row">
+                                <a class="col-md-4 col-sm-4 col-xs-12" href="#" target="_blank">
+                                <img class="img-responsive project-image" src="assets/images/projects/project-3a.jpg" alt="project name" />
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title"><a href="https://github.com/mohigup/ATnT-Mobile-App-Hackathon-2016" target="_blank">People Counter IoT Mobile App</a></h3>
+                                    <p>IoT based iOS mobile app that helps manage and streamline queues in queue areas. It was built as part of AT&T Mobile App Hackathon 2016.</p>
+                                    <p><a class="more-link" href="https://github.com/mohigup/ATnT-Mobile-App-Hackathon-2016" target="_blank"><i class="fa fa-external-link"></i> View on GitHub</a></p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->                            
+                            <div class="item row">
+                                <a class="col-md-4 col-sm-4 col-xs-12" href="#/" target="_blank">
+                                <img class="img-responsive project-image" src="assets/images/projects/project-3.jpg" alt="project name" />
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title"><a href="https://github.com/mohigup/finITout" target="_blank">Fraudulent behavior Analyzer Mobile App for Elderly</a></h3>
+                                    <p>An iOS app developed in a Team addressing "Financial Caregiving" and "Fraud & Security" challenge for the Elderly that flagged fraudulent behavior in financial transactions and notified the consumers of the application.</p>
+                                    <p><a class="more-link" href="https://github.com/mohigup/finITout" target="_blank"><i class="fa fa-external-link"></i> View on GitHub</a></p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->
+                             <div class="item row">
+                                <a class="col-md-4 col-sm-4 col-xs-12" href="#	" target="_blank">
+                                <img class="img-responsive project-image" src="assets/images/projects/project-3b.jpg" alt="project name" />
+                                </a>
+                                <div class="desc col-md-8 col-sm-8 col-xs-12">
+                                    <h3 class="title"><a href="#" target="_blank">Pantomath for Insurance Agents</a></h3>
+                                    <p>A hybrid iOS app developed in NYL Hackathon 2016 that served as a crowdsourced searchable content library for NYL Insurance agents</p> 
+                                    <p>Also, I contributed in week-long cohort-based program where I was provided with time, space, and funding to drive my Hackathon solutions forward, as a step towards potential implementation within NYL.</p>
+                                </div><!--//desc-->                          
+                            </div><!--//item-->
+                            
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+                
+                <section class="projects section">
+                    <div class="section-inner">
+                        <h2 class="heading">Information Retrieval Projects</h2>
+                        <div class="content">
+                            <div class="item">
+                                <h3 class="title"><a href="#">Naive Bayes Classifier</a></h3>
+                                <p class="summary">A Naive Bayes classifier classified movie reviews as either positive or negative using Laplace, Dirichlet, Jelinek-Mercer smoothing techniques.</p>
+                                <p><a class="more-link" href="https://github.com/mohigup/Information-Retrieval/tree/master/Naive%20Bayes%20Classifier" target="_blank"><i class="fa fa-external-link"></i> View on GitHub</a></p>
+                            </div><!--//item-->
+                            <div class="item">
+                                <h3 class="title"><a href="#">Information Retrieval System</a></h3>
+                                <p class="summary">An Indexer, document retrieval for set of queries built using Okapi BM25 Model and Lucene on CACM corpus. It evaluated retrieval effectiveness using Information retrieval metrics.</p>
+                                <p><a class="more-link" href="https://github.com/mohigup/Information-Retrieval/tree/master/Information%20Retrieval%20System" target="_blank"><i class="fa fa-external-link"></i> View on GitHub</a></p>
+                            </div><!--//item-->
+                            
+                       
+                            
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+                
 
-	<section id="about" name="about"></section>
-	<div id="intro">
-		<div class="container">
-			<div class="row">
-				
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>ABOUT</h5>
-				</div>
-				<div class="col-lg-6">
-					<p>I'm a graduate Student pursuing  Masters Degree in Computer Science from Northeastern University and have over 4 years of experience working in enterprise application development and operations.
-						Currently, I'am  working as a Cloud Software Engineer Intern at New York Life.</p>
-				</div>
-				<div class="col-lg-3">
-					<p><a href="https://drive.google.com/a/husky.neu.edu/file/d/0B2bpAGgggTYKbkdlM0poZXhsUmM/view?usp=sharing"><i class="icon-file"></i></a> <sm>DOWNLOAD PDF</sm></p>
-				</div>
-				
-			</div><!--/.row -->
-		</div><!--/.container -->
-	</div><!--/ #intro -->
+<section class="github section">
+<div class="section-inner">
+<h2 class="heading">My GitHub</h2>
+<!-- <p>You can embed your GitHub contribution graph calendar using IonicaBizau's <a href="https://github.com/IonicaBizau/github-calendar" target="_blank">GitHub Calendar</a> widget. -->
 
+<div id="github-graph" class="github-graph">
 
-	<section id="resume" name="resume"></section>
-	<!--EDUCATION DESCRIPTION -->
-	<div class="container desc">
-		<div class="row">
+</div><!--//github-graph-->
 
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>EDUCATION</h5>
-				</div>
-				<div class="col-lg-6">
-					<p><t>Masters of Science in Computer Science</t><br/>
-						Northeastern University <br/>
-						<i>2 Years Course</i>
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>GRADUATING IN DEC 2017</sm><br/>
-					<imp><sm>IN PROGRESS</sm></imp>
-					</p>
-				</div>
-	
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><t>B.Tech in Computer Science and Engineering</t><br/>
-						Amity University <br/>
-						<i>4 Years Course</i>
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>APRIL 2011</sm></p>
-				</div>
-	
-		</div><!--/.row -->
-		<br>
-		<hr>
-	</div><!--/.container -->
-	
-	
-	<!--WORK DESCRIPTION -->
-	<div class="container desc">
-		<div class="row">
+<!-- <p>You can also embed your GitHub activities using Casey Scarborough's <a href="http://caseyscarborough.com/projects/github-activity/" target="_blank">GitHub Activity Stream</a> widget. -->
+<!--//Usage: http://caseyscarborough.com/projects/github-activity/ -->
 
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>WORK</h5>
-				</div>
-				<div class="col-lg-6">
-					<p><t>Cloud Software Engineer Intern</t><br/>
-						New York Life Insurance <br/>
-					</p>
-					<p><more>Development and Integration of New York Life Mobile and Web Applications with AWS Services</more></p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>MAY 2016 - CURRENT</sm></p>
-				</div>
-	
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><t>Software Engineering Sr. Analyst</t><br/>
-						Accenture plc. <br/>
-					</p>
-					<p><more>Advanced performance and functional improvements to pivotal J2EE modules of a Web-Facing Reservation System and Mobile Apps Gateway in a Agile development environment
-					</more></p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>JUNE 2011 - JULY 2015</sm></p>
-				</div>
-		</div><!--/.row -->
-		<br>
-		<hr>
-	</div><!--/.container -->
+</div><!--//secton-inner-->
+</section><!--//section-->
+            </div><!--//primary-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                 <aside class="info aside section">
+                    <div class="section-inner">
+                        <h2 class="heading sr-only">Basic Information</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Boston, US</li>
+                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#">gupta.moh@huskyneu.edu</a></li>
+                                <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="#">mohitgupta.space</a></li>
+                            </ul>
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//aside-->
+                
+                <aside class="skills aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Skills</h2>
+                        <div class="content">
+                            <div class="skillset">
+                               
+                                <div class="item">
+                                    <h3 class="level-title">Java<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Expert</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="96%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                                
+                                <div class="item">
+                                    <h3 class="level-title">JS, Angular & NodeJS<span class="level-label">Intermediate</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="75%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                                
+                                <div class="item">
+                                    <h3 class="level-title">GoLang<span class="level-label">Intermediate</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="75%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                    
+                                
+                                <div class="item">
+                                    <h3 class="level-title">HTML5, CSS3<span class="level-label">Intermediate</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="75%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->     
+                                <div class="item">
+                                    <h3 class="level-title">Python<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="" data-original-title="I used to be good at these but I haven't used them for years."><i class="fa fa-info-circle"></i></span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="55%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                            </div>    
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//section-->
+                       
+                <aside class="education aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Education</h2>
+                        <div class="content">
+                            <div class="item">                      
+                                <h3 class="title"><i class="fa fa-graduation-cap"></i> MS Computer Science</h3>
+                                <h4 class="university">Northeastern University USA <span class="year">(2015-2017)</span></h4>
+                            </div><!--//item-->
+                            <div class="item">
+                                <h3 class="title"><i class="fa fa-graduation-cap"></i> B.Tech Computer Science</h3>
+                                <h4 class="university">Amity University India <span class="year">(2007-2011)</span></h4>
+                            </div><!--//item-->
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
+                </aside><!--//section-->
+                          
+                <aside class="list music aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Hackathon Accolades</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-trophy"></i> <a href="#">Best Unique Solution Second Place at New York Life Hackathon 2016</a></li>
+                                <li><i class="fa fa-trophy"></i> <a href="#">Best Technical Solution & Best use of BBVA API 2nd place @ Startupbootcamp Holiday Hackathon by AARP 2016</a></li>
+                            </ul>
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
+                </aside><!--//section-->
+       
+            </div><!--//secondary-->    
+        </div><!--//row-->
+    </div><!--//masonry-->
+    
+    <!-- ******FOOTER****** --> 
+    <footer class="footer">
+        <div class="container text-center">
+                <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+        </div><!--//container-->
+    </footer><!--//footer-->
+ 
+    <!-- Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> 
+    <!-- github calendar plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.0.2/es6-promise.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/github-calendar/dist/github-calendar.min.js"></script>
+ 
+    <!-- custom js -->
+    <script type="text/javascript" src="assets/js/main.js"></script>            
+</body>	
+</html> 
 
-
-	<!--AWARDS DESCRIPTION -->
-	<div class="container desc">
-		<div class="row">
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>CERTIFICATIONS</h5>
-				</div>
-				<div class="col-lg-6">
-					<p><t>OCJP</t><br/>
-						Oracle Certified Professional, Java SE 6 Programmer<br/>
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>December 2010</sm></p>
-				</div>
-	
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><t>OCWCD</t><br/>
-						Oracle Certified Professional, Java EE 5 Web Component Developer
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>May 2011</sm></p>
-				</div>
-		
-		</div><!--/.row -->
-		<br>
-	</div><!--/.container -->
-	
-	
-	<!--SKILLS DESCRIPTION -->
-	<div id="skillswrap">
-		<div class="container">
-			<div class="row">
-					<div class="col-lg-2 col-lg-offset-1">
-						<h5>SKILLS</h5>
-					</div>
-					<div class="col-lg-3 centered">
-						<canvas id="javascript" height="130" width="130"></canvas>
-						<p>Javascript</p>
-						<br>
-						<script>
-							var doughnutData = [
-									{
-										value: 70,
-										color:"#1abc9c"
-									},
-									{
-										value : 30,
-										color : "#ecf0f1"
-									}
-								];
-								var myDoughnut = new Chart(document.getElementById("javascript").getContext("2d")).Doughnut(doughnutData);
-						</script>
-					</div>
-					<div class="col-lg-3 centered">
-						<canvas id="bootstrap" height="130" width="130"></canvas>
-						<p>Java</p>
-						<br>
-						<script>
-							var doughnutData = [
-									{
-										value: 90,
-										color:"#1abc9c"
-									},
-									{
-										value : 10,
-										color : "#ecf0f1"
-									}
-								];
-								var myDoughnut = new Chart(document.getElementById("bootstrap").getContext("2d")).Doughnut(doughnutData);
-						</script>
-					</div>
-					<div class="col-lg-3 centered">
-						<canvas id="wordpress" height="130" width="130"></canvas>
-						<p>RESTful APIs</p>
-						<br>
-						<script>
-							var doughnutData = [
-									{
-										value: 65,
-										color:"#1abc9c"
-									},
-									{
-										value : 35,
-										color : "#ecf0f1"
-									}
-								];
-								var myDoughnut = new Chart(document.getElementById("wordpress").getContext("2d")).Doughnut(doughnutData);
-						</script>
-					</div>
-					
-					<div class="col-lg-3 col-lg-offset-3 centered">
-						<canvas id="html" height="130" width="130"></canvas>
-						<p>HTML/CSS</p>
-						<br>
-						<script>
-							var doughnutData = [
-									{
-										value: 80,
-										color:"#1abc9c"
-									},
-									{
-										value : 20,
-										color : "#ecf0f1"
-									}
-								];
-								var myDoughnut = new Chart(document.getElementById("html").getContext("2d")).Doughnut(doughnutData);
-						</script>
-					</div>
-					<div class="col-lg-3 centered">
-						<canvas id="photoshop" height="130" width="130"></canvas>
-						<p>Shell Scripting</p>
-						<br>
-						<script>
-							var doughnutData = [
-									{
-										value: 70,
-										color:"#1abc9c"
-									},
-									{
-										value : 30,
-										color : "#ecf0f1"
-									}
-								];
-								var myDoughnut = new Chart(document.getElementById("photoshop").getContext("2d")).Doughnut(doughnutData);
-						</script>
-					</div>
-					<div class="col-lg-3 centered">
-						<canvas id="illustrator" height="130" width="130"></canvas>
-						<p>Python</p>
-						<br>
-						<script>
-							var doughnutData = [
-									{
-										value: 50,
-										color:"#1abc9c"
-									},
-									{
-										value : 50,
-										color : "#ecf0f1"
-									}
-								];
-								var myDoughnut = new Chart(document.getElementById("illustrator").getContext("2d")).Doughnut(doughnutData);
-						</script>
-					</div>
-
-			</div><!--/.row -->
-			<br>
-		</div><!--/.container -->
-	</div><!--/ #skillswrap -->
-
-
-
-	<section id="work" name="work"></section>
-	<!--PORTFOLIO DESCRIPTION -->
-	<div class="container desc">
-		<div class="row">
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>PORTFOLIO</h5>
-				</div>
-				<div class="col-lg-6">
-					<p><a href="project/client/index.html"><img class="img-responsive" src="assets/img/port01.png" alt=""></a></p>
-				</div>
-				<div class="col-lg-3">
-					<p><a href="project/client/index.html">Git Analyzer & Presenter</a></p>
-				<p><more>Mobile-first web based application on M.E.A.N architecture aimed to search, analyze Git Repo and view git commits on-the-fly.<br/><br/>
-					<sm><i class="icon-tag"></i> Full-Stack Development</sm></more>
-				</p>
-				</div>
-	
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><a href="https://bitbucket.org/MOHIT-GUPTA/myprojects/src/07aafeeee901cec6d6064074305defa2dc3d3dfd/Information-Retrieval/Information%20Retrieval%20System/?at=master"><img class="img-responsive" src="assets/img/information.jpg" alt=""></a></p>
-				</div>
-				<div class="col-lg-3">
-						<p><a href ="https://bitbucket.org/MOHIT-GUPTA/myprojects/src/07aafeeee901cec6d6064074305defa2dc3d3dfd/Information-Retrieval/Information%20Retrieval%20System/?at=master">Information Retrieval System</a></p>
-					<p><more>Java and Python based Implementation of indexer, document retrieval for set of queries using Okapi BM25 Model and Lucene on CACM corpus. Further, an search engine evaluator was built to measure the retrieval effectiveness using Information retrieval metrics on implemented retrieval system.<br/><br/>
-						<sm><i class="icon-tag"></i> Back-end</sm></more>
-					</p>
-				</div>
-				
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><a href ="https://bitbucket.org/MOHIT-GUPTA/myprojects/src/07aafeeee901cec6d6064074305defa2dc3d3dfd/Information-Retrieval/Naive%20Bayes%20Classifier/?at=master"><img class="img-responsive" src="assets/img/gauge-.jpg" alt=""></a></p>
-				</div>
-				<div class="col-lg-3">
-						<p><a href ="https://bitbucket.org/MOHIT-GUPTA/myprojects/src/07aafeeee901cec6d6064074305defa2dc3d3dfd/Information-Retrieval/Naive%20Bayes%20Classifier/?at=master">Naive Bayes Classifier</a></p>
-					<p><more>Naive Bayes classifier build using Python that classified movie reviews as either positive or negative using Laplace, Dirichlet, Jelinek-Mercer smoothing techniques.<br/><br/>
-						<sm><i class="icon-tag"></i> Back-end</sm></more>
-					</p>
-				</div>
-		
-		</div><!--/.row -->
-		<br>
-		<br>
-	</div><!--/.container -->
-	
-
-
-	<section id="contact" name="contact"></section>
-	<!--FOOTER DESCRIPTION -->
-	<div id="footwrap">
-		<div class="container">
-			<div class="row">
-			
-				<div class="col-lg-2 col-lg-offset-1">
-					<h5>CONTACT</h5>
-				</div>
-				<div class="col-lg-6">
-					<p><t>Email</t><br/>
-						gupta.moh@husky.neu.edu <br/>
-					</p>
-					<p><t>Adress</t><br/>
-						Manhattan Avenue<br/>
-
-						Jersey City, New Jersey <br/>
-					</p>
-					<p><t>Phone</t><br/>
-						+1 857-313-8564 <br/>
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>SOCIAL LINKS</sm></p>
-					<p>
-						<a href="https://github.com/mohigup/WebDevSpring2016"><i class="icon-github"></i></a>
-						<a href="https://bitbucket.org/MOHIT-GUPTA/myprojects/src"><i class="icon-bitbucket"></i></a>
-						<a href="https://www.linkedin.com/in/mohitgupta17"><i class="icon-linkedin"></i></a>
-						<a href="https://www.facebook.com/mohitgupta001"><i class="icon-facebook"></i></a>
-
-
-
-					</p>
-				</div>
-			</div><!--/.row -->
-		</div><!--/.container -->
-	</div><!--/ #footer -->
-	
-	<div id="c">
-		<div class="container">
-			<p>Created by Mohit Gupta</p>
-		
-		</div>
-	</div>
-	
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/bootstrap.js"></script>
-  </body>
-</html>
